@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 /**
  * Java Swing window to load wagon, with functionality for 
  * adding wagon weight and calculating food for the journey.
+ * @author Lukas Dunbar, Corbin Hibler
  */
 public class LoadWagon {
 

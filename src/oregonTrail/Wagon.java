@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
  * Instance variables: foodConsumptionRate, travelSpeed, itemContents, 
  * 				       foodContents, totalWeight, totalFoodWeight.
  * Static constants: FOOD_CONSUME_LEVELS, DEFAULT_TRAVEL_SPEED
+ * @author Lukas Dunbar, Corbin Hibler
  */
 public class Wagon {
 	private double foodConsumptionRate;

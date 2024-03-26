@@ -3,6 +3,7 @@ package oregonTrail;
 /**
  * Class contains methods needed for Food objects.
  * Subclass of Item
+ * @author Lukas Dunbar, Corbin Hibler
  */
 public class Food extends Item {
 	/**
