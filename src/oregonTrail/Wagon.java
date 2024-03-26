@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 public class Wagon {
 	private double foodConsumptionRate;
 	private int travelSpeed;
-	private ArrayList<Item> contents;
+	private ArrayList<Item> itemContents;
+	private ArrayList<Food> foodContents;
 	private double totalWeight;
 	public static final String[] FOOD_CONSUME_LEVELS = { "Sumo Wrestler", "Regular Joe", "Starving Homeless person"};
 	public static final int DEFAULT_TRAVEL_SPEED = 12;
@@ -17,7 +18,8 @@ public class Wagon {
 	 * Constructor creates contents ArrayList and sets defaults
 	 */
 	public Wagon() {
-		contents = new ArrayList<>();
+		itemContents = new ArrayList<>();
+		foodContents = new ArrayList<>();
 		// Default values
 		foodConsumptionRate = 1.0;
 		travelSpeed = DEFAULT_TRAVEL_SPEED;
@@ -28,7 +30,7 @@ public class Wagon {
 	 * @param item Item object being added
 	 */
 	public void addItem(Item item) {
-		contents.add(item);
+		itemContents.add(item);
 		totalWeight += item.getWeight();
 	}
 
@@ -37,7 +39,7 @@ public class Wagon {
 	 * @param item Item object being removed
 	 */
 	public void removeItem(Item item) {
-		contents.remove(item);
+		itemContents.remove(item);
 		totalWeight -= item.getWeight();
 	}
 
