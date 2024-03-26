@@ -11,6 +11,7 @@ public class Wagon {
 	private ArrayList<Item> itemContents;
 	private ArrayList<Food> foodContents;
 	private double totalWeight;
+	private double totalFoodWeight;
 	public static final String[] FOOD_CONSUME_LEVELS = { "Sumo Wrestler", "Regular Joe", "Starving Homeless person"};
 	public static final int DEFAULT_TRAVEL_SPEED = 12;
 
@@ -48,6 +49,19 @@ public class Wagon {
 	 */
 	public double getTotalWeight() {
 		return totalWeight;
+	}
+	
+	/**
+	 * Searches through all items in Wagon and adds all food items to foodContents
+	 */
+	public void foodContentsGenerator() {
+		for (Item item : itemContents) {
+			boolean isFood = Food.isFood(item);
+			if (isFood) {
+				foodContents.add((Food) item);
+				totalFoodWeight += item.getWeight();
+			}
+		}
 	}
 	
 	/**
@@ -117,5 +131,12 @@ public class Wagon {
 	 */
 	public int getTravelSpeed() {
 		return travelSpeed;
+	}
+
+	/**
+	 * @return the totalFoodWeight
+	 */
+	public double getTotalFoodWeight() {
+		return totalFoodWeight;
 	}
 }

@@ -8,8 +8,8 @@ public class Food extends Item {
 		super(name, nutritionWeight);
 	}
 
-	public static boolean isFood(String name) {
-		switch (name){
+	public static boolean isFood(Item item) {
+		switch (item.getName()) {
 		case "Apple Vinegar", "Bacon", "Beans", "Coffee", "Dried Apples", "Flour", 
 		     "Hardtack", "Lard", "Salt", "Sugar", "Rice", "Water", "Whiskey":
 			return true;
