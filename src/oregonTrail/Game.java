@@ -246,7 +246,7 @@ public class Game {
 		frame.getContentPane().add(controlPanel, BorderLayout.CENTER);
 
 		// Add Oregon Trail image
-		ImageIcon oregonTrailImage = new ImageIcon("oregon_trail_image.jpg");
+		ImageIcon oregonTrailImage = new ImageIcon("Chimney Rock 1.jpg");
 		JLabel imageLabel = new JLabel(oregonTrailImage);
 		frame.getContentPane().add(imageLabel, BorderLayout.NORTH);
 	}
