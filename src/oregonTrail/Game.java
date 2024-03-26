@@ -60,17 +60,17 @@ public class Game {
 	 */
 	private void travel() {
 		int travelSpeed = 12; // Default travel speed
-		String[] options = { "Sumo Wrestler", "Regular Joe", "Starving Homeless person" };
+		final String[] OPTIONS = { "Sumo Wrestler", "Regular Joe", "Starving Homeless person" };
 		String foodConsumption = (String) JOptionPane.showInputDialog(frame, "Select food consumption level:", 
 				                                                      "Food Consumption", JOptionPane.PLAIN_MESSAGE, 
-				                                                      null, options, options[0]);
+				                                                      null, OPTIONS, OPTIONS[0]);
 		if (foodConsumption != null) {
 			String speedInput = JOptionPane.showInputDialog(frame, "Enter travel speed (miles per day):");
 			if (speedInput != null) {
 				try {
 					travelSpeed = Integer.parseInt(speedInput);
 					if (travelSpeed < 12 || travelSpeed > 20) {
-						JOptionPane.showMessageDialog(frame, JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(frame, "Input must be between 12-20.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				} catch (NumberFormatException ex) {
@@ -82,7 +82,8 @@ public class Game {
 			}
 
 			// Calculate journey duration
-			int journeyDays = 2200 / travelSpeed;
+			final int MAGIC_NUMBER = 2200;
+			int journeyDays = MAGIC_NUMBER / travelSpeed;
 
 			// Determine food consumption rate based on user input
 			double foodConsumptionRate;
