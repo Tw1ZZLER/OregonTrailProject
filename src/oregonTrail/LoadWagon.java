@@ -72,7 +72,7 @@ public class LoadWagon {
 		double requiredFood = journeyDays * wagon.getFoodConsumptionRate();
 
 		// Check if there's enough food
-		if (requiredFood > wagon.getTotalWeight()) {
+		if (nutritionWeight> requiredFood) {
 			warningTextField.setText("Insufficient food for the journey.");
 		} else {
 			warningTextField.setText("Food is sufficient for the journey.");
