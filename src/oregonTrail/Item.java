@@ -3,6 +3,7 @@ package oregonTrail;
 /**
  * Class for each item in the Oregon Trail game.
  * Superclass of Food.
+ * @author Lukas Dunbar, Corbin Hibler
  */
 public class Item {
 	protected String name;
