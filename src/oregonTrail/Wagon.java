@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * Contains all information related to the wagon
+ * Instance variables: foodConsumptionRate, travelSpeed, itemContents, 
+ * 				       foodContents, totalWeight, totalFoodWeight.
+ * Static constants: FOOD_CONSUME_LEVELS, DEFAULT_TRAVEL_SPEED
+ */
 public class Wagon {
 	private double foodConsumptionRate;
 	private int travelSpeed;

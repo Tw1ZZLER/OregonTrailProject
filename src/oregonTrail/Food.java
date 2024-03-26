@@ -1,13 +1,24 @@
 package oregonTrail;
 
+/**
+ * Class contains methods needed for Food objects.
+ * Subclass of Item
+ */
 public class Food extends Item {
-	private String name;
-	private double nutritionWeight;
-	
-	public Food(String name, double nutritionWeight) {
-		super(name, nutritionWeight);
+	/**
+	 * Constructor creates Food item
+	 * @param name Name of Food item
+	 * @param weight Weight of Food item
+	 */
+	public Food(String name, double weight) {
+		super(name, weight);
 	}
 
+	/**
+	 * Checks an Item for being a Food item. 
+	 * @param item Item being checked for being a Food item.
+	 * @return true if item is a Food item, false otherwise
+	 */
 	public static boolean isFood(Item item) {
 		switch (item.getName()) {
 		case "Apple Vinegar", "Bacon", "Beans", "Coffee", "Dried Apples", "Flour", 
