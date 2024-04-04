@@ -2,8 +2,8 @@ package oregonTrail;
 
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  * Contains all information related to the wagon
@@ -21,6 +21,7 @@ public class Wagon {
 	private double totalFoodWeight;
 	public static final String[] FOOD_CONSUME_LEVELS = { "Sumo Wrestler", "Regular Joe", "Starving Homeless person"};
 	public static final int DEFAULT_TRAVEL_SPEED = 12;
+	public static final int MAXIMUM_WEIGHT = 2400;
 
 	/**
 	 * Constructor creates contents ArrayList and sets defaults
@@ -76,8 +77,8 @@ public class Wagon {
 	 * @param frame JFrame in use by program (LoadWagon, main game, etc.)
 	 * @return foodConsumptionRate The selected food consumption rate.
 	 */
-	public double foodConsumptionDialog(JFrame frame) {
-		String foodConsumptionOption = (String) JOptionPane.showInputDialog(frame, "Select food consumption level:", 
+	public double foodConsumptionDialog(JPanel panel) {
+		String foodConsumptionOption = (String) JOptionPane.showInputDialog(panel, "Select food consumption level:", 
                 "Food Consumption", JOptionPane.PLAIN_MESSAGE, 
                 null, Wagon.FOOD_CONSUME_LEVELS, Wagon.FOOD_CONSUME_LEVELS[0]);
 		
@@ -110,25 +111,25 @@ public class Wagon {
 	
 	/**
 	 * Setter for travelSpeed in the form of a JOptionPane message dialog.
-	 * @param frame JFrame in use by program (LoadWagon, main game, etc.)
+	 * @param panel JFrame in use by program (LoadWagon, main game, etc.)
 	 * @return int travelSpeed The selected travel speed.
 	 */
-	public int travelSpeedDialog(JFrame frame) {
+	public int travelSpeedDialog(JPanel panel) {
 		int travelSpeed = DEFAULT_TRAVEL_SPEED;
-		String speedInput = JOptionPane.showInputDialog(frame, "Enter travel speed (miles per day):");
+		String speedInput = JOptionPane.showInputDialog(panel, "Enter travel speed (miles per day):");
 		try {
 			travelSpeed = Integer.parseInt(speedInput);
 			if (travelSpeed < 12 || travelSpeed > 20) {
-				JOptionPane.showMessageDialog(frame, "Input must be between 12-20.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
-				travelSpeedDialog(frame);
+				JOptionPane.showMessageDialog(panel, "Input must be between 12-20.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+				travelSpeedDialog(panel);
 			}
 			else {
 				this.travelSpeed = travelSpeed;
 				return travelSpeed;
 			}
 		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(frame, "Invalid input. Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
-			travelSpeedDialog(frame);
+			JOptionPane.showMessageDialog(panel, "Invalid input. Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
+			travelSpeedDialog(panel);
 		}
 		return DEFAULT_TRAVEL_SPEED;
 	}
