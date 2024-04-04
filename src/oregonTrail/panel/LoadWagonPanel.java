@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 import oregonTrail.Item;
 import oregonTrail.Wagon;
+import java.awt.Font;
 
 /**
  * Java Swing panel to load wagon, with functionality for 
@@ -31,7 +32,7 @@ public class LoadWagonPanel extends JPanel {
 			"Toys" };
 
 	/**
-	 * Create the panel components.
+	 * Create the panel.
 	 */
 	public LoadWagonPanel() {
 		wagon = new Wagon();
@@ -59,8 +60,8 @@ public class LoadWagonPanel extends JPanel {
 
                     totalWeightLabel.setText("Total Weight: " + wagon.getTotalWeight());
                     if (wagon.getTotalWeight() > Wagon.MAXIMUM_WEIGHT) {
-                        warningTextField.setText("You may not travel with more than" + 
-                        					     Wagon.MAXIMUM_WEIGHT + "lbs in your wagon");
+                        warningTextField.setText("You may not travel with more than " + 
+                        					     Wagon.MAXIMUM_WEIGHT + " lbs. in your wagon");
                     } else {
                         warningTextField.setText("");
                     }
@@ -77,6 +78,7 @@ public class LoadWagonPanel extends JPanel {
 
 		// Warning text field
 		warningTextField = new JTextField();
+		warningTextField.setFont(new Font("Dialog", Font.PLAIN, 18));
 		warningTextField.setEditable(false);
 		this.add(warningTextField);
 
