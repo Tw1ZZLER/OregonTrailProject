@@ -26,3 +26,5 @@ replay_pid*
 .classpath
 .project
 .idea
+*.iml
+classes/production/OregonTrailProject/images/chimney_rock_1.jpg

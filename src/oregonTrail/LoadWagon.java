@@ -33,10 +33,8 @@ public class LoadWagon {
 			"Cookware & Eating Utensils", "Lard", "Granny’s Clock", "Salt", "Gun Making Tools", "Sugar",
 			"Keepsakes", "Rice", "Lead Shot", "Water", "Mirror", "Whiskey", "Gunpowder", "Tent & Gear", "Tools",
 			"Toys" };
-	private JButton travelButton;
-	private final int MILES_TO_OREGON = 2200;
 
-	/**
+    /**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -71,7 +69,8 @@ public class LoadWagon {
 		wagon.travelSpeedDialog(frame);
 		
 		// Calculate journey duration
-		int journeyDays = MILES_TO_OREGON / wagon.getTravelSpeed();
+        int MILES_TO_OREGON = 2200;
+        int journeyDays = MILES_TO_OREGON / wagon.getTravelSpeed();
 
 		// Calculate required food amount
 		double requiredFood = journeyDays * wagon.getFoodConsumptionRate();
@@ -99,35 +98,35 @@ public class LoadWagon {
 		controlPanel.setLayout(new GridLayout(0, 2));
 
 		// Adding checkboxes for items iteratively
-		for (int i = 0; i < itemNames.length; i++) {
-			JCheckBox checkBox = new JCheckBox(itemNames[i]);
-			checkBox.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					String itemName = checkBox.getText();
-					double itemWeight = Item.getItemWeight(itemName);
-					
-					// Add item to wagon
-					if (checkBox.isSelected()) {
-						Item item = new Item(itemName, itemWeight);
-						wagon.addItem(item);
-					// Remove item from wagon
-					} else {
-						Item item = new Item(itemName, itemWeight);
-						wagon.removeItem(item);
-					}
-					
-					totalWeightLabel.setText("Total Weight: " + wagon.getTotalWeight());
-					if (wagon.getTotalWeight() > 2400) {
-						warningTextField.setText("You may not travel with more than 2400lbs in your wagon");
-					} else {
-						warningTextField.setText("");
-					}
-				}
-			});
-			
-			controlPanel.add(checkBox);
-			checkBoxes.add(checkBox);
-		}
+        for (String itemName : itemNames) {
+            JCheckBox checkBox = new JCheckBox(itemName);
+            checkBox.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent arg0) {
+                    String itemName = checkBox.getText();
+                    double itemWeight = Item.getItemWeight(itemName);
+
+                    // Add item to wagon
+                    if (checkBox.isSelected()) {
+                        Item item = new Item(itemName, itemWeight);
+                        wagon.addItem(item);
+                        // Remove item from wagon
+                    } else {
+                        Item item = new Item(itemName, itemWeight);
+                        wagon.removeItem(item);
+                    }
+
+                    totalWeightLabel.setText("Total Weight: " + wagon.getTotalWeight());
+                    if (wagon.getTotalWeight() > 2400) {
+                        warningTextField.setText("You may not travel with more than 2400lbs in your wagon");
+                    } else {
+                        warningTextField.setText("");
+                    }
+                }
+            });
+
+            controlPanel.add(checkBox);
+            checkBoxes.add(checkBox);
+        }
 
 		// Display total weight
 		totalWeightLabel = new JLabel("Total Weight: ");
@@ -139,7 +138,7 @@ public class LoadWagon {
 		controlPanel.add(warningTextField);
 
 		// Travel button
-		travelButton = new JButton("Travel");
+        JButton travelButton = new JButton("Travel");
 		travelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				travel();
