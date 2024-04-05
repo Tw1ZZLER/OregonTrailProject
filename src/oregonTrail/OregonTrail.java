@@ -1,6 +1,7 @@
 package oregonTrail;
 
 import java.awt.BorderLayout;
+import oregonTrail.panel.FortPanel;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -17,7 +18,7 @@ public class OregonTrail {
 
 	private JFrame frame;
 	private StartupPanel startupPanel;
-	private LoadWagonPanel loadWagonPanel;
+	private FortPanel loadWagonPanel;
 
 	/**
 	 * Launch the application.
@@ -75,7 +76,7 @@ public class OregonTrail {
 			public void actionPerformed(ActionEvent arg0) {
 				// After startup screen is finished, display first panel
 				frame.getContentPane().remove(startupPanel);
-				frame.getContentPane().add(loadWagonPanel = new LoadWagonPanel());
+				frame.getContentPane().add(loadWagonPanel = new FortPanel());
 				// The image must be added separate from the panel because LoadWagonPanel uses
 				// a Grid Layout, and the image won't fit nicely
 				frame.getContentPane().add(imageLabel, BorderLayout.NORTH);
