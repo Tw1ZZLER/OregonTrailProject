@@ -6,11 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FortPanel extends JPanel {
-    public FortPanel() {
+    public FortPanel(Image fortImage) {
         setLayout(new BorderLayout());
 
         // Create image label and add it to the top half
-        ImageIcon imageIcon = new ImageIcon("/src/images/chimney_rock_1.jpg"); // Replace path_to_your_image
+        ImageIcon imageIcon = new ImageIcon(fortImage); // Replace path_to_your_image
         JLabel imageLabel = new JLabel(imageIcon);
         add(imageLabel, BorderLayout.CENTER);
 
