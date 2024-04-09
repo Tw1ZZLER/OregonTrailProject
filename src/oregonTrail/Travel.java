@@ -44,9 +44,10 @@ public class Travel {
 	    DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
 	    String formattedDate = dateFormat.format(date.getTime());
 	    oregonTrail.TRAVEL_PANEL.setDateText(formattedDate);
+	    oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
 	    
 	    // Generate miles generated and update label
-	    int milesTraveledCycle = rand.nextInt(25);
+	    int milesTraveledCycle = rand.nextInt(oregonTrail.WAGON.getTravelSpeed());
 	    milesTraveled += milesTraveledCycle;
 	    oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
 	    
