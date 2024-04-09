@@ -47,6 +47,7 @@ public class OregonTrail {
 		WAGON = new Wagon();
 		WAGON.addItem(new Item("Apple Vinegar"));
 		WAGON.addItem(new Item("Bacon"));
+		WAGON.addItem(new Item("Cast Iron Stove"));
 		WAGON.setTotalFoodWeight(315);
 		
 		STARTUP_PANEL = new StartupPanel();
@@ -71,10 +72,6 @@ public class OregonTrail {
 		frame.getContentPane().add(panelOpen);
 		frame.getContentPane().validate();
 		frame.getContentPane().repaint();
-		
-		if (panelOpen == huntingPanel) {
-			huntingPanel = new HuntingPanel();
-		}
 	}
 
 	/**
