@@ -12,14 +12,16 @@ import oregonTrail.panel.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import java.awt.Color;
 
 public class OregonTrail {
 
-	private JFrame frame;
-	private StartupPanel startupPanel;
-	private TrailMenuPanel loadWagonPanel;
+	private static JFrame frame;
+	public static StartupPanel startupPanel = new StartupPanel();
+	public static TravelPanel travelPanel = new TravelPanel();
+	public static TrailMenuPanel trailMenuPanel  = new TrailMenuPanel();
 
 	/**
 	 * Launch the application.
@@ -43,6 +45,28 @@ public class OregonTrail {
 	public OregonTrail() {
 		initialize();
 	}
+	
+	/**
+	 * Opens TrailMenuPanel and closes previous panel
+	 * @author Corbin Hibler
+	 * @date 2024-04-08
+	 */
+	public static void openTrailMenuPanel(JPanel panel) {
+		frame.getContentPane().remove(panel);
+		frame.getContentPane().add(trailMenuPanel);
+		frame.setVisible(true);
+	}
+	
+	/**
+	 * Opens TrailMenuPanel and closes previous panel
+	 * @author Corbin Hibler
+	 * @date 2024-04-08
+	 */
+	public static void openTravelPanel(JPanel panel) {
+		frame.getContentPane().remove(panel);
+		frame.getContentPane().add(travelPanel);
+		frame.setVisible(true);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -62,7 +86,7 @@ public class OregonTrail {
 		//                  automatically create JLabels from them. Perhaps we could
 		//                  also have a CSV file which contains the appropriate scaling for each image.
 		// Add Chimney Rock Image
-		ImageIcon chimneyRockImage = new ImageIcon("src/images/chimney_rock_1.jpg");
+		ImageIcon chimneyRockImage = new ImageIcon("/images/chimney_rock_1.jpg");
 		// Resize image to fit into frame
         Image image = chimneyRockImage.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
         ImageIcon scaledImage = new ImageIcon(image);
@@ -70,14 +94,13 @@ public class OregonTrail {
 		JLabel imageLabel = new JLabel(scaledImage);
 		
 		// Show logo and team name
-		startupPanel = new StartupPanel();
 		frame.getContentPane().add(startupPanel, BorderLayout.CENTER);
 		
 		Timer startupTimer = new Timer(StartupPanel.STARTUP_TIME, new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// After startup screen is finished, display first panel
 				frame.getContentPane().remove(startupPanel);
-				frame.getContentPane().add(loadWagonPanel = new TrailMenuPanel());
+				frame.getContentPane().add(travelPanel);
 				// The image must be added separate from the panel because LoadWagonPanel uses
 				// a Grid Layout, and the image won't fit nicely
 				// Update frame

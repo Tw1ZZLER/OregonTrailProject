@@ -11,7 +11,8 @@ public class FortPanel extends JPanel {
         setLayout(new BorderLayout());
 
         // Create image label and add it to the top half
-        ImageIcon imageIcon = new ImageIcon(fortImage); // Replace path_to_your_image
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")); // Replace path_to_your_image
+        Image scaledImage = imageIcon.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
         JLabel imageLabel = new JLabel(imageIcon);
         add(imageLabel, BorderLayout.CENTER);
 

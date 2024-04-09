@@ -1,11 +1,15 @@
 package oregonTrail.panel;
+
 import javax.swing.*;
+import oregonTrail.OregonTrail;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TrailMenuPanel extends JPanel {
-    public TrailMenuPanel() {
+    private static final long serialVersionUID = 1L;
+
+	public TrailMenuPanel() {
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
 
@@ -46,6 +50,7 @@ public class TrailMenuPanel extends JPanel {
         continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	OregonTrail.openTravelPanel(TrailMenuPanel.this);
                 System.out.println("Continue on Trail button clicked");
             }
         });
