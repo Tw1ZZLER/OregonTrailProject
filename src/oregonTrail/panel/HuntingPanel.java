@@ -60,15 +60,15 @@ public class HuntingPanel extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
-        standingIcon = new ImageIcon("C:\\Users\\rjott\\OneDrive\\Pictures\\drawings\\standing1.png");
-        blockingIcon = new ImageIcon("C:\\Users\\rjott\\OneDrive\\Pictures\\drawings\\blocking1.png");
-        rightPunchIcon = new ImageIcon("C:\\Users\\rjott\\OneDrive\\Pictures\\drawings\\rightPunch1.png");
-        leftPunchIcon = new ImageIcon("C:\\Users\\rjott\\OneDrive\\Pictures\\drawings\\leftPunch1.png");
-        bisonImage = new ImageIcon("C:\\Users\\rjott\\OneDrive\\Pictures\\drawings\\Bison1.png");
-        squirrelImage = new ImageIcon("C:\\Users\\rjott\\OneDrive\\Pictures\\drawings\\Squirell1.png");
-        coyoteImage = new ImageIcon("C:\\Users\\rjott\\OneDrive\\Pictures\\drawings\\coyote.png");
-        deerImage = new ImageIcon("C:\\Users\\rjott\\OneDrive\\Pictures\\drawings\\deer.png");
-        laurieMooImage = new ImageIcon("C:\\Users\\rjott\\OneDrive\\Pictures\\drawings\\LaurieMoo.png");
+        standingIcon = new ImageIcon("/images/standing1.png");
+        blockingIcon = new ImageIcon("/images/blocking1.png");
+        rightPunchIcon = new ImageIcon("/images/rightPunch1.png");
+        leftPunchIcon = new ImageIcon("/images/leftPunch1.png");
+        bisonImage = new ImageIcon("/images/Bison1.png");
+        squirrelImage = new ImageIcon("/images/Squirell1.png");
+        coyoteImage = new ImageIcon("/images/coyote.png");
+        deerImage = new ImageIcon("/images/deer.png");
+        laurieMooImage = new ImageIcon("/images/LaurieMoo.png");
 
         standingIcon = scaleImageIcon(standingIcon, 10);
         blockingIcon = scaleImageIcon(blockingIcon, 10);

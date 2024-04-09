@@ -136,7 +136,7 @@ public class TrailMenuPanel extends JPanel {
         huntButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                oregonTrail.openPanel(new HuntingPanel(), TrailMenuPanel.this);
+                oregonTrail.openPanel(oregonTrail.huntingPanel, TrailMenuPanel.this);
             }
         });
         

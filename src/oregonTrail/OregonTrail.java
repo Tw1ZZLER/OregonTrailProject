@@ -66,10 +66,21 @@ public class OregonTrail {
 	 * @date 2024-04-08
 	 */
 	public void openPanel(JPanel panelOpen, JPanel panelClose) {
-		frame.getContentPane().remove(panelClose);
-		frame.getContentPane().add(panelOpen);
-		frame.getContentPane().validate();
+		frame.getContentPane().removeAll();
+		
+		// Create new hunting panel if called.
+		// Otherwise, use final (constant) panel
+		if (panelOpen == this.huntingPanel) {
+			this.huntingPanel = new HuntingPanel();
+			frame.getContentPane().add(this.huntingPanel);
+		}
+		else {
+			frame.getContentPane().add(panelOpen);
+		}
+		
+		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
+		this.huntingPanel.setVisible(true);
 	}
 
 	/**
