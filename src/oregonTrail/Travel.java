@@ -71,7 +71,7 @@ public class Travel {
 	    	travelToggle();
 	    }
 	    
-	    if (milesNextLandmark <= 0 && milesTraveled > MILES_TO_FORT_STRONG + 10) {
+	    if (milesNextLandmark <= 0 && milesTraveled > MILES_TO_FORT_STRONG + 100) {
 	    	oregonTrail.openPanel(oregonTrail.FORT_OREGON_PANEL, oregonTrail.TRAVEL_PANEL);
 	    	milesNextLandmark = 99999;
 	    	travelToggle();
