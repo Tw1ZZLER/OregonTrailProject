@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import net.miginfocom.swing.MigLayout;
 import oregonTrail.OregonTrail;
+import oregonTrail.Wagon;
 
 /**
  * Main traveling panel, shows most pertinent information to wagon
@@ -134,7 +135,7 @@ public class TravelPanel extends JPanel {
 		lblHealth.setFont(new Font("Dialog", Font.BOLD, 24));
 		add(lblHealth, "cell 1 4,alignx left");
 		
-		lblFood = new JLabel("315 pounds");
+		lblFood = new JLabel(oregonTrail.WAGON.getTotalFoodWeight() + " pounds");
 		lblFood.setFont(new Font("Dialog", Font.BOLD, 24));
 		add(lblFood, "cell 1 5,alignx left");
 		

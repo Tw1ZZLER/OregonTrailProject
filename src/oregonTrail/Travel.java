@@ -54,6 +54,11 @@ public class Travel {
 	    milesNextLandmark -= milesTraveledCycle;
 	    oregonTrail.TRAVEL_PANEL.setNextLandmarkText(milesNextLandmark);
 	    
+	    // Calculate new food weight and set accordingly
+	    int totalFoodWeight = oregonTrail.WAGON.getTotalFoodWeight();
+	    int newFoodWeight = (int) (totalFoodWeight-(oregonTrail.WAGON.getFoodConsumptionRate()*5));
+	    oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
+	    
 	    // Check if we have reached fort
 	    if (milesNextLandmark <= 0) {
 	    	oregonTrail.openPanel(oregonTrail.FORT_STRONG_PANEL, oregonTrail.TRAVEL_PANEL);

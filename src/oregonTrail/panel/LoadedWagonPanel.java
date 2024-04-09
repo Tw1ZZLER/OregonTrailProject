@@ -1,6 +1,9 @@
 package oregonTrail.panel;
 
 import javax.swing.*;
+
+import oregonTrail.OregonTrail;
+
 import java.awt.*;
 
 /**
@@ -15,13 +18,12 @@ public class LoadedWagonPanel extends JPanel {
     private int ammoAmount = 200;
     private int clothingAmount = 10;
 
-    public LoadedWagonPanel(Image wagonImage) {
+    // Constructor accepting OregonTrail instance
+    public LoadedWagonPanel(OregonTrail oregonTrail) {
         setLayout(new BorderLayout());
 
         // Create image label and add it to the top half
-        ImageIcon imageIcon = new ImageIcon(wagonImage);
-        JLabel imageLabel = new JLabel(imageIcon);
-        add(imageLabel, BorderLayout.CENTER);
+        
 
         // Create panel for displaying inventory details
         JPanel inventoryDetailsPanel = new JPanel(new GridLayout(4, 2));

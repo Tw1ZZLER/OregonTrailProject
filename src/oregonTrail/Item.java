@@ -9,9 +9,9 @@ public class Item {
 	protected String name;
 	protected double weight;
 
-	public Item(String name, double weight) {
+	public Item(String name) {
 		this.name = name;
-		this.weight = weight;
+		this.weight = getItemWeight(name);
 	}
 
 	/**

@@ -11,8 +11,8 @@ public class Food extends Item {
 	 * @param name Name of Food item
 	 * @param weight Weight of Food item
 	 */
-	public Food(String name, double weight) {
-		super(name, weight);
+	public Food(String name) {
+		super(name);
 	}
 
 	/**

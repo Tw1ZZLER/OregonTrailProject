@@ -16,11 +16,16 @@ public class Wagon {
 	private int travelSpeed;
 	private ArrayList<Item> itemContents;
 	private ArrayList<Food> foodContents;
-	private double totalWeight;
-	private double totalFoodWeight;
+	private int totalWeight;
+	private int totalFoodWeight;
 	public static final String[] FOOD_CONSUME_LEVELS = { "Sumo Wrestler", "Regular Joe", "Starving Homeless person"};
 	public static final int DEFAULT_TRAVEL_SPEED = 12;
 	public static final int MAXIMUM_WEIGHT = 2400;
+	public static final String[] itemNames = { "Apple Vinegar", "Bedroll", "Bacon", "Blacksmithing Tools", "Beans", "Books", "Coffee",
+			"Medicine", "Dried Apples", "Cast Iron Stove", "Flour", "Chair", "Hardtack",
+			"Cookware & Eating Utensils", "Lard", "Granny’s Clock", "Salt", "Gun Making Tools", "Sugar",
+			"Keepsakes", "Rice", "Lead Shot", "Water", "Mirror", "Whiskey", "Gunpowder", "Tent & Gear", "Tools",
+			"Toys" };
 
 	/**
 	 * Constructor creates contents ArrayList and sets defaults
@@ -143,7 +148,14 @@ public class Wagon {
 	/**
 	 * @return the totalFoodWeight
 	 */
-	public double getTotalFoodWeight() {
+	public int getTotalFoodWeight() {
 		return totalFoodWeight;
+	}
+	
+	/**
+	 * @param totalFoodWeight the totalFoodWeight to set
+	 */
+	public void setTotalFoodWeight(int totalFoodWeight) {
+		this.totalFoodWeight = totalFoodWeight;
 	}
 }

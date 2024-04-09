@@ -26,11 +26,6 @@ public class LoadWagonPanel extends JPanel {
 	private JLabel totalWeightLabel;
 	private JTextField warningTextField;
 	private ArrayList<JCheckBox> checkBoxes;
-	String[] itemNames = { "Apple Vinegar", "Bedroll", "Bacon", "Blacksmithing Tools", "Beans", "Books", "Coffee",
-			"Medicine", "Dried Apples", "Cast Iron Stove", "Flour", "Chair", "Hardtack",
-			"Cookware & Eating Utensils", "Lard", "Granny’s Clock", "Salt", "Gun Making Tools", "Sugar",
-			"Keepsakes", "Rice", "Lead Shot", "Water", "Mirror", "Whiskey", "Gunpowder", "Tent & Gear", "Tools",
-			"Toys" };
 
 	/**
 	 * Create the panel.
@@ -42,7 +37,7 @@ public class LoadWagonPanel extends JPanel {
 		this.setLayout(new GridLayout(0, 2));
 
 		// Adding checkboxes for items iteratively
-        for (String itemName : itemNames) {
+        for (String itemName : Wagon.itemNames) {
             JCheckBox checkBox = new JCheckBox(itemName);
             checkBox.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent arg0) {
@@ -51,11 +46,11 @@ public class LoadWagonPanel extends JPanel {
 
                     // Add item to wagon
                     if (checkBox.isSelected()) {
-                        Item item = new Item(itemName, itemWeight);
+                        Item item = new Item(itemName);
                         wagon.addItem(item);
                         // Remove item from wagon
                     } else {
-                        Item item = new Item(itemName, itemWeight);
+                        Item item = new Item(itemName);
                         wagon.removeItem(item);
                     }
 
