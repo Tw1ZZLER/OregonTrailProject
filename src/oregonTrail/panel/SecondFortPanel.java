@@ -25,8 +25,9 @@ public class SecondFortPanel extends JPanel {
 	 * @param fortImageIcon The image icon representing the fort
 	 */
 	public SecondFortPanel(OregonTrail pOregonTrail, ImageIcon fortImageIcon) {
+
 		this.oregonTrail = pOregonTrail;
-		this.travelState = pOregonTrail.getTravelState();
+		pOregonTrail.getTravelState();
 		
         setLayout(new BorderLayout());
 
@@ -37,6 +38,9 @@ public class SecondFortPanel extends JPanel {
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Create image label and add it to the center
+
+
+        fortImageIcon.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
         JLabel imageLabel = new JLabel(fortImageIcon);
         add(imageLabel, BorderLayout.CENTER);
 

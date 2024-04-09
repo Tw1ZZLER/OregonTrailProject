@@ -32,6 +32,7 @@ public class FortPanel extends JPanel {
         this.oregonTrail = pOregonTrail;
         this.travelState = pOregonTrail.getTravelState();
         
+
         setLayout(new BorderLayout());
         JLabel welcomeLabel = new JLabel("Welcome to Fort Strong !!!");
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);

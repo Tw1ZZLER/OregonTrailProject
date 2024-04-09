@@ -1,18 +1,17 @@
 package oregonTrail.panel;
 
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import java.util.Random;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 public class HuntingPanel extends JPanel {
 
@@ -162,8 +161,6 @@ public class HuntingPanel extends JPanel {
                 Timer attackTimer = new Timer(200, attackEvt -> {
                     enemySprite.setLocation(enemySprite.getX(), enemySprite.getY() - 20);
                     
-                    // Enemy attacking logic
-                    Random rand = new Random();
                     switch (enemyType) {
                         case "Squirrel":
                             // Squirrel attacks every 2 seconds but deals zero damage

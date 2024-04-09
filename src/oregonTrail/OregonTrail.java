@@ -75,9 +75,6 @@ public class OregonTrail {
 		if (panelOpen == huntingPanel) {
 			huntingPanel = new HuntingPanel();
 		}
-		if (panelOpen == TRAIL_MENU_PANEL) {
-		}
-
 	}
 
 	/**
