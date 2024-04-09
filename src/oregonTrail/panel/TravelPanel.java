@@ -16,87 +16,90 @@ import oregonTrail.OregonTrail;
 
 /**
  * Main traveling panel, shows most pertinent information to wagon
+ * This panel displays information such as date, weather, health, food, distance traveled, and the next landmark.
+ * It also provides buttons for continuing the travel or sizing up the situation.
  * @author Corbin Hibler
  * @date 2024-04-08
+ * @fileName TravelPanel.java
  */
 public class TravelPanel extends JPanel {
 
-	private static final long serialVersionUID = 1L;
-	private JLabel lblWeather;
-	private JLabel lblHealth;
-	private JLabel lblFood;
-	private JLabel lblDistanceTraveledLabel;
-	private JLabel lblDistanceTraveled;
-	private JLabel lblNextLandmarkLabel;
-	private JLabel lblNextLandmarkMiles;
-	private JLabel lblHealthLabel;
-	private JLabel lblFoodLabel;
-	private JLabel lblWeatherLabel;
-	private JLabel lblDateLabel;
-	private JLabel lblDate;
-	public JButton btnContinue;
-	public JButton btnSizeUpThe;
-	private JLabel lblNameOfNext;
-	private JLabel lblNextLandmarkName;
-	
-	/**
-	 * Sets text of date label
-	 * @param String Descriptive string date in long format
-	 */
-	public void setDateText(String string) {
-		lblDate.setText(string);
-	}
-	
-	/**
-	 * Sets text of weather label
-	 * @param String Descriptive string of weather type
-	 */
-	public void setWeatherText(String string) {
-		lblWeather.setText(string);
-	}
+    private static final long serialVersionUID = 1L;
+    private JLabel lblWeather;
+    private JLabel lblHealth;
+    private JLabel lblFood;
+    private JLabel lblDistanceTraveledLabel;
+    private JLabel lblDistanceTraveled;
+    private JLabel lblNextLandmarkLabel;
+    private JLabel lblNextLandmarkMiles;
+    private JLabel lblHealthLabel;
+    private JLabel lblFoodLabel;
+    private JLabel lblWeatherLabel;
+    private JLabel lblDateLabel;
+    private JLabel lblDate;
+    public JButton btnContinue;
+    public JButton btnSizeUpThe;
+    private JLabel lblNameOfNext;
+    private JLabel lblNextLandmarkName;
+    
+    /**
+     * Sets text of date label
+     * @param string Descriptive string date in long format
+     */
+    public void setDateText(String string) {
+        lblDate.setText(string);
+    }
+    
+    /**
+     * Sets text of weather label
+     * @param string Descriptive string of weather type
+     */
+    public void setWeatherText(String string) {
+        lblWeather.setText(string);
+    }
 
-	/**
-	 * Sets text of health label
-	 * @param String Descriptive string of health condition
-	 */
-	public void setHealthText(String string) {
-		lblHealth.setText(string);
-	}
+    /**
+     * Sets text of health label
+     * @param string Descriptive string of health condition
+     */
+    public void setHealthText(String string) {
+        lblHealth.setText(string);
+    }
 
-	/**
-	 * Sets text of pounds of food label
-	 * @param int Pounds of food after travel
-	 */
-	public void setFoodText(int poundsFood) {
-		String string = poundsFood + " pounds";
-		lblFood.setText(string);
-	}
+    /**
+     * Sets text of pounds of food label
+     * @param poundsFood Pounds of food after travel
+     */
+    public void setFoodText(int poundsFood) {
+        String string = poundsFood + " pounds";
+        lblFood.setText(string);
+    }
 
-	/**
-	 * Sets text of the distance traveled label
-	 * @param int Miles of distance traveled after travel
-	 */
-	public void setDistanceTraveledText(int milesDistanceTraveled) {
-		String string = milesDistanceTraveled + " miles";
-		lblDistanceTraveled.setText(string);
-	}
+    /**
+     * Sets text of the distance traveled label
+     * @param milesDistanceTraveled Miles of distance traveled after travel
+     */
+    public void setDistanceTraveledText(int milesDistanceTraveled) {
+        String string = milesDistanceTraveled + " miles";
+        lblDistanceTraveled.setText(string);
+    }
 
-	/**
-	 * Sets text of the next landmark in miles label
-	 * @param int Miles of distance until next landmark after travel
-	 */
-	public void setNextLandmarkMilesText(int milesNextLandmark) {
-		String string = milesNextLandmark + " miles";
-		lblNextLandmarkMiles.setText(string);
-	}
-	
-	/**
-	 * Sets text of the next landmark's name label
-	 * @param String name of next landmark
-	 */
-	public void setNextLandmarkNameText(String nameNextLandmark) {
-		lblNextLandmarkMiles.setText(nameNextLandmark);
-	}
+    /**
+     * Sets text of the next landmark in miles label
+     * @param milesNextLandmark Miles of distance until next landmark after travel
+     */
+    public void setNextLandmarkMilesText(int milesNextLandmark) {
+        String string = milesNextLandmark + " miles";
+        lblNextLandmarkMiles.setText(string);
+    }
+    
+    /**
+     * Sets text of the next landmark's name label
+     * @param nameNextLandmark Name of next landmark
+     */
+    public void setNextLandmarkNameText(String nameNextLandmark) {
+        lblNextLandmarkMiles.setText(nameNextLandmark);
+    }
 
 	/**
 	 * Create the panel.
@@ -193,5 +196,6 @@ public class TravelPanel extends JPanel {
 		add(lblWeatherLabel, "cell 0 3,alignx right,aligny center");
 		add(btnContinue, "cell 0 9 2 1,growx,aligny bottom");
 
-	}
+
+    }
 }

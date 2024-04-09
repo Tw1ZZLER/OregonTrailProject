@@ -1,32 +1,46 @@
 package oregonTrail.panel;
 
 import javax.swing.*;
-
 import oregonTrail.OregonTrail;
+import oregonTrail.Travel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Shows options related to being located at a Fort.
+ * Panel class representing options available when located at a fort in the Oregon Trail game.
+ * This panel displays buttons for various actions such as opening the map, changing the rate of travel,
+ * changing rations, attempting to trade, opening the shop, and continuing the trail.
+ * It also includes action listeners for each button to handle the corresponding actions.
+ * 
  * @author Lukas Dunbar
  * @date 2024-04-09
+ * @filename FortPanel.java
  */
 public class FortPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private OregonTrail oregonTrail;
+    private Travel travelState;
+    
+    /**
+     * Constructs a new FortPanel with the specified OregonTrail instance and fort image icon.
+     * 
+     * @param pOregonTrail The OregonTrail instance associated with the game.
+     * @param fortImageIcon The ImageIcon representing the fort.
+     */
     public FortPanel(OregonTrail pOregonTrail, ImageIcon fortImageIcon) {
-		this.oregonTrail = pOregonTrail;
-		pOregonTrail.getTravelState();
-		
+        this.oregonTrail = pOregonTrail;
+        this.travelState = pOregonTrail.getTravelState();
+        
+
         setLayout(new BorderLayout());
         JLabel welcomeLabel = new JLabel("Welcome to Fort Strong !!!");
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Set font size to 24
         add(welcomeLabel, BorderLayout.NORTH);
 
-
-        fortImageIcon.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
+        // Create image label and add it to the top half
+        Image scaledImage = fortImageIcon.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
         JLabel imageLabel = new JLabel(fortImageIcon);
         add(imageLabel, BorderLayout.CENTER);
 
@@ -42,7 +56,6 @@ public class FortPanel extends JPanel {
         JButton openShopButton = new JButton("Open Shop");
         JButton continueButton = new JButton("Continue Trail");
 
-
         // Add buttons to button panel
         buttonPanel.add(openMapButton);
         buttonPanel.add(changeRateButton);
@@ -51,7 +64,7 @@ public class FortPanel extends JPanel {
         buttonPanel.add(openShopButton);
         buttonPanel.add(continueButton);
 
-        // Add action listeners to buttons (for demonstration, they just print a message)
+        // Add action listeners to buttons
         openMapButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Open Map button clicked");
@@ -83,10 +96,9 @@ public class FortPanel extends JPanel {
         });
         
         continueButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        		oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, FortPanel.this);
-        	}
+            public void actionPerformed(ActionEvent arg0) {
+                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, FortPanel.this);
+            }
         });
-       
     } 
 }

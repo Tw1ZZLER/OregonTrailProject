@@ -15,7 +15,6 @@ public class OregonTrail {
 	private JFrame frame;
 	private Travel travelState;
 	public final Wagon WAGON;
-	public final LoadedWagonPanel LOADED_WAGON_PANEL;
 	public final StartupPanel STARTUP_PANEL;
 	public final TravelPanel TRAVEL_PANEL;
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
@@ -51,7 +50,6 @@ public class OregonTrail {
 		WAGON.setTotalFoodWeight(315);
 		
 		STARTUP_PANEL = new StartupPanel();
-		LOADED_WAGON_PANEL = new LoadedWagonPanel(this);
 		TRAVEL_PANEL = new TravelPanel(this);
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
