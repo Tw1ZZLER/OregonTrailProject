@@ -19,7 +19,7 @@ public class OregonTrail {
 
 	private JFrame frame;
 	private StartupPanel startupPanel;
-	private TravelPanel loadWagonPanel;
+	private TrailMenuPanel loadWagonPanel;
 
 	/**
 	 * Launch the application.
@@ -77,7 +77,7 @@ public class OregonTrail {
 			public void actionPerformed(ActionEvent arg0) {
 				// After startup screen is finished, display first panel
 				frame.getContentPane().remove(startupPanel);
-				frame.getContentPane().add(loadWagonPanel = new TravelPanel());
+				frame.getContentPane().add(loadWagonPanel = new TrailMenuPanel());
 				// The image must be added separate from the panel because LoadWagonPanel uses
 				// a Grid Layout, and the image won't fit nicely
 				// Update frame

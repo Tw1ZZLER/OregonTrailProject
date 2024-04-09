@@ -141,12 +141,4 @@ public class TrailMenuPanel extends JPanel {
         layout.putConstraint(SpringLayout.WEST, huntButton, 5, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, huntButton, 10, SpringLayout.SOUTH, restButton);
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Travel Panel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
-        frame.add(new TrailMenuPanel());
-        frame.setVisible(true);
-    }
 }
