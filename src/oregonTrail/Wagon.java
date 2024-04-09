@@ -79,9 +79,9 @@ public class Wagon {
 	/**
 	 * Setter for foodConsumptionRate in the form of a JOptionPane dialog.
 	 * @param panel JPanel in use by program (LoadWagon, main game, etc.)
-	 * @return foodConsumptionRate The selected food consumption rate.
+	 * @return String The selected food consumption rate as string.
 	 */
-	public double foodConsumptionDialog(JPanel panel) {
+	public String foodConsumptionDialog(JPanel panel) {
 		String foodConsumptionOption = (String) JOptionPane.showInputDialog(panel, "Select food consumption level:", 
                 "Food Consumption", JOptionPane.PLAIN_MESSAGE, 
                 null, Wagon.FOOD_CONSUME_LEVELS, Wagon.FOOD_CONSUME_LEVELS[0]);
@@ -103,7 +103,7 @@ public class Wagon {
 		}
 		
 		this.foodConsumptionRate = foodConsumptionRate;
-		return foodConsumptionRate;
+		return foodConsumptionOption;
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class Wagon {
 	 * @param panel JPanel in use by program (LoadWagon, main game, etc.)
 	 * @return int travelSpeed The selected travel speed.
 	 */
-	public int travelSpeedDialog(JPanel panel) {
+	public String travelSpeedDialog(JPanel panel) {
 		int travelSpeed = DEFAULT_TRAVEL_SPEED;
 		String speedInput = JOptionPane.showInputDialog(panel, "Enter travel speed (miles per day):");
 		try {
@@ -129,13 +129,13 @@ public class Wagon {
 			}
 			else {
 				this.travelSpeed = travelSpeed;
-				return travelSpeed;
+				return speedInput;
 			}
 		} catch (NumberFormatException ex) {
 			JOptionPane.showMessageDialog(panel, "Invalid input. Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
 			travelSpeedDialog(panel);
 		}
-		return DEFAULT_TRAVEL_SPEED;
+		return speedInput;
 	}
 	
 	/**

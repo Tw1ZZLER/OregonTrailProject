@@ -29,7 +29,7 @@ public class TravelPanel extends JPanel {
 	private JLabel lblDistanceTraveledLabel;
 	private JLabel lblDistanceTraveled;
 	private JLabel lblNextLandmarkLabel;
-	private JLabel lblNextLandmark;
+	private JLabel lblNextLandmarkMiles;
 	private JLabel lblHealthLabel;
 	private JLabel lblFoodLabel;
 	private JLabel lblWeatherLabel;
@@ -37,6 +37,8 @@ public class TravelPanel extends JPanel {
 	private JLabel lblDate;
 	public JButton btnContinue;
 	public JButton btnSizeUpThe;
+	private JLabel lblNameOfNext;
+	private JLabel lblNextLandmarkName;
 	
 	/**
 	 * Sets text of date label
@@ -86,7 +88,7 @@ public class TravelPanel extends JPanel {
 	 */
 	public void setNextLandmarkText(int milesNextLandmark) {
 		String string = milesNextLandmark + " miles";
-		lblNextLandmark.setText(string);
+		lblNextLandmarkMiles.setText(string);
 	}
 
 	/**
@@ -94,7 +96,7 @@ public class TravelPanel extends JPanel {
 	 */
 	public TravelPanel(OregonTrail oregonTrail) {
 		setOpaque(false);
-		setLayout(new MigLayout("", "[50.00%:50.00%:50.00%,grow][50.00%:50.00%:50.00%,grow,right]", "[50.00%:50.00%:50.00%,grow,top][27px][][grow 25][grow 25][grow 25][grow 25][grow 25][]"));
+		setLayout(new MigLayout("", "[50.00%:50.00%:50.00%,grow][50.00%:50.00%:50.00%,grow,right]", "[50.00%:50.00%:50.00%,grow,top][27px][][grow 25][grow 25][grow 25][grow 25][grow 25][grow 25][]"));
 		
 		btnContinue = new JButton("GO!!!!!!!!");
 		btnContinue.setPreferredSize(new Dimension(77, 50));
@@ -139,23 +141,33 @@ public class TravelPanel extends JPanel {
 		lblFood.setFont(new Font("Dialog", Font.BOLD, 24));
 		add(lblFood, "cell 1 5,alignx left");
 		
+		lblNameOfNext = new JLabel("Name of Next Landmark:");
+		lblNameOfNext.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblNameOfNext.setFont(new Font("Dialog", Font.BOLD, 24));
+		add(lblNameOfNext, "cell 0 7,alignx right");
+		
+		lblNextLandmarkName = new JLabel("Fort Strong");
+		lblNextLandmarkName.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNextLandmarkName.setFont(new Font("Dialog", Font.BOLD, 24));
+		add(lblNextLandmarkName, "cell 1 7,alignx left");
+		
 		lblDistanceTraveledLabel = new JLabel("Distance Traveled:");
 		lblDistanceTraveledLabel.setFont(new Font("Dialog", Font.BOLD, 24));
 		lblDistanceTraveledLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		add(lblDistanceTraveledLabel, "cell 0 7,alignx right");
+		add(lblDistanceTraveledLabel, "cell 0 8,alignx right");
 		
 		lblDistanceTraveled = new JLabel("0 miles");
 		lblDistanceTraveled.setFont(new Font("Dialog", Font.BOLD, 24));
-		add(lblDistanceTraveled, "cell 1 7,alignx left");
+		add(lblDistanceTraveled, "cell 1 8,alignx left");
 		
 		lblNextLandmarkLabel = new JLabel("Next Landmark:");
 		lblNextLandmarkLabel.setFont(new Font("Dialog", Font.BOLD, 24));
 		lblNextLandmarkLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		add(lblNextLandmarkLabel, "cell 0 6,alignx right,aligny center");
 		
-		lblNextLandmark = new JLabel("0 miles");
-		lblNextLandmark.setFont(new Font("Dialog", Font.BOLD, 24));
-		add(lblNextLandmark, "cell 1 6,alignx left");
+		lblNextLandmarkMiles = new JLabel("0 miles");
+		lblNextLandmarkMiles.setFont(new Font("Dialog", Font.BOLD, 24));
+		add(lblNextLandmarkMiles, "cell 1 6,alignx left");
 		
 		lblHealthLabel = new JLabel("Health:");
 		lblHealthLabel.setOpaque(true);
@@ -172,7 +184,7 @@ public class TravelPanel extends JPanel {
 		lblWeatherLabel.setFont(new Font("Dialog", Font.BOLD, 24));
 		lblWeatherLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblWeatherLabel, "cell 0 3,alignx right,aligny center");
-		add(btnContinue, "cell 0 8 2 1,growx,aligny bottom");
+		add(btnContinue, "cell 0 9 2 1,growx,aligny bottom");
 
 	}
 }

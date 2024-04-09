@@ -73,6 +73,10 @@ public class OregonTrail {
 		frame.getContentPane().add(panelOpen);
 		frame.getContentPane().validate();
 		frame.getContentPane().repaint();
+		
+		if (panelOpen == TRAIL_MENU_PANEL) {
+			
+		}
 	}
 	
 	/**
