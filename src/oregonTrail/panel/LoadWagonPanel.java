@@ -42,8 +42,6 @@ public class LoadWagonPanel extends JPanel {
             checkBox.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent arg0) {
                     String itemName = checkBox.getText();
-                    double itemWeight = Item.getItemWeight(itemName);
-
                     // Add item to wagon
                     if (checkBox.isSelected()) {
                         Item item = new Item(itemName);

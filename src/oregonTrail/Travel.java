@@ -2,13 +2,14 @@ package oregonTrail;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.Random;
+
 import javax.swing.Timer;
-
-import oregonTrail.panel.TravelPanel;
-
-import java.text.*;
 
 /**
  * Handles all logic related to traveling. Contains Swing timer for traveling

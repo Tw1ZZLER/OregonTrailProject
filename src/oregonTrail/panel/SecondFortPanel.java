@@ -3,8 +3,6 @@ package oregonTrail.panel;
 import javax.swing.*;
 
 import oregonTrail.OregonTrail;
-import oregonTrail.Travel;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,11 +15,9 @@ import java.awt.event.ActionListener;
 public class SecondFortPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private OregonTrail oregonTrail;
-    private Travel travelState;
-    
-	public SecondFortPanel(OregonTrail pOregonTrail, ImageIcon fortImageIcon) {
+    public SecondFortPanel(OregonTrail pOregonTrail, ImageIcon fortImageIcon) {
 		this.oregonTrail = pOregonTrail;
-		this.travelState = pOregonTrail.getTravelState();
+		pOregonTrail.getTravelState();
 		
         setLayout(new BorderLayout());
         JLabel welcomeLabel = new JLabel("Welcome to Fort Oregon !!!");
@@ -30,8 +26,7 @@ public class SecondFortPanel extends JPanel {
         add(welcomeLabel, BorderLayout.NORTH);
 
 
-        // Create image label and add it to the top half
-        Image scaledImage = fortImageIcon.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
+        fortImageIcon.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
         JLabel imageLabel = new JLabel(fortImageIcon);
         add(imageLabel, BorderLayout.CENTER);
 
