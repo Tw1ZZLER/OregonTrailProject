@@ -10,9 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import java.util.Random;
 
-public class HuntingPanel {
+public class HuntingPanel extends JPanel {
 
     private JFrame frame;
     private JLabel sprite;

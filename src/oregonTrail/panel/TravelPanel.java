@@ -83,12 +83,20 @@ public class TravelPanel extends JPanel {
 	}
 
 	/**
-	 * Sets text of the next landmark label
+	 * Sets text of the next landmark in miles label
 	 * @param int Miles of distance until next landmark after travel
 	 */
-	public void setNextLandmarkText(int milesNextLandmark) {
+	public void setNextLandmarkMilesText(int milesNextLandmark) {
 		String string = milesNextLandmark + " miles";
 		lblNextLandmarkMiles.setText(string);
+	}
+	
+	/**
+	 * Sets text of the next landmark's name label
+	 * @param String name of next landmark
+	 */
+	public void setNextLandmarkNameText(String nameNextLandmark) {
+		lblNextLandmarkMiles.setText(nameNextLandmark);
 	}
 
 	/**

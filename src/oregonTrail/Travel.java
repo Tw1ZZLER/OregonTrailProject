@@ -53,7 +53,7 @@ public class Travel {
 	    
 	    // Update miles until next landmark
 	    milesNextLandmark -= milesTraveledCycle;
-	    oregonTrail.TRAVEL_PANEL.setNextLandmarkText(milesNextLandmark);
+	    oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
 	    
 	    // Calculate new food weight and set accordingly
 	    int totalFoodWeight = oregonTrail.WAGON.getTotalFoodWeight();
@@ -65,7 +65,7 @@ public class Travel {
 	    if (milesNextLandmark <= 0) {
 	    	oregonTrail.openPanel(oregonTrail.FORT_STRONG_PANEL, oregonTrail.TRAVEL_PANEL);
 	    	milesNextLandmark = MILES_TO_FORT_OREGON;
-	    	lblNextLandmarkName.setText("Fort Oregon");
+	    	oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("Fort Oregon");
 	    	travelToggle();
 	    }
 	}
@@ -76,7 +76,7 @@ public class Travel {
 	 * @date 2024-04-09
 	 */
 	public void travelToggle() {
-		this.oregonTrail.TRAVEL_PANEL.setNextLandmarkText(milesNextLandmark);
+		this.oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
 
 		if (!timer.isRunning()) {
 			timer.start();

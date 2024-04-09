@@ -21,9 +21,7 @@ public class OregonTrail {
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
  	public final FortPanel FORT_STRONG_PANEL;
  	public final FortPanel FORT_OREGON_PANEL;
- 	public final HuntingPanel HUNTING_PANEL;
-//	public static final SecondFortPanel SECOND_FORT_PANEL = new SecondFortPanel(null);
-//	public static final LoadedWagonPanel LOADED_WAGON_PANEL = new LoadedWagonPanel(null);
+ 	public HuntingPanel huntingPanel;
 
 	/**
 	 * Launch the application.
@@ -58,13 +56,12 @@ public class OregonTrail {
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
 		FORT_STRONG_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
 		FORT_OREGON_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
-		HUNTING_PANEL = new HuntingPanel();
 		initialize();
 	}
 	
 	/**
 	 * Opens a new panel and closes previous panel
-	 * @param HUNTING_PANEL2 The panel to be opened
+	 * @param panelOpen The panel to be opened
 	 * @param panelClose The panel to be closed
 	 * @author Corbin Hibler
 	 * @date 2024-04-08
@@ -75,8 +72,10 @@ public class OregonTrail {
 		frame.getContentPane().validate();
 		frame.getContentPane().repaint();
 		
+		if (panelOpen == huntingPanel) {
+			huntingPanel = new HuntingPanel();
+		}
 		if (panelOpen == TRAIL_MENU_PANEL) {
-			
 		}
 
 	}
