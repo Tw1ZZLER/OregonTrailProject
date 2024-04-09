@@ -1,5 +1,6 @@
 package oregonTrail.panel;
 
+import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -8,12 +9,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+
+import oregonTrail.OregonTrail;
+
 import javax.swing.JOptionPane;
 import java.util.Random;
 
 public class HuntingPanel extends JPanel {
 
-    private JLabel sprite;
+	private JLabel sprite;
     private JLabel enemyLabel;
     private JLabel winnerLabel;
     private JLabel enemySprite;
@@ -37,9 +41,10 @@ public class HuntingPanel extends JPanel {
 
     private boolean punchCooldown;
     private boolean blocking;
+    
 
     public HuntingPanel() {
-        setLayout(null); // For absolute positioning
+        setLayout(null);
         initialize();
     }
 

@@ -11,13 +11,15 @@ import oregonTrail.panel.*;
  * @date 2024-04-09
  */
 public class OregonTrail {
-
+	
 	private JFrame frame;
 	private Travel travelState;
 	public final StartupPanel STARTUP_PANEL;
 	public final TravelPanel TRAVEL_PANEL;
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
- 	public final FortPanel FORT_PANEL;
+ 	public final FortPanel FORT_STRONG_PANEL;
+ 	public final FortPanel FORT_OREGON_PANEL;
+ 	public final HuntingPanel HUNTING_PANEL;
 //	public static final SecondFortPanel SECOND_FORT_PANEL = new SecondFortPanel(null);
 //	public static final LoadedWagonPanel LOADED_WAGON_PANEL = new LoadedWagonPanel(null);
 
@@ -43,44 +45,24 @@ public class OregonTrail {
 	public OregonTrail() {
 		STARTUP_PANEL = new StartupPanel();
 		TRAVEL_PANEL = new TravelPanel(this);
-		travelState = new Travel(this, TRAVEL_PANEL);
+		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
-		FORT_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
+		FORT_STRONG_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
+		FORT_OREGON_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
+		HUNTING_PANEL = new HuntingPanel();
 		initialize();
 	}
 	
 	/**
-	 * Opens TrailMenuPanel and closes previous panel
+	 * Opens a new panel and closes previous panel
+	 * @param panelOpen The panel to be opened
+	 * @param panelClose The panel to be closed
 	 * @author Corbin Hibler
 	 * @date 2024-04-08
 	 */
-	public void openTrailMenuPanel(JPanel panel) {
-		frame.getContentPane().remove(panel);
-		frame.getContentPane().add(TRAIL_MENU_PANEL);
-		frame.getContentPane().validate();
-		frame.getContentPane().repaint();
-	}
-	
-	/**
-	 * Opens TravelPanel and closes previous panel
-	 * @author Corbin Hibler
-	 * @date 2024-04-08
-	 */
-	public void openTravelPanel(JPanel panel) {
-		frame.getContentPane().remove(panel);
-		frame.getContentPane().add(TRAVEL_PANEL);
-		frame.getContentPane().validate();
-		frame.getContentPane().repaint();
-	}
-	
-	/**
-	 * Opens FortPanel and closes previous panel
-	 * @author Corbin Hibler
-	 * @date 2024-04-08
-	 */
-	public void openFortPanel(JPanel panel) {
-		frame.getContentPane().remove(panel);
-		frame.getContentPane().add(FORT_PANEL);
+	public void openPanel(JPanel panelOpen, JPanel panelClose) {
+		frame.getContentPane().remove(panelClose);
+		frame.getContentPane().add(panelOpen);
 		frame.getContentPane().validate();
 		frame.getContentPane().repaint();
 	}
@@ -130,4 +112,5 @@ public class OregonTrail {
 		startupTimer.setRepeats(false);
 		startupTimer.start();
 	}
+
 }

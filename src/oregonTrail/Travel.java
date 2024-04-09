@@ -16,7 +16,6 @@ import java.text.*;
  */
 public class Travel {
 	private OregonTrail oregonTrail;
-	private final TravelPanel TRAVEL_PANEL;
 	private int milesTraveled;
 	private int milesNextLandmark;
 	private Random rand = new Random();
@@ -29,9 +28,9 @@ public class Travel {
 	public static final int MILES_TO_FORT_STRONG = 150;
 	public static final int MILES_TO_FORT_OREGON = 400;
 	
-	public Travel(OregonTrail oregonTrail, TravelPanel TRAVEL_PANEL) {
+	public Travel(OregonTrail oregonTrail) {
 		this.oregonTrail = oregonTrail;
-		this.TRAVEL_PANEL = TRAVEL_PANEL;
+		this.milesNextLandmark = MILES_TO_FORT_STRONG;
 	}
 	
 	/**
@@ -57,7 +56,7 @@ public class Travel {
 	    
 	    // Check if we have reached fort
 	    if (milesNextLandmark <= 0) {
-	    	oregonTrail.openFortPanel(TRAVEL_PANEL);
+	    	oregonTrail.openPanel(oregonTrail.FORT_STRONG_PANEL, oregonTrail.TRAVEL_PANEL);
 	    	milesNextLandmark = MILES_TO_FORT_OREGON;
 	    	travelToggle();
 	    }
@@ -69,16 +68,29 @@ public class Travel {
 	 * @date 2024-04-09
 	 */
 	public void travelToggle() {
-		this.milesNextLandmark = MILES_TO_FORT_STRONG;
 		this.oregonTrail.TRAVEL_PANEL.setNextLandmarkText(milesNextLandmark);
 
 		if (!timer.isRunning()) {
 			timer.start();
-			TRAVEL_PANEL.btnContinue.setText("Stop Traveling!");
+			oregonTrail.TRAVEL_PANEL.btnContinue.setText("Stop Traveling!");
 		}
 		else {
 			timer.stop();
-			TRAVEL_PANEL.btnContinue.setText("Continue on Trail!");
+			oregonTrail.TRAVEL_PANEL.btnContinue.setText("Continue on Trail!");
 		}
+	}
+
+	/**
+	 * @return the milesNextLandmark
+	 */
+	public int getMilesNextLandmark() {
+		return milesNextLandmark;
+	}
+
+	/**
+	 * @param milesNextLandmark the milesNextLandmark to set
+	 */
+	public void setMilesNextLandmark(int milesNextLandmark) {
+		this.milesNextLandmark = milesNextLandmark;
 	}
 }

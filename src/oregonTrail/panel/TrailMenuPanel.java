@@ -61,7 +61,7 @@ public class TrailMenuPanel extends JPanel {
         continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	oregonTrail.openTravelPanel(TrailMenuPanel.this);
+            	oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, TrailMenuPanel.this);
             }
         });
 
@@ -103,7 +103,7 @@ public class TrailMenuPanel extends JPanel {
         huntButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Hunt for Food button clicked");
+                oregonTrail.openPanel(oregonTrail.HUNTING_PANEL, TrailMenuPanel.this);
             }
         });
 

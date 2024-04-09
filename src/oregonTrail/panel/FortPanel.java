@@ -3,6 +3,7 @@ package oregonTrail.panel;
 import javax.swing.*;
 
 import oregonTrail.OregonTrail;
+import oregonTrail.Travel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,9 +17,11 @@ import java.awt.event.ActionListener;
 public class FortPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private OregonTrail oregonTrail;
+    private Travel travelState;
     
 	public FortPanel(OregonTrail pOregonTrail, ImageIcon fortImageIcon) {
 		this.oregonTrail = pOregonTrail;
+		this.travelState = pOregonTrail.getTravelState();
 		
         setLayout(new BorderLayout());
 
@@ -81,7 +84,7 @@ public class FortPanel extends JPanel {
         
         continueButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		oregonTrail.openTravelPanel(FortPanel.this);
+        		oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, FortPanel.this);
         	}
         });
        
