@@ -21,6 +21,7 @@ import java.awt.Font;
  */
 public class LoadWagonPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private Wagon wagon;
 	private JLabel totalWeightLabel;
 	private JTextField warningTextField;

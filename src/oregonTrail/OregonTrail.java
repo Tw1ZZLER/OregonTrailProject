@@ -6,18 +6,20 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+
+import oregonTrail.panel.*;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import oregonTrail.panel.LoadWagonPanel;
-import oregonTrail.panel.StartupPanel;
+
 import java.awt.Color;
 
 public class OregonTrail {
 
 	private JFrame frame;
 	private StartupPanel startupPanel;
-	private LoadWagonPanel loadWagonPanel;
+	private TravelPanel loadWagonPanel;
 
 	/**
 	 * Launch the application.
@@ -75,10 +77,9 @@ public class OregonTrail {
 			public void actionPerformed(ActionEvent arg0) {
 				// After startup screen is finished, display first panel
 				frame.getContentPane().remove(startupPanel);
-				frame.getContentPane().add(loadWagonPanel = new LoadWagonPanel());
+				frame.getContentPane().add(loadWagonPanel = new TravelPanel());
 				// The image must be added separate from the panel because LoadWagonPanel uses
 				// a Grid Layout, and the image won't fit nicely
-				frame.getContentPane().add(imageLabel, BorderLayout.NORTH);
 				// Update frame
 				frame.setVisible(true);
 				
