@@ -7,8 +7,11 @@ import java.awt.event.*;
 /**
  * Panel that shows when player chooses "size up the situation." Contains
  * most game changing options and buttons.
+ * This panel displays information such as date, weather, health, pace, and food rationing.
+ * It also provides buttons for various actions such as continuing on the trail, checking supplies, looking at the map, changing food rations, resting, attempting to trade, hunting for food, and changing pace.
  * @author Lukas Dunbar
  * @date 2024-04-09
+ * @filename TrailMenuPanel.java
  */
 public class TrailMenuPanel extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -31,9 +34,13 @@ public class TrailMenuPanel extends JPanel {
     private JLabel foodRationingLabel;
     private JLabel foodRationingValueLabel;
 
-	public TrailMenuPanel(OregonTrail pOregonTrail) {
-		this.oregonTrail = pOregonTrail;
-		
+    /**
+     * Constructs a TrailMenuPanel with the specified OregonTrail instance.
+     * @param pOregonTrail The main OregonTrail instance
+     */
+    public TrailMenuPanel(OregonTrail pOregonTrail) {
+        this.oregonTrail = pOregonTrail;
+        
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
 
@@ -87,7 +94,7 @@ public class TrailMenuPanel extends JPanel {
         continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, TrailMenuPanel.this);
+                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, TrailMenuPanel.this);
             }
         });
 
@@ -194,11 +201,11 @@ public class TrailMenuPanel extends JPanel {
         layout.putConstraint(SpringLayout.WEST, paceButton, 0, SpringLayout.WEST, checkSuppliesButton);
     }
 
-	/**
-	 * Sets text of date label
-	 * @param String Descriptive string date in long format
-	 */
-	public void setDateText(String string) {
-		dateValueLabel.setText(string);
-	}
+    /**
+     * Sets text of date label
+     * @param String Descriptive string date in long format
+     */
+    public void setDateText(String string) {
+        dateValueLabel.setText(string);
+    }
 }
