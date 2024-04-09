@@ -1,27 +1,25 @@
 package oregonTrail;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
-
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import oregonTrail.panel.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import java.awt.Color;
-
+/**
+ * Main class containing all game logic for switching between panels and instantiating panels
+ * @authors Corbin Hibler, Lukas Dunbar, Ray Otto, Ethan Vaughn
+ * @date 2024-04-09
+ */
 public class OregonTrail {
 
-	private static JFrame frame;
-	public static StartupPanel startupPanel = new StartupPanel();
-	public static TravelPanel travelPanel = new TravelPanel();
-	public static TrailMenuPanel trailMenuPanel  = new TrailMenuPanel();
+	private JFrame frame;
+	private Travel travelState;
+	public final StartupPanel STARTUP_PANEL;
+	public final TravelPanel TRAVEL_PANEL;
+	public final TrailMenuPanel TRAIL_MENU_PANEL;
+ 	public final FortPanel FORT_PANEL;
+//	public static final SecondFortPanel SECOND_FORT_PANEL = new SecondFortPanel(null);
+//	public static final LoadedWagonPanel LOADED_WAGON_PANEL = new LoadedWagonPanel(null);
 
 	/**
 	 * Launch the application.
@@ -43,6 +41,11 @@ public class OregonTrail {
 	 * Create the application.
 	 */
 	public OregonTrail() {
+		STARTUP_PANEL = new StartupPanel();
+		TRAVEL_PANEL = new TravelPanel(this);
+		travelState = new Travel(this, TRAVEL_PANEL);
+		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
+		FORT_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
 		initialize();
 	}
 	
@@ -51,21 +54,43 @@ public class OregonTrail {
 	 * @author Corbin Hibler
 	 * @date 2024-04-08
 	 */
-	public static void openTrailMenuPanel(JPanel panel) {
+	public void openTrailMenuPanel(JPanel panel) {
 		frame.getContentPane().remove(panel);
-		frame.getContentPane().add(trailMenuPanel);
-		frame.setVisible(true);
+		frame.getContentPane().add(TRAIL_MENU_PANEL);
+		frame.getContentPane().validate();
+		frame.getContentPane().repaint();
 	}
 	
 	/**
-	 * Opens TrailMenuPanel and closes previous panel
+	 * Opens TravelPanel and closes previous panel
 	 * @author Corbin Hibler
 	 * @date 2024-04-08
 	 */
-	public static void openTravelPanel(JPanel panel) {
+	public void openTravelPanel(JPanel panel) {
 		frame.getContentPane().remove(panel);
-		frame.getContentPane().add(travelPanel);
-		frame.setVisible(true);
+		frame.getContentPane().add(TRAVEL_PANEL);
+		frame.getContentPane().validate();
+		frame.getContentPane().repaint();
+	}
+	
+	/**
+	 * Opens FortPanel and closes previous panel
+	 * @author Corbin Hibler
+	 * @date 2024-04-08
+	 */
+	public void openFortPanel(JPanel panel) {
+		frame.getContentPane().remove(panel);
+		frame.getContentPane().add(FORT_PANEL);
+		frame.getContentPane().validate();
+		frame.getContentPane().repaint();
+	}
+	
+	/**
+	 * Getter method for instantation of Travel class
+	 * @return the travelState
+	 */
+	public Travel getTravelState() {
+		return this.travelState;
 	}
 
 	/**
@@ -85,26 +110,20 @@ public class OregonTrail {
 		// TODO (optional): Make automatic parsing of image files in directory and 
 		//                  automatically create JLabels from them. Perhaps we could
 		//                  also have a CSV file which contains the appropriate scaling for each image.
-		// Add Chimney Rock Image
-		ImageIcon chimneyRockImage = new ImageIcon("/images/chimney_rock_1.jpg");
-		// Resize image to fit into frame
-        Image image = chimneyRockImage.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
-        ImageIcon scaledImage = new ImageIcon(image);
-        
-		JLabel imageLabel = new JLabel(scaledImage);
 		
 		// Show logo and team name
-		frame.getContentPane().add(startupPanel, BorderLayout.CENTER);
+		frame.getContentPane().add(STARTUP_PANEL, BorderLayout.CENTER);
 		
 		Timer startupTimer = new Timer(StartupPanel.STARTUP_TIME, new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// After startup screen is finished, display first panel
-				frame.getContentPane().remove(startupPanel);
-				frame.getContentPane().add(travelPanel);
+				frame.getContentPane().remove(STARTUP_PANEL);
+				frame.getContentPane().add(TRAVEL_PANEL);
 				// The image must be added separate from the panel because LoadWagonPanel uses
 				// a Grid Layout, and the image won't fit nicely
 				// Update frame
-				frame.setVisible(true);
+				frame.getContentPane().validate();
+				frame.getContentPane().repaint();
 				
 			}
 		});

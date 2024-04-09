@@ -2,20 +2,27 @@ package oregonTrail.panel;
 
 import javax.swing.*;
 import oregonTrail.OregonTrail;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
+/**
+ * Panel that shows when player chooses "size up the situation." Contains
+ * most game changing options and buttons.
+ * @author Lukas Dunbar
+ * @date 2024-04-09
+ */
 public class TrailMenuPanel extends JPanel {
     private static final long serialVersionUID = 1L;
+    private OregonTrail oregonTrail;
 
-	public TrailMenuPanel() {
+	public TrailMenuPanel(OregonTrail pOregonTrail) {
+		this.oregonTrail = pOregonTrail;
+		
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
 
         // Display date
         JLabel dateLabel = new JLabel("Date:");
-        JLabel dateValueLabel = new JLabel("April 5, 2024");
+        JLabel dateValueLabel = new JLabel("August 11, 1848");
         add(dateLabel);
         add(dateValueLabel);
 
@@ -42,16 +49,19 @@ public class TrailMenuPanel extends JPanel {
         JButton checkSuppliesButton = new JButton("Check Supplies");
         JButton lookMapButton = new JButton("Look at Map");
         JButton changeRationsButton = new JButton("Change Food Rations");
+        layout.putConstraint(SpringLayout.WEST, changeRationsButton, 0, SpringLayout.WEST, checkSuppliesButton);
+        layout.putConstraint(SpringLayout.EAST, changeRationsButton, 160, SpringLayout.WEST, checkSuppliesButton);
         JButton restButton = new JButton("Stop to Rest");
         JButton tradeButton = new JButton("Attempt to Trade");
+        layout.putConstraint(SpringLayout.NORTH, tradeButton, 0, SpringLayout.NORTH, restButton);
+        layout.putConstraint(SpringLayout.WEST, tradeButton, 0, SpringLayout.WEST, checkSuppliesButton);
         JButton huntButton = new JButton("Hunt for Food");
 
         // Add action listeners to buttons
         continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	OregonTrail.openTravelPanel(TrailMenuPanel.this);
-                System.out.println("Continue on Trail button clicked");
+            	oregonTrail.openTravelPanel(TrailMenuPanel.this);
             }
         });
 
@@ -137,12 +147,9 @@ public class TrailMenuPanel extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, checkSuppliesButton, 10, SpringLayout.SOUTH, paceValueLabel);
         layout.putConstraint(SpringLayout.WEST, lookMapButton, 5, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, lookMapButton, 10, SpringLayout.SOUTH, continueButton);
-        layout.putConstraint(SpringLayout.WEST, changeRationsButton, 5, SpringLayout.EAST, lookMapButton);
         layout.putConstraint(SpringLayout.NORTH, changeRationsButton, 10, SpringLayout.SOUTH, checkSuppliesButton);
         layout.putConstraint(SpringLayout.WEST, restButton, 5, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, restButton, 10, SpringLayout.SOUTH, lookMapButton);
-        layout.putConstraint(SpringLayout.WEST, tradeButton, 5, SpringLayout.EAST, restButton);
-        layout.putConstraint(SpringLayout.NORTH, tradeButton, 10, SpringLayout.SOUTH, changeRationsButton);
         layout.putConstraint(SpringLayout.WEST, huntButton, 5, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, huntButton, 10, SpringLayout.SOUTH, restButton);
     }

@@ -3,6 +3,11 @@ package oregonTrail.panel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Shows information about the loaded wagon
+ * @author Lukas Dunbar
+ * @date 2024-04-09
+ */
 public class LoadedWagonPanel extends JPanel {
     // Set initial values for food, water, ammo, and clothing
     private int foodAmount = 100;
@@ -14,7 +19,7 @@ public class LoadedWagonPanel extends JPanel {
         setLayout(new BorderLayout());
 
         // Create image label and add it to the top half
-        ImageIcon imageIcon = new ImageIcon(wagonImage); // Replace path_to_your_image
+        ImageIcon imageIcon = new ImageIcon(wagonImage);
         JLabel imageLabel = new JLabel(imageIcon);
         add(imageLabel, BorderLayout.CENTER);
 

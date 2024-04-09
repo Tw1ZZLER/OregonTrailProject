@@ -11,7 +11,7 @@ import javax.swing.Timer;
 import javax.swing.JOptionPane;
 import java.util.Random;
 
-public class Hunting extends JPanel {
+public class HuntingPanel extends JPanel {
 
     private JLabel sprite;
     private JLabel enemyLabel;
