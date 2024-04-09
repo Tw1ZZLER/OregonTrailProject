@@ -64,6 +64,7 @@ public class Travel {
 	    if (milesNextLandmark <= 0) {
 	    	oregonTrail.openPanel(oregonTrail.FORT_STRONG_PANEL, oregonTrail.TRAVEL_PANEL);
 	    	milesNextLandmark = MILES_TO_FORT_OREGON;
+	    	lblNextLandmarkName.setText("Fort Oregon");
 	    	travelToggle();
 	    }
 	}
