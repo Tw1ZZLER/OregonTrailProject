@@ -69,11 +69,16 @@ public class OregonTrail {
 	 * @author Corbin Hibler
 	 * @date 2024-04-08
 	 */
-	public void openPanel(HuntingPanel HUNTING_PANEL2, JPanel panelClose) {
-	    frame.getContentPane().remove(panelClose);
-	    frame.getContentPane().add(HUNTING_PANEL2);
-	    frame.getContentPane().validate();
-	    frame.getContentPane().repaint();
+	public void openPanel(JPanel panelOpen, JPanel panelClose) {
+		frame.getContentPane().remove(panelClose);
+		frame.getContentPane().add(panelOpen);
+		frame.getContentPane().validate();
+		frame.getContentPane().repaint();
+		
+		if (panelOpen == TRAIL_MENU_PANEL) {
+			
+		}
+
 	}
 
 	/**
