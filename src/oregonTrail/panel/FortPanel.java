@@ -6,7 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FortPanel extends JPanel {
-    public FortPanel(Image fortImage) {
+    private static final long serialVersionUID = 1L;
+	public FortPanel(Image fortImage) {
         setLayout(new BorderLayout());
 
         // Create image label and add it to the top half
@@ -69,12 +70,5 @@ public class FortPanel extends JPanel {
         });
         
        
-    } public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new FortPanel().setVisible(true);
-            }
-        });
-    }
+    } 
 }
