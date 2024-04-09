@@ -58,6 +58,7 @@ public class Travel {
 	    int totalFoodWeight = oregonTrail.WAGON.getTotalFoodWeight();
 	    int newFoodWeight = (int) (totalFoodWeight-(oregonTrail.WAGON.getFoodConsumptionRate()*5));
 	    oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
+	    oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
 	    
 	    // Check if we have reached fort
 	    if (milesNextLandmark <= 0) {
