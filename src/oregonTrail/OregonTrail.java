@@ -63,7 +63,7 @@ public class OregonTrail {
 	
 	/**
 	 * Opens a new panel and closes previous panel
-	 * @param panelOpen The panel to be opened
+	 * @param HUNTING_PANEL2 The panel to be opened
 	 * @param panelClose The panel to be closed
 	 * @author Corbin Hibler
 	 * @date 2024-04-08
@@ -77,8 +77,9 @@ public class OregonTrail {
 		if (panelOpen == TRAIL_MENU_PANEL) {
 			
 		}
+
 	}
-	
+
 	/**
 	 * Getter method for instantation of Travel class
 	 * @return the travelState
