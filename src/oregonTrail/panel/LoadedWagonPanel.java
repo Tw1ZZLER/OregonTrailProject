@@ -22,9 +22,6 @@ public class LoadedWagonPanel extends JPanel {
     public LoadedWagonPanel(OregonTrail oregonTrail) {
         setLayout(new BorderLayout());
 
-        // Create image label and add it to the top half
-        
-
         // Create panel for displaying inventory details
         JPanel inventoryDetailsPanel = new JPanel(new GridLayout(4, 2));
         add(inventoryDetailsPanel, BorderLayout.SOUTH);

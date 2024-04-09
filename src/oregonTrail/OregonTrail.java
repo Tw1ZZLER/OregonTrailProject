@@ -20,10 +20,9 @@ public class OregonTrail {
 	public final TravelPanel TRAVEL_PANEL;
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
  	public final FortPanel FORT_STRONG_PANEL;
- 	public final FortPanel FORT_OREGON_PANEL;
+ 	public final SecondFortPanel FORT_OREGON_PANEL;
  	public final HuntingPanel HUNTING_PANEL;
-//	public static final SecondFortPanel SECOND_FORT_PANEL = new SecondFortPanel(null);
-//	public static final LoadedWagonPanel LOADED_WAGON_PANEL = new LoadedWagonPanel(null);
+
 
 	/**
 	 * Launch the application.
@@ -57,7 +56,7 @@ public class OregonTrail {
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
 		FORT_STRONG_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
-		FORT_OREGON_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
+		FORT_OREGON_PANEL = new SecondFortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
 		HUNTING_PANEL = new HuntingPanel();
 		initialize();
 	}
