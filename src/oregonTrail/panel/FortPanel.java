@@ -24,6 +24,11 @@ public class FortPanel extends JPanel {
 		this.travelState = pOregonTrail.getTravelState();
 		
         setLayout(new BorderLayout());
+        JLabel welcomeLabel = new JLabel("Welcome to Fort Strong !!!");
+        welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Set font size to 24
+        add(welcomeLabel, BorderLayout.NORTH);
+
 
         // Create image label and add it to the top half
         Image scaledImage = fortImageIcon.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
