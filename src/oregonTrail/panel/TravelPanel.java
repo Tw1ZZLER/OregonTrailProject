@@ -41,39 +41,39 @@ public class TravelPanel extends JPanel {
 		
 		JLabel lblDate = new JLabel("Date:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblDate, 1, SpringLayout.SOUTH, lblPressEnterTo);
+		springLayout.putConstraint(SpringLayout.WEST, lblDate, 74, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.EAST, lblDate, 186, SpringLayout.WEST, this);
 		lblDate.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblDate);
 		
 		JLabel lbl = new JLabel("Weather:");
-		springLayout.putConstraint(SpringLayout.WEST, lblDate, 0, SpringLayout.WEST, lbl);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblDate, 0, SpringLayout.NORTH, lbl);
 		springLayout.putConstraint(SpringLayout.NORTH, lbl, 185, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lbl, 74, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, lblDate, 0, SpringLayout.NORTH, lbl);
 		springLayout.putConstraint(SpringLayout.EAST, lbl, 186, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.WEST, lbl, 74, SpringLayout.WEST, this);
 		lbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lbl);
 		
 		JLabel lblHealth = new JLabel("Health:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblHealth, 202, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblHealth, 0, SpringLayout.WEST, lbl);
-		springLayout.putConstraint(SpringLayout.EAST, lblHealth, -264, SpringLayout.EAST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, lbl, 0, SpringLayout.NORTH, lblHealth);
+		springLayout.putConstraint(SpringLayout.EAST, lblHealth, 186, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.WEST, lblHealth, 74, SpringLayout.WEST, this);
 		lblHealth.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblHealth);
 		
 		JLabel lblFood = new JLabel("Food:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblFood, 220, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblFood, 0, SpringLayout.WEST, lbl);
-		springLayout.putConstraint(SpringLayout.EAST, lblFood, -264, SpringLayout.EAST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblHealth, -1, SpringLayout.NORTH, lblFood);
+		springLayout.putConstraint(SpringLayout.EAST, lblFood, 186, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.WEST, lblFood, 74, SpringLayout.WEST, this);
 		lblFood.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblFood);
 		
 		JLabel lblNextLandmark = new JLabel("Next Landmark:");
-		springLayout.putConstraint(SpringLayout.WEST, lblNextLandmark, 0, SpringLayout.WEST, lbl);
-		springLayout.putConstraint(SpringLayout.EAST, lblNextLandmark, -264, SpringLayout.EAST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblFood, -6, SpringLayout.NORTH, lblNextLandmark);
+		springLayout.putConstraint(SpringLayout.EAST, lblNextLandmark, 186, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.WEST, lblNextLandmark, 74, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.NORTH, lblNextLandmark, 243, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblNextLandmark, -16, SpringLayout.NORTH, lblPressSpaceTo);
 		lblNextLandmark.setHorizontalAlignment(SwingConstants.RIGHT);
