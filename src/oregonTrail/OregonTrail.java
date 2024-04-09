@@ -19,7 +19,7 @@ public class OregonTrail {
 	public final TravelPanel TRAVEL_PANEL;
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
  	public final FortPanel FORT_STRONG_PANEL;
- 	public final FortPanel FORT_OREGON_PANEL;
+ 	public final SecondFortPanel FORT_OREGON_PANEL;
  	public HuntingPanel huntingPanel;
 
 	/**
@@ -46,14 +46,16 @@ public class OregonTrail {
 		WAGON = new Wagon();
 		WAGON.addItem(new Item("Apple Vinegar"));
 		WAGON.addItem(new Item("Bacon"));
-		WAGON.setTotalFoodWeight(315);
+		WAGON.addItem(new Item("Water"));
+		WAGON.addItem(new Item("Bullets"));
+		WAGON.setTotalFoodWeight(350);
 		
 		STARTUP_PANEL = new StartupPanel();
 		TRAVEL_PANEL = new TravelPanel(this);
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
 		FORT_STRONG_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
-		FORT_OREGON_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
+		FORT_OREGON_PANEL = new SecondFortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
 		initialize();
 	}
 	
