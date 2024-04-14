@@ -1,12 +1,28 @@
 package oregonTrail.landmark;
 
-import javax.swing.ImageIcon;
+import oregonTrail.Travel;
 
-public class River extends Landmark {
+public class River {
+    private String name;
+    private boolean isDeep;
+    private Travel travelState;
 
-	public River(String name, ImageIcon picture) {
-		super(name, picture);
-		// TODO Auto-generated constructor stub
-	}
+    public River(String name, boolean isDeep, Travel travelState) {
+        this.name = name;
+        this.isDeep = isDeep;
+        this.travelState = travelState;
+    }
+
+    public boolean isDeep() {
+        return isDeep;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Travel getTravelState() {
+        return travelState;
+    }
 
 }
