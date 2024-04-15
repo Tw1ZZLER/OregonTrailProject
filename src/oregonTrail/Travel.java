@@ -26,12 +26,13 @@ public class Travel {
 			travelCycle();
 		}
 	});
+	public static final int MILES_TO_KANSAS_RIVER = 100;
 	public static final int MILES_TO_FORT_STRONG = 150;
 	public static final int MILES_TO_FORT_OREGON = 400;
 	
 	public Travel(OregonTrail oregonTrail) {
 		this.oregonTrail = oregonTrail;
-		this.milesNextLandmark = MILES_TO_FORT_STRONG;
+		this.milesNextLandmark = MILES_TO_KANSAS_RIVER;
 	}
 	
 	/**
@@ -52,6 +53,12 @@ public class Travel {
 	    milesTraveled += milesTraveledCycle;
 	    oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
 	    
+	    //fix waiting
+	    if (milesNextLandmark <0) {
+	    	milesTraveled+=milesNextLandmark;
+	    	
+	    }
+	    
 	    // Update miles until next landmark
 	    milesNextLandmark -= milesTraveledCycle;
 	    oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
@@ -63,13 +70,21 @@ public class Travel {
 	    oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
 	    oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
 	    
+	   
 	    // Check if we have reached fort
+	    if (milesNextLandmark <= 0 && milesTraveled < MILES_TO_KANSAS_RIVER + 10) {
+	    	oregonTrail.openPanel(oregonTrail.KANSAS_RIVER_PANEL, oregonTrail.TRAVEL_PANEL);
+	    	milesNextLandmark = MILES_TO_FORT_STRONG;
+	    	oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("Fort Strong");
+	    	travelToggle();
+	    }
 	    if (milesNextLandmark <= 0 && milesTraveled < MILES_TO_FORT_STRONG + 10) {
 	    	oregonTrail.openPanel(oregonTrail.FORT_STRONG_PANEL, oregonTrail.TRAVEL_PANEL);
-	    	milesNextLandmark = MILES_TO_FORT_OREGON;
+	    	milesNextLandmark = MILES_TO_FORT_STRONG;
 	    	oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("Fort Oregon");
 	    	travelToggle();
 	    }
+	    
 	    
 	    if (milesNextLandmark <= 0 && milesTraveled > MILES_TO_FORT_STRONG + 100) {
 	    	oregonTrail.openPanel(oregonTrail.FORT_OREGON_PANEL, oregonTrail.TRAVEL_PANEL);
