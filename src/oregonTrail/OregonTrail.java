@@ -22,6 +22,7 @@ public class OregonTrail {
  	public final SecondFortPanel FORT_OREGON_PANEL;
  	public HuntingPanel huntingPanel;
  	public final TradePanel TRADE_PANEL;
+ 	public final RiverPanel KANSAS_RIVER_PANEL;
 
 	/**
 	 * Launch the application.
@@ -58,6 +59,7 @@ public class OregonTrail {
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
 		FORT_STRONG_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
 		FORT_OREGON_PANEL = new SecondFortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
+		KANSAS_RIVER_PANEL = new RiverPanel (this, new ImageIcon(this.getClass().getResource("/images/KansasRiver.jpg")));
 		TRADE_PANEL = new TradePanel();
 		initialize();
 		
