@@ -198,9 +198,4 @@ public class TravelPanel extends JPanel {
 
 
     }
-
-	public void displayMessage(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 }
