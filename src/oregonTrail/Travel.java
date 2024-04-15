@@ -76,6 +76,14 @@ public class Travel {
 	    	oregonTrail.openPanel(oregonTrail.KANSAS_RIVER_PANEL, oregonTrail.TRAVEL_PANEL);
 	    	milesNextLandmark = MILES_TO_FORT_STRONG;
 	    	oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("Fort Strong");
+	    	
+	    	if (milesNextLandmark <0) {
+	    		travelToggle();
+		    	milesTraveled= 100;
+		    	milesNextLandmark =50;
+	    	}
+		    
+	    	milesNextLandmark = 50;
 	    	travelToggle();
 	    }
 	    if (milesNextLandmark <= 0 && milesTraveled < MILES_TO_FORT_STRONG + 10) {

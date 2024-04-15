@@ -1,19 +1,11 @@
 package oregonTrail.panel;
 
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
+import javax.swing.*;
 import oregonTrail.OregonTrail;
 import oregonTrail.Travel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Panel class representing options available when located at a river in the Oregon Trail game.
@@ -29,16 +21,17 @@ public class RiverPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private OregonTrail oregonTrail;
     private Travel travelState;
-
+    
     /**
      * Constructs a new RiverPanel with the specified OregonTrail instance and river image icon.
      * 
      * @param pOregonTrail The OregonTrail instance associated with the game.
-     * @param riverImageIcon The ImageIcon representing the river.
+     * @param pRiverImageIcon The ImageIcon representing the river.
      */
-    public RiverPanel(OregonTrail pOregonTrail, ImageIcon riverImageIcon) {
+    public RiverPanel(OregonTrail pOregonTrail, ImageIcon pRiverImageIcon) {
         this.oregonTrail = pOregonTrail;
         this.travelState = pOregonTrail.getTravelState();
+        
 
         setLayout(new BorderLayout());
         JLabel welcomeLabel = new JLabel("Welcome to the Kansas River");
@@ -47,63 +40,81 @@ public class RiverPanel extends JPanel {
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Create image label and add it to the top half
-        Image scaledImage = riverImageIcon.getImage().getScaledInstance(450, 249, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(scaledImage);
-        JLabel imageLabel = new JLabel(scaledIcon);
+        JLabel imageLabel = new JLabel(pRiverImageIcon);
         add(imageLabel, BorderLayout.CENTER);
 
         // Create panel for buttons on the bottom half
-        JPanel buttonPanel = new JPanel();
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 0));
         add(buttonPanel, BorderLayout.SOUTH);
 
         // Create buttons
-        JButton attemptToCrossButton = new JButton("Attempt to Cross"); // Cross river, add distance, chance to lose items if river is too deep
-        JButton CaulkWagonButton = new JButton("Caulk the Wagon"); // Takes a day and allows you to cross river if light enough
-        JButton WaitButton = new JButton("Wait"); // Should add a day to current day
+        JButton openMapButton = new JButton("Open Map");
+        JButton changeRateButton = new JButton("Change Rate of Travel");
+        JButton changeRationsButton = new JButton("Change Rations");
+        JButton attemptToCrossButton = new JButton("Attempt to Cross");
+        JButton caulkWagonButton = new JButton("Caulk the Wagon");
+        JButton waitButton = new JButton("Wait");
 
         // Add buttons to button panel
+        buttonPanel.add(openMapButton);
+        buttonPanel.add(changeRateButton);
+        buttonPanel.add(changeRationsButton);
         buttonPanel.add(attemptToCrossButton);
-        buttonPanel.add(CaulkWagonButton);
-        buttonPanel.add(WaitButton);
+        buttonPanel.add(caulkWagonButton);
+        buttonPanel.add(waitButton);
 
         // Add action listeners to buttons
+        openMapButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Open Map button clicked");
+            }
+        });
+
+        changeRateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Change Rate of Travel button clicked");
+            }
+        });
+
+        changeRationsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Change Rations button clicked");
+            }
+        });
+
         attemptToCrossButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                crossRiver();
+                int random = (int)(Math.random() * 100) + 1; // Generate random number between 1 and 100
+                if (random <= 70) {
+                    JOptionPane.showMessageDialog(null, "You successfully crossed the river!");
+                    oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, RiverPanel.this);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Your wagon got swept away by the river!");
+                    System.exit(0);
+                }
             }
         });
-
-        CaulkWagonButton.addActionListener(new ActionListener() {
+      
+        caulkWagonButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                caulkWagon();
+                JOptionPane.showMessageDialog(null, "You have successfully caulked the wagon!");
+                int random = (int)(Math.random() * 100) + 1; // Generate random number between 1 and 100
+                if (random <= 70) {
+                	JOptionPane.showMessageDialog(null, "You have successfully caulked the wagon!");
+                	oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, RiverPanel.this);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Your wagon sank to the bottom of the river");
+                    System.exit(0);
+                }
             }
         });
 
-        WaitButton.addActionListener(new ActionListener() {
+        waitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                waitDay();
+                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, RiverPanel.this);
             }
         });
-    }
-
-    // Method to handle crossing the river
-    private void crossRiver() {
-       
-        int milesCrossed = 1; // Example value
-        travelState.setMilesNextLandmark(travelState.getMilesNextLandmark() - milesCrossed);
-        oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, this);
-    }
-
-    // Method to handle caulking the wagon
-    private void caulkWagon() {
-      //add
-        travelState.travelToggle();
-    }
-
-    // Method to handle waiting
-    private void waitDay() {
-    	travelState.travelToggle();
-        oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, this);
-    }
+    } 
 }
-
