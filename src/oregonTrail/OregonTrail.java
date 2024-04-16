@@ -19,7 +19,7 @@ public class OregonTrail {
 	public final TravelPanel TRAVEL_PANEL;
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
  	public final FortPanel FORT_STRONG_PANEL;
- 	public final SecondFortPanel FORT_OREGON_PANEL;
+ 	public final FortPanel FORT_OREGON_PANEL;
  	public HuntingPanel huntingPanel;
  	public final TradePanel TRADE_PANEL;
  	public final RiverPanel KANSAS_RIVER_PANEL;
@@ -58,11 +58,10 @@ public class OregonTrail {
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
 		FORT_STRONG_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
-		FORT_OREGON_PANEL = new SecondFortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
+		FORT_OREGON_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
 		KANSAS_RIVER_PANEL = new RiverPanel (this, new ImageIcon(this.getClass().getResource("/images/KansasRiver.jpg")));
 		TRADE_PANEL = new TradePanel();
 		initialize();
-		
 	}
 	
 	/**

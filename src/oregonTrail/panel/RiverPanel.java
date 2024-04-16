@@ -3,6 +3,8 @@ package oregonTrail.panel;
 import javax.swing.*;
 import oregonTrail.OregonTrail;
 import oregonTrail.Travel;
+import oregonTrail.landmark.River;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -98,16 +100,7 @@ public class RiverPanel extends JPanel {
       
         caulkWagonButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "You have successfully caulked the wagon!");
-                int random = (int)(Math.random() * 100) + 1; // Generate random number between 1 and 100
-                if (random <= 70) {
-                	JOptionPane.showMessageDialog(null, "You have successfully caulked the wagon!");
-                	oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, RiverPanel.this);
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Your wagon sank to the bottom of the river");
-                    System.exit(0);
-                }
+				River.caulkWagon(RiverPanel.this);
             }
         });
 
