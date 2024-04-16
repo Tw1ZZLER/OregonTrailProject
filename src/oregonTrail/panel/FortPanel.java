@@ -97,7 +97,7 @@ public class FortPanel extends JPanel {
         
         continueButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, FortPanel.this);
+                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
             }
         });
     } 

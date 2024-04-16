@@ -123,7 +123,7 @@ public class TravelPanel extends JPanel {
 		btnSizeUpThe.setPreferredSize(new Dimension(159, 50));
 		btnSizeUpThe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				oregonTrail.openPanel(oregonTrail.TRAIL_MENU_PANEL, TravelPanel.this);
+				oregonTrail.openPanel(oregonTrail.TRAIL_MENU_PANEL);
 			}
 		});
 		btnSizeUpThe.setBackground(Color.BLACK);

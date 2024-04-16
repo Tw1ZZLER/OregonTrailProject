@@ -19,7 +19,7 @@ public class OregonTrail {
 	public final TravelPanel TRAVEL_PANEL;
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
  	public final FortPanel FORT_STRONG_PANEL;
- 	public final SecondFortPanel FORT_OREGON_PANEL;
+ 	public final FortPanel FORT_OREGON_PANEL;
  	public HuntingPanel huntingPanel;
  	public final TradePanel TRADE_PANEL;
 
@@ -57,7 +57,7 @@ public class OregonTrail {
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
 		FORT_STRONG_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
-		FORT_OREGON_PANEL = new SecondFortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
+		FORT_OREGON_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
 		TRADE_PANEL = new TradePanel();
 		initialize();
 		
@@ -70,7 +70,7 @@ public class OregonTrail {
 	 * @author Corbin Hibler
 	 * @date 2024-04-08
 	 */
-	public void openPanel(JPanel panelOpen, JPanel panelClose) {
+	public void openPanel(JPanel panelOpen) {
 		frame.getContentPane().removeAll();
 		
 		// Create new hunting panel if called.
@@ -85,7 +85,6 @@ public class OregonTrail {
 		
 		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
-		this.huntingPanel.setVisible(true);
 	}
 
 	/**
@@ -120,13 +119,7 @@ public class OregonTrail {
 		Timer startupTimer = new Timer(StartupPanel.STARTUP_TIME, new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// After startup screen is finished, display first panel
-				frame.getContentPane().remove(STARTUP_PANEL);
-				frame.getContentPane().add(TRAVEL_PANEL);
-				// The image must be added separate from the panel because LoadWagonPanel uses
-				// a Grid Layout, and the image won't fit nicely
-				// Update frame
-				frame.getContentPane().validate();
-				frame.getContentPane().repaint();
+				openPanel(TRAVEL_PANEL);
 				
 			}
 		});

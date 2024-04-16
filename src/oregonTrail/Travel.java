@@ -36,6 +36,8 @@ public class Travel {
 	
 	/**
 	 * Function that gets called every time the Swing timer runs
+	 * Moves date forward, generates miles traveled, updates miles until next landmark,
+	 * and calculates food weight.
 	 * @author Corbin Hibler
 	 * @date 2024-04-09
 	 */
@@ -65,14 +67,14 @@ public class Travel {
 	    
 	    // Check if we have reached fort
 	    if (milesNextLandmark <= 0 && milesTraveled < MILES_TO_FORT_STRONG + 10) {
-	    	oregonTrail.openPanel(oregonTrail.FORT_STRONG_PANEL, oregonTrail.TRAVEL_PANEL);
+	    	oregonTrail.openPanel(oregonTrail.FORT_STRONG_PANEL);
 	    	milesNextLandmark = MILES_TO_FORT_OREGON;
 	    	oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("Fort Oregon");
 	    	travelToggle();
 	    }
 	    
 	    if (milesNextLandmark <= 0 && milesTraveled > MILES_TO_FORT_STRONG + 100) {
-	    	oregonTrail.openPanel(oregonTrail.FORT_OREGON_PANEL, oregonTrail.TRAVEL_PANEL);
+	    	oregonTrail.openPanel(oregonTrail.FORT_OREGON_PANEL);
 	    	milesNextLandmark = 99999;
 	    	travelToggle();
 	    }
