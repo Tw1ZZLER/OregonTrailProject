@@ -26,11 +26,10 @@ public class Travel {
 	private OregonTrail oregonTrail;
 	private int milesTraveled;
 	private int milesNextLandmark;
-	private Landmark currentLandmark;
 	private Landmark nextLandmark;
 	private static Random rand = new Random();
 	private Calendar date = new GregorianCalendar(1848, 8, 11); // Set to August 11, 1848
-	private Timer timer = new Timer(50, new ActionListener() {
+	private Timer timer = new Timer(1000, new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			travelCycle();
 		}
@@ -104,8 +103,6 @@ public class Travel {
 	        if (milesNextLandmark <= 0 && 
 	        	milesTraveled >= landmark.getDistanceFromStart() && 
 	        	!landmark.isVisited()) {
-	            // Correctly update the current and next landmarks
-	            this.currentLandmark = landmark;
 	            this.nextLandmark = landmark.getNextLandmark();
 	            // Ensure milesNextLandmark is updated correctly for the next landmark
 	            try {
@@ -138,7 +135,6 @@ public class Travel {
 	    try {
 		    // Next Landmark and associated variables
 		    oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText(nextLandmark.getName());
-		    this.currentLandmark = nextLandmark;
 		    this.nextLandmark = nextLandmark.getNextLandmark();
 		    milesNextLandmark = nextLandmark.getDistanceFromPrevious();
 		} catch (NullPointerException e) {
