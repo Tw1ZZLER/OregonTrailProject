@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * Class to generate trade offers and contains information related to trading.
- * @author Lukas Dunbar, Corbin Hibler
+ * @author Lukas Dunbar
  * @date 2024-04-12
  */
 public class Trading {

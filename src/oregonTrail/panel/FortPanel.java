@@ -94,7 +94,7 @@ public class FortPanel extends JPanel {
 
         attemptTradeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Attempt to Trade button clicked");
+                oregonTrail.openPanel(oregonTrail.TRADE_PANEL);
             }
         });
 

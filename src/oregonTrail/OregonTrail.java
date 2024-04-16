@@ -59,7 +59,7 @@ public class OregonTrail {
 		TRAVEL_PANEL = new TravelPanel(this);
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
-		TRADE_PANEL = new TradePanel();
+		TRADE_PANEL = new TradePanel(this);
 		initializeLandmarkPanels();
 		initialize();
 	}

@@ -1,6 +1,5 @@
 package oregonTrail.panel;
 import oregonTrail.*;
-import oregonTrail.panel.TradePanel.TRADING;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,20 +9,20 @@ import java.util.Random;
 
 
 public class TradePanel extends JPanel {
-    public class TRADING {
-
-	}
-
-	public TradePanel() {
-        JLabel label = new JLabel(oregonTrail.Trading.generateTradeOffer());
+	private OregonTrail oregonTrail;
+	
+	public TradePanel(OregonTrail oregonTrail) {
+		this.oregonTrail = oregonTrail;
+		
+        JLabel label = new JLabel(Trading.generateTradeOffer());
         add(label);
 
         JButton yesButton = new JButton("Yes");
         yesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(null, "Trade Confirmed!");
-               
+                JOptionPane.showMessageDialog(null, "Trade Confirmed!");
+                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
             }
         });
         add(yesButton);
@@ -33,6 +32,7 @@ public class TradePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Trade Denied!");
+                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
             }
         });
         add(noButton);

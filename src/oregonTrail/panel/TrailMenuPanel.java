@@ -129,7 +129,7 @@ public class TrailMenuPanel extends JPanel {
         tradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Attempt to Trade button clicked");
+                oregonTrail.openPanel(oregonTrail.TRADE_PANEL);
             }
         });
 
