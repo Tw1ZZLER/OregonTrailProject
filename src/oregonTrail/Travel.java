@@ -101,51 +101,51 @@ public class Travel {
 	 */
 	public void checkLandmarks() {
 	    for (Landmark landmark : Landmark.landmarkList) {
-	        if (milesNextLandmark <= 0 && milesTraveled >= landmark.getDistanceFromStart()) {
-	            System.out.println("Landmark reached: " + landmark.getName());
-	            Landmark nextLandmark = getNextLandmark(landmark);
-	            System.out.println("Next landmark: " + (nextLandmark != null ? nextLandmark.getName() : "None"));
-	            JPanel panel = oregonTrail.getPanelForLandmark(landmark);
-	            System.out.println("Panel for landmark: " + (panel != null ? panel.getName() : "None"));
-	            updateLandmarkReached(landmark, panel, nextLandmark);
+	        if (milesNextLandmark <= 0 && 
+	        	milesTraveled >= landmark.getDistanceFromStart() && 
+	        	!landmark.isVisited()) {
+	            // Correctly update the current and next landmarks
+	            this.currentLandmark = landmark;
+	            this.nextLandmark = landmark.getNextLandmark();
+	            // Ensure milesNextLandmark is updated correctly for the next landmark
+	            try {
+	                milesNextLandmark = this.nextLandmark.getDistanceFromPrevious();
+	            } catch (NullPointerException e) {
+	            	// If at the end of the trail, there is no next Landmark:
+	                milesNextLandmark = 0;
+	            }
+	            updateLandmarkReached(landmark, nextLandmark);
 	            break;
 	        }
 	    }
 	}
 
-
-	/**
-	 * Retrieve the next landmark in the list given the current landmark
-	 * @param currentLandmark 
-	 * @return Landmark object of the next Landmark
-	 */
-	private Landmark getNextLandmark(Landmark currentLandmark) {
-	    int currentIndex = Landmark.landmarkList.indexOf(currentLandmark);
-	    
-	    if (currentIndex < Landmark.landmarkList.size() - 1) {
-	        // Return the next landmark in the list
-	        return Landmark.landmarkList.get(currentIndex + 1);
-	    } else
-	        // If the current landmark is the last one, return null
-	        return null;
-	}
-
-	
 	/**
 	 *  Method to update the game state when a landmark is reached
 	 * @param currentLandmark
 	 * @param currentLandmarkPanel
 	 * @param nextLandmark
 	 */
-	private void updateLandmarkReached(Landmark currentLandmark, JPanel currentLandmarkPanel, Landmark nextLandmark) {
-	    // Update the current landmark to the landmark that was just reached
-	    this.currentLandmark = currentLandmark;
-	    this.nextLandmark = nextLandmark;
-	    milesNextLandmark = nextLandmark.getDistanceFromPrevious();
-	    
+	private void updateLandmarkReached(Landmark currentLandmark, Landmark nextLandmark) {
 	    // Update the UI
-	    oregonTrail.openPanel(currentLandmarkPanel);
-	    oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText(nextLandmark.getName());
+		System.out.println("landmark passed to updatelandmarkreached: " + currentLandmark.getName());
+        JPanel panel = oregonTrail.getPanelForLandmark(currentLandmark);
+	    oregonTrail.openPanel(panel);
+	    
+	    // Make sure landmark cannot be visited again
+        currentLandmark.setVisited();
+	    
+	    try {
+		    // Next Landmark and associated variables
+		    oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText(nextLandmark.getName());
+		    this.currentLandmark = nextLandmark;
+		    this.nextLandmark = nextLandmark.getNextLandmark();
+		    milesNextLandmark = nextLandmark.getDistanceFromPrevious();
+		} catch (NullPointerException e) {
+			// If at Fort Oregon, no next landmark is available
+			System.out.println("Last Fort has been reached, no next landmark available.");
+		    oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("END OF GAME");
+		}
 	    travelToggle();
 	}
 

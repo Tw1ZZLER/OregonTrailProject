@@ -23,10 +23,11 @@ public class Landmark {
 	protected int distanceFromStart;
 	protected int distanceFromPrevious;
 	protected int distanceToNext;
-	
-	public static final Landmark KANSAS_RIVER = new River("Kansas River", new ImageIcon("/images/KansasRiver.jpg"), 100);
-	public static final Landmark FORT_STRONG = new Fort("Fort Strong", new ImageIcon("/images/FortStrong.jpg"), 150);
-	public static final Landmark FORT_OREGON = new Fort("Fort Oregon", new ImageIcon("/images/FortOregon.jpg"), 400);
+	protected boolean visited;
+
+	public static final Landmark KANSAS_RIVER = new River("Kansas River", new ImageIcon("src/images/KansasRiver.jpg"), 100);
+	public static final Landmark FORT_STRONG = new Fort("Fort Strong", new ImageIcon("src/images/FortStrong.jpg"), 150);
+	public static final Landmark FORT_OREGON = new Fort("Fort Oregon", new ImageIcon("src/images/FortOregon.jpg"), 400);
 
 	
 	// List of all landmarks in the game
@@ -37,7 +38,9 @@ public class Landmark {
 	public Landmark(String name, ImageIcon picture, int distanceFromStart) {
 		this.name = name;
 		this.picture = picture;
+		System.out.println("Width: " + picture.getIconWidth() + ", Height: " + picture.getIconHeight());
 		this.distanceFromStart = distanceFromStart;
+		this.visited = false; // set by Travel class
 	}
 
 	/**
@@ -53,9 +56,27 @@ public class Landmark {
 		}
 		return distanceFromPrevious;
 	}
+	
+
+	/**
+	 * Retrieve the next landmark in the list given the current landmark
+	 * @param currentLandmark 
+	 * @return Landmark object of the next Landmark
+	 */
+	public Landmark getNextLandmark() {
+	    int currentIndex = Landmark.landmarkList.indexOf(this);
+	    
+	    if (currentIndex < Landmark.landmarkList.size() - 1) {
+	        // Return the next landmark in the list
+	        return Landmark.landmarkList.get(currentIndex + 1);
+	    } else
+	        // If the current landmark is the last one, return null
+	        return null;
+	}
 
 
 	/**
+	 * Returns the name of the Landmark
 	 * @return the name
 	 */
 	public String getName() {
@@ -63,6 +84,8 @@ public class Landmark {
 	}
 
 	/**
+	 * Returns in ImageIcon of the picture used
+	 * for the landmark
 	 * @return the picture
 	 */
 	public ImageIcon getPicture() {
@@ -70,9 +93,29 @@ public class Landmark {
 	}
 
 	/**
+	 * Returns the distance from the beginning of the game,
+	 * (Independence, MI) to the Landmark.
 	 * @return the distanceFromStart
 	 */
 	public int getDistanceFromStart() {
 		return distanceFromStart;
+	}
+	
+	/**
+	 * Set a landmark has having been visited already cannot be visited again.
+	 * Cannot set to false, must always be set to true.
+	 * @param visited the visited to set
+	 */
+	public void setVisited() {
+		this.visited = true;
+	}
+	
+
+	/**
+	 * Getter method for if a landmark has been visited yet
+	 * @return the visited
+	 */
+	public boolean isVisited() {
+		return visited;
 	}
 }
