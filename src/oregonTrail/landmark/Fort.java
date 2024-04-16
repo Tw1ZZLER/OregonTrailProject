@@ -4,9 +4,8 @@ import javax.swing.ImageIcon;
 
 public class Fort extends Landmark {
 
-	public Fort(String name, ImageIcon picture) {
-		super(name, picture);
-		// TODO Auto-generated constructor stub
+	public Fort(String name, ImageIcon picture, int distanceFromStart) {
+		super(name, picture, distanceFromStart);
 	}
 
 }

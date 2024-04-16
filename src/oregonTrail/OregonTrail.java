@@ -2,7 +2,11 @@ package oregonTrail;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.*;
+import oregonTrail.landmark.*;
 import oregonTrail.panel.*;
 
 /**
@@ -14,12 +18,11 @@ public class OregonTrail {
 	
 	private JFrame frame;
 	private Travel travelState;
+	private Map<Landmark, JPanel> landmarkToPanelMap = new HashMap<>();
 	public final Wagon WAGON;
 	public final StartupPanel STARTUP_PANEL;
 	public final TravelPanel TRAVEL_PANEL;
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
- 	public final FortPanel FORT_STRONG_PANEL;
- 	public final SecondFortPanel FORT_OREGON_PANEL;
  	public HuntingPanel huntingPanel;
  	public final TradePanel TRADE_PANEL;
 
@@ -56,11 +59,9 @@ public class OregonTrail {
 		TRAVEL_PANEL = new TravelPanel(this);
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
-		FORT_STRONG_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
-		FORT_OREGON_PANEL = new SecondFortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
 		TRADE_PANEL = new TradePanel();
+		initializeLandmarkPanels();
 		initialize();
-		
 	}
 	
 	/**
@@ -70,7 +71,7 @@ public class OregonTrail {
 	 * @author Corbin Hibler
 	 * @date 2024-04-08
 	 */
-	public void openPanel(JPanel panelOpen, JPanel panelClose) {
+	public void openPanel(JPanel panelOpen) {
 		frame.getContentPane().removeAll();
 		
 		// Create new hunting panel if called.
@@ -85,8 +86,11 @@ public class OregonTrail {
 		
 		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
-		this.huntingPanel.setVisible(true);
 	}
+	
+	public JPanel getPanelForLandmark(Landmark landmark) {
+        return landmarkToPanelMap.get(landmark);
+    }
 
 	/**
 	 * Getter method for instantation of Travel class
@@ -95,6 +99,19 @@ public class OregonTrail {
 	public Travel getTravelState() {
 		return this.travelState;
 	}
+	
+    // Example method to populate the map (call this during initialization)
+    public void initializeLandmarkPanels() {
+        // Create JPanels for each landmark
+		final JPanel KANSAS_RIVER_PANEL = new RiverPanel (this, (River) Landmark.KANSAS_RIVER);
+		final JPanel FORT_STRONG_PANEL = new FortPanel(this, (Fort) Landmark.FORT_STRONG);
+		final JPanel FORT_OREGON_PANEL = new FortPanel(this, (Fort) Landmark.FORT_OREGON);
+
+        // Populate the map with associations
+        landmarkToPanelMap.put(Landmark.KANSAS_RIVER, KANSAS_RIVER_PANEL);
+        landmarkToPanelMap.put(Landmark.FORT_STRONG, FORT_STRONG_PANEL);
+        landmarkToPanelMap.put(Landmark.FORT_OREGON, FORT_OREGON_PANEL);
+    }
 
 	/**
 	 * Initialize the contents of the frame.
@@ -120,13 +137,7 @@ public class OregonTrail {
 		Timer startupTimer = new Timer(StartupPanel.STARTUP_TIME, new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// After startup screen is finished, display first panel
-				frame.getContentPane().remove(STARTUP_PANEL);
-				frame.getContentPane().add(TRAVEL_PANEL);
-				// The image must be added separate from the panel because LoadWagonPanel uses
-				// a Grid Layout, and the image won't fit nicely
-				// Update frame
-				frame.getContentPane().validate();
-				frame.getContentPane().repaint();
+				openPanel(TRAVEL_PANEL);
 				
 			}
 		});

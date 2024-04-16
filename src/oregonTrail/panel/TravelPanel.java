@@ -98,7 +98,7 @@ public class TravelPanel extends JPanel {
      * @param nameNextLandmark Name of next landmark
      */
     public void setNextLandmarkNameText(String nameNextLandmark) {
-        lblNextLandmarkMiles.setText(nameNextLandmark);
+        lblNextLandmarkName.setText(nameNextLandmark);
     }
 
 	/**
@@ -123,7 +123,7 @@ public class TravelPanel extends JPanel {
 		btnSizeUpThe.setPreferredSize(new Dimension(159, 50));
 		btnSizeUpThe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				oregonTrail.openPanel(oregonTrail.TRAIL_MENU_PANEL, TravelPanel.this);
+				oregonTrail.openPanel(oregonTrail.TRAIL_MENU_PANEL);
 			}
 		});
 		btnSizeUpThe.setBackground(Color.BLACK);
@@ -156,7 +156,7 @@ public class TravelPanel extends JPanel {
 		lblNameOfNext.setFont(new Font("Dialog", Font.BOLD, 24));
 		add(lblNameOfNext, "cell 0 7,alignx right");
 		
-		lblNextLandmarkName = new JLabel("Fort Strong");
+		lblNextLandmarkName = new JLabel("Kansas River");
 		lblNextLandmarkName.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNextLandmarkName.setFont(new Font("Dialog", Font.BOLD, 24));
 		add(lblNextLandmarkName, "cell 1 7,alignx left");
