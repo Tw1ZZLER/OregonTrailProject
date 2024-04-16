@@ -3,6 +3,8 @@ package oregonTrail.panel;
 import javax.swing.*;
 import oregonTrail.OregonTrail;
 import oregonTrail.Travel;
+import oregonTrail.landmark.Fort;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,20 +23,27 @@ public class FortPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private OregonTrail oregonTrail;
     private Travel travelState;
+    private Fort fort;
+    private String fortName;
+    private ImageIcon fortImageIcon;
     
     /**
-     * Constructs a new FortPanel with the specified OregonTrail instance and fort image icon.
+     * Constructs a new FortPanel with the specified OregonTrail instance and fort image icon
+     * which are obtained from a passed Fort object.
      * 
      * @param pOregonTrail The OregonTrail instance associated with the game.
-     * @param fortImageIcon The ImageIcon representing the fort.
+     * @param fort The Fort object used for this panel.
      */
-    public FortPanel(OregonTrail pOregonTrail, ImageIcon fortImageIcon) {
+    public FortPanel(OregonTrail pOregonTrail, Fort fort) {
         this.oregonTrail = pOregonTrail;
         this.travelState = pOregonTrail.getTravelState();
+        this.fort = fort;
+        this.fortImageIcon = fort.getPicture();
+        this.fortName = fort.getName();
         
 
         setLayout(new BorderLayout());
-        JLabel welcomeLabel = new JLabel("Welcome to Fort Strong !!!");
+        JLabel welcomeLabel = new JLabel("Welcome to " + fortName +"!!!");
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Set font size to 24
         add(welcomeLabel, BorderLayout.NORTH);

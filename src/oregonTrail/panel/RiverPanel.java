@@ -3,6 +3,7 @@ package oregonTrail.panel;
 import javax.swing.*;
 import oregonTrail.OregonTrail;
 import oregonTrail.Travel;
+import oregonTrail.landmark.Fort;
 import oregonTrail.landmark.River;
 
 import java.awt.*;
@@ -23,26 +24,32 @@ public class RiverPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private OregonTrail oregonTrail;
     private Travel travelState;
+    private River river;
+    private String riverName;
+    private ImageIcon riverImageIcon;
     
     /**
      * Constructs a new RiverPanel with the specified OregonTrail instance and river image icon.
      * 
      * @param pOregonTrail The OregonTrail instance associated with the game.
-     * @param pRiverImageIcon The ImageIcon representing the river.
+     * @param river The river object used for this panel.
      */
-    public RiverPanel(OregonTrail pOregonTrail, ImageIcon pRiverImageIcon) {
+    public RiverPanel(OregonTrail pOregonTrail, River river) {
         this.oregonTrail = pOregonTrail;
         this.travelState = pOregonTrail.getTravelState();
+        this.river = river;
+        this.riverImageIcon = river.getPicture();
+        this.riverName = river.getName();
         
 
         setLayout(new BorderLayout());
-        JLabel welcomeLabel = new JLabel("Welcome to the Kansas River");
+        JLabel welcomeLabel = new JLabel("Welcome to the " + riverName);
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Set font size to 24
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Create image label and add it to the top half
-        JLabel imageLabel = new JLabel(pRiverImageIcon);
+        JLabel imageLabel = new JLabel(riverImageIcon);
         add(imageLabel, BorderLayout.CENTER);
 
         // Create panel for buttons on the bottom half
@@ -74,39 +81,33 @@ public class RiverPanel extends JPanel {
 
         changeRateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Change Rate of Travel button clicked");
+                oregonTrail.WAGON.travelSpeedDialog(RiverPanel.this);
             }
         });
 
         changeRationsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Change Rations button clicked");
+                oregonTrail.WAGON.foodConsumptionDialog(RiverPanel.this);
             }
         });
 
         attemptToCrossButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int random = (int)(Math.random() * 100) + 1; // Generate random number between 1 and 100
-                if (random <= 70) {
-                    JOptionPane.showMessageDialog(null, "You successfully crossed the river!");
-                    oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, RiverPanel.this);
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Your wagon got swept away by the river!");
-                    System.exit(0);
-                }
+            	River.attemptToCross(RiverPanel.this);
+                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
             }
         });
       
         caulkWagonButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 				River.caulkWagon(RiverPanel.this);
+	        	oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
             }
         });
 
         waitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL, RiverPanel.this);
+                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
             }
         });
     } 

@@ -4,12 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Random;
 
+import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import oregonTrail.landmark.Fort;
+import oregonTrail.landmark.Landmark;
+import oregonTrail.landmark.River;
 
 /**
  * Handles all logic related to traveling. Contains Swing timer for traveling
@@ -19,20 +26,19 @@ public class Travel {
 	private OregonTrail oregonTrail;
 	private int milesTraveled;
 	private int milesNextLandmark;
-	private Random rand = new Random();
+	private Landmark currentLandmark;
+	private Landmark nextLandmark;
+	private static Random rand = new Random();
 	private Calendar date = new GregorianCalendar(1848, 8, 11); // Set to August 11, 1848
 	private Timer timer = new Timer(1000, new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			travelCycle();
 		}
-	});
-	public static final int MILES_TO_KANSAS_RIVER = 100;
-	public static final int MILES_TO_FORT_STRONG = 150;
-	public static final int MILES_TO_FORT_OREGON = 400;
+	});	
 	
 	public Travel(OregonTrail oregonTrail) {
 		this.oregonTrail = oregonTrail;
-		this.milesNextLandmark = MILES_TO_KANSAS_RIVER;
+		this.nextLandmark = Landmark.KANSAS_RIVER; // default to first landmark!
 	}
 	
 	/**
@@ -68,30 +74,8 @@ public class Travel {
 	    oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
 	    
 	   
-	    // Check if we have reached fort
-	    if (milesNextLandmark <= 0 && milesTraveled < MILES_TO_KANSAS_RIVER + 10) {
-	    	oregonTrail.openPanel(oregonTrail.KANSAS_RIVER_PANEL);
-	    	milesNextLandmark = MILES_TO_FORT_STRONG;
-	    	oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("Fort Strong");
-	    		travelToggle();
-		    	milesTraveled= 100;
-		    	milesNextLandmark =50;
-	    	}
-		    
-	    
-	    if (milesNextLandmark <= 0 && milesTraveled < MILES_TO_FORT_STRONG + 10) {
-	    	oregonTrail.openPanel(oregonTrail.FORT_STRONG_PANEL);
-	    	milesNextLandmark = MILES_TO_FORT_OREGON;
-	    	oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("Fort Oregon");
-	    	travelToggle();
-	    }
-	    
-	    
-	    if (milesNextLandmark <= 0 && milesTraveled > MILES_TO_FORT_STRONG + 100) {
-	    	oregonTrail.openPanel(oregonTrail.FORT_OREGON_PANEL);
-	    	milesNextLandmark = 99999;
-	    	travelToggle();
-	    }
+	    // Check if we have reached next landmark
+	    checkLandmarks();
 	}
 	
 	/**
@@ -110,6 +94,25 @@ public class Travel {
 			timer.stop();
 			oregonTrail.TRAVEL_PANEL.btnContinue.setText("Continue on Trail!");
 		}
+	}
+	
+	// Main game loop or method where landmark checks are performed
+	public void checkLandmarks() {
+	    if (milesNextLandmark <= 0 && milesTraveled > Landmark.KANSAS_RIVER.getDistanceFromStart()) {
+	        updateLandmarkReached(Landmark.KANSAS_RIVER, oregonTrail.KANSAS_RIVER_PANEL, Landmark.FORT_STRONG);
+	    } else if (milesNextLandmark <= 0 && milesTraveled > Landmark.FORT_STRONG.getDistanceFromPrevious()) {
+	        updateLandmarkReached(Landmark.FORT_STRONG, oregonTrail.FORT_STRONG_PANEL, Landmark.FORT_OREGON);
+	    } else if (milesNextLandmark <= 0 && milesTraveled > Landmark.FORT_OREGON.getDistanceFromStart()) {
+	    	updateLandmarkReached(Landmark.FORT_OREGON, null, nextLandmark);
+	    }
+	}
+	
+	// Method to update the game state when a landmark is reached
+	private void updateLandmarkReached(Landmark currentLandmark, JPanel currentLandmarkPanel, Landmark nextLandmark) {
+	    oregonTrail.openPanel(currentLandmarkPanel);
+	    oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText(nextLandmark.getName());
+	    travelToggle();
+	    milesNextLandmark = nextLandmark.getDistanceFromPrevious();
 	}
 
 	/**

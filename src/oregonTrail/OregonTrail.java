@@ -3,6 +3,7 @@ package oregonTrail;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import oregonTrail.landmark.*;
 import oregonTrail.panel.*;
 
 /**
@@ -57,9 +58,9 @@ public class OregonTrail {
 		TRAVEL_PANEL = new TravelPanel(this);
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
-		FORT_STRONG_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortStrong.jpg")));
-		FORT_OREGON_PANEL = new FortPanel(this, new ImageIcon(this.getClass().getResource("/images/FortOregon.jpg")));
-		KANSAS_RIVER_PANEL = new RiverPanel (this, new ImageIcon(this.getClass().getResource("/images/KansasRiver.jpg")));
+		KANSAS_RIVER_PANEL = new RiverPanel (this, (River) Landmark.KANSAS_RIVER);
+		FORT_STRONG_PANEL = new FortPanel(this, (Fort) Landmark.FORT_STRONG);
+		FORT_OREGON_PANEL = new FortPanel(this, (Fort) Landmark.FORT_OREGON);
 		TRADE_PANEL = new TradePanel();
 		initialize();
 	}
