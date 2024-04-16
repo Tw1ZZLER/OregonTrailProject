@@ -25,7 +25,7 @@ public class Landmark {
 	protected int distanceToNext;
 	protected boolean visited;
 
-	public static final Landmark KANSAS_RIVER = new River("Kansas River", new ImageIcon("src/images/KansasRiver.jpg"), 100);
+	public static final Landmark KANSAS_RIVER = new River("Kansas River Crossing", new ImageIcon("src/images/KansasRiver.jpg"), 100);
 	public static final Landmark FORT_STRONG = new Fort("Fort Strong", new ImageIcon("src/images/FortStrong.jpg"), 150);
 	public static final Landmark FORT_OREGON = new Fort("Fort Oregon", new ImageIcon("src/images/FortOregon.jpg"), 400);
 

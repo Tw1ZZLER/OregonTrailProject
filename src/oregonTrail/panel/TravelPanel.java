@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import net.miginfocom.swing.MigLayout;
 import oregonTrail.OregonTrail;
+import oregonTrail.landmark.Landmark;
 
 /**
  * Main traveling panel, shows most pertinent information to wagon
@@ -156,7 +157,7 @@ public class TravelPanel extends JPanel {
 		lblNameOfNext.setFont(new Font("Dialog", Font.BOLD, 24));
 		add(lblNameOfNext, "cell 0 7,alignx right");
 		
-		lblNextLandmarkName = new JLabel("Kansas River");
+		lblNextLandmarkName = new JLabel(Landmark.KANSAS_RIVER.getName());
 		lblNextLandmarkName.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNextLandmarkName.setFont(new Font("Dialog", Font.BOLD, 24));
 		add(lblNextLandmarkName, "cell 1 7,alignx left");
