@@ -2,6 +2,7 @@ package oregonTrail.landmark;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.spi.LocaleServiceProvider;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -10,8 +11,10 @@ import oregonTrail.OregonTrail;
 
 /**
  * Contains methods and logic that are used by all landmarks
+ * Constants static constants used for each landmark
  * Subclasses: Fort, River
- * @
+ * @author Corbin Hibler
+ * @date 2024-04-16
  */
 public class Landmark {
 	protected String name;
@@ -38,18 +41,19 @@ public class Landmark {
 	}
 
 	/**
-	 * @return the distanceFromPrevious
+	 * Calculates distance from previous and returns integer value
+	 * @return int distance from the previous landmark
 	 */
 	public int getDistanceFromPrevious() {
+		if (this == KANSAS_RIVER) {
+			distanceFromPrevious = distanceFromStart;
+		} else {
+			int landmarkIndex = landmarkList.indexOf(this);
+			distanceFromPrevious = this.getDistanceFromStart() - landmarkList.get(landmarkIndex - 1).getDistanceFromStart();
+		}
 		return distanceFromPrevious;
 	}
 
-	/**
-	 * @param distanceFromPrevious the distanceFromPrevious to set
-	 */
-	public void setDistanceFromPrevious(int distanceFromPrevious) {
-		this.distanceFromPrevious = distanceFromPrevious;
-	}
 
 	/**
 	 * @return the name

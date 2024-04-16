@@ -30,7 +30,7 @@ public class Travel {
 	private Landmark nextLandmark;
 	private static Random rand = new Random();
 	private Calendar date = new GregorianCalendar(1848, 8, 11); // Set to August 11, 1848
-	private Timer timer = new Timer(1000, new ActionListener() {
+	private Timer timer = new Timer(50, new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			travelCycle();
 		}
@@ -39,6 +39,7 @@ public class Travel {
 	public Travel(OregonTrail oregonTrail) {
 		this.oregonTrail = oregonTrail;
 		this.nextLandmark = Landmark.KANSAS_RIVER; // default to first landmark!
+		this.milesNextLandmark = Landmark.KANSAS_RIVER.getDistanceFromPrevious();
 	}
 	
 	/**
@@ -73,7 +74,6 @@ public class Travel {
 	    oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
 	    oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
 	    
-	   
 	    // Check if we have reached next landmark
 	    checkLandmarks();
 	}
@@ -96,24 +96,59 @@ public class Travel {
 		}
 	}
 	
-	// Main game loop or method where landmark checks are performed
+	/**
+	 * Method to check if a landmark has been reached
+	 */
 	public void checkLandmarks() {
-	    if (milesNextLandmark <= 0 && milesTraveled > Landmark.KANSAS_RIVER.getDistanceFromStart()) {
-	        updateLandmarkReached(Landmark.KANSAS_RIVER, oregonTrail.KANSAS_RIVER_PANEL, Landmark.FORT_STRONG);
-	    } else if (milesNextLandmark <= 0 && milesTraveled > Landmark.FORT_STRONG.getDistanceFromPrevious()) {
-	        updateLandmarkReached(Landmark.FORT_STRONG, oregonTrail.FORT_STRONG_PANEL, Landmark.FORT_OREGON);
-	    } else if (milesNextLandmark <= 0 && milesTraveled > Landmark.FORT_OREGON.getDistanceFromStart()) {
-	    	updateLandmarkReached(Landmark.FORT_OREGON, null, nextLandmark);
+	    for (Landmark landmark : Landmark.landmarkList) {
+	        if (milesNextLandmark <= 0 && milesTraveled >= landmark.getDistanceFromStart()) {
+	            System.out.println("Landmark reached: " + landmark.getName());
+	            Landmark nextLandmark = getNextLandmark(landmark);
+	            System.out.println("Next landmark: " + (nextLandmark != null ? nextLandmark.getName() : "None"));
+	            JPanel panel = oregonTrail.getPanelForLandmark(landmark);
+	            System.out.println("Panel for landmark: " + (panel != null ? panel.getName() : "None"));
+	            updateLandmarkReached(landmark, panel, nextLandmark);
+	            break;
+	        }
 	    }
 	}
+
+
+	/**
+	 * Retrieve the next landmark in the list given the current landmark
+	 * @param currentLandmark 
+	 * @return Landmark object of the next Landmark
+	 */
+	private Landmark getNextLandmark(Landmark currentLandmark) {
+	    int currentIndex = Landmark.landmarkList.indexOf(currentLandmark);
+	    
+	    if (currentIndex < Landmark.landmarkList.size() - 1) {
+	        // Return the next landmark in the list
+	        return Landmark.landmarkList.get(currentIndex + 1);
+	    } else
+	        // If the current landmark is the last one, return null
+	        return null;
+	}
+
 	
-	// Method to update the game state when a landmark is reached
+	/**
+	 *  Method to update the game state when a landmark is reached
+	 * @param currentLandmark
+	 * @param currentLandmarkPanel
+	 * @param nextLandmark
+	 */
 	private void updateLandmarkReached(Landmark currentLandmark, JPanel currentLandmarkPanel, Landmark nextLandmark) {
+	    // Update the current landmark to the landmark that was just reached
+	    this.currentLandmark = currentLandmark;
+	    this.nextLandmark = nextLandmark;
+	    milesNextLandmark = nextLandmark.getDistanceFromPrevious();
+	    
+	    // Update the UI
 	    oregonTrail.openPanel(currentLandmarkPanel);
 	    oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText(nextLandmark.getName());
 	    travelToggle();
-	    milesNextLandmark = nextLandmark.getDistanceFromPrevious();
 	}
+
 
 	/**
 	 * @return the milesNextLandmark

@@ -98,7 +98,7 @@ public class TravelPanel extends JPanel {
      * @param nameNextLandmark Name of next landmark
      */
     public void setNextLandmarkNameText(String nameNextLandmark) {
-        lblNextLandmarkMiles.setText(nameNextLandmark);
+        lblNextLandmarkName.setText(nameNextLandmark);
     }
 
 	/**

@@ -2,6 +2,9 @@ package oregonTrail;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.*;
 import oregonTrail.landmark.*;
 import oregonTrail.panel.*;
@@ -15,15 +18,13 @@ public class OregonTrail {
 	
 	private JFrame frame;
 	private Travel travelState;
+	private Map<Landmark, JPanel> landmarkToPanelMap = new HashMap<>();
 	public final Wagon WAGON;
 	public final StartupPanel STARTUP_PANEL;
 	public final TravelPanel TRAVEL_PANEL;
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
- 	public final FortPanel FORT_STRONG_PANEL;
- 	public final FortPanel FORT_OREGON_PANEL;
  	public HuntingPanel huntingPanel;
  	public final TradePanel TRADE_PANEL;
- 	public final RiverPanel KANSAS_RIVER_PANEL;
 
 	/**
 	 * Launch the application.
@@ -58,10 +59,8 @@ public class OregonTrail {
 		TRAVEL_PANEL = new TravelPanel(this);
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
-		KANSAS_RIVER_PANEL = new RiverPanel (this, (River) Landmark.KANSAS_RIVER);
-		FORT_STRONG_PANEL = new FortPanel(this, (Fort) Landmark.FORT_STRONG);
-		FORT_OREGON_PANEL = new FortPanel(this, (Fort) Landmark.FORT_OREGON);
 		TRADE_PANEL = new TradePanel();
+		initializeLandmarkPanels();
 		initialize();
 	}
 	
@@ -88,6 +87,10 @@ public class OregonTrail {
 		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
 	}
+	
+	public JPanel getPanelForLandmark(Landmark landmark) {
+        return landmarkToPanelMap.get(landmark);
+    }
 
 	/**
 	 * Getter method for instantation of Travel class
@@ -96,6 +99,19 @@ public class OregonTrail {
 	public Travel getTravelState() {
 		return this.travelState;
 	}
+	
+    // Example method to populate the map (call this during initialization)
+    public void initializeLandmarkPanels() {
+        // Create JPanels for each landmark
+		final JPanel KANSAS_RIVER_PANEL = new RiverPanel (this, (River) Landmark.KANSAS_RIVER);
+		final JPanel FORT_STRONG_PANEL = new FortPanel(this, (Fort) Landmark.FORT_STRONG);
+		final JPanel FORT_OREGON_PANEL = new FortPanel(this, (Fort) Landmark.FORT_OREGON);
+
+        // Populate the map with associations
+        landmarkToPanelMap.put(Landmark.KANSAS_RIVER, KANSAS_RIVER_PANEL);
+        landmarkToPanelMap.put(Landmark.FORT_STRONG, FORT_STRONG_PANEL);
+        landmarkToPanelMap.put(Landmark.FORT_OREGON, FORT_OREGON_PANEL);
+    }
 
 	/**
 	 * Initialize the contents of the frame.
