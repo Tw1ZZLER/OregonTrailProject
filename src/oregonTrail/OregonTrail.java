@@ -1,13 +1,29 @@
 package oregonTrail;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.*;
-import oregonTrail.landmark.*;
-import oregonTrail.panel.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import oregonTrail.landmark.Fort;
+import oregonTrail.landmark.Landmark;
+import oregonTrail.landmark.River;
+import oregonTrail.panel.FortPanel;
+import oregonTrail.panel.HuntingPanel;
+import oregonTrail.panel.LandmarkPanel;
+import oregonTrail.panel.RiverPanel;
+import oregonTrail.panel.ShopPanel;
+import oregonTrail.panel.StartupPanel;
+import oregonTrail.panel.TradePanel;
+import oregonTrail.panel.TrailMenuPanel;
+import oregonTrail.panel.TravelPanel;
 
 /**
  * Main class containing all game logic for switching between panels and instantiating panels
@@ -102,19 +118,30 @@ public class OregonTrail {
 		return this.travelState;
 	}
 	
-    // Example method to populate the map (call this during initialization)
-    public void initializeLandmarkPanels() {
-        // Create JPanels for each landmark
-		final JPanel KANSAS_RIVER_PANEL = new RiverPanel(this, (River) Landmark.KANSAS_RIVER);
-		final JPanel BIG_BLUE_RIVER_PANEL = new RiverPanel(this, (River) Landmark.BIG_BLUE_RIVER);
-		final JPanel FORT_STRONG_PANEL = new FortPanel(this, (Fort) Landmark.FORT_STRONG);
-		final JPanel FORT_OREGON_PANEL = new FortPanel(this, (Fort) Landmark.FORT_OREGON);
 
-        // Populate the map with associations
-        landmarkToPanelMap.put(Landmark.KANSAS_RIVER, KANSAS_RIVER_PANEL);
-        landmarkToPanelMap.put(Landmark.BIG_BLUE_RIVER, BIG_BLUE_RIVER_PANEL);
-        landmarkToPanelMap.put(Landmark.FORT_STRONG, FORT_STRONG_PANEL);
-        landmarkToPanelMap.put(Landmark.FORT_OREGON, FORT_OREGON_PANEL);
+//	final JPanel ASH_HOLLOW_PANEL = new landmarkPanel(this, (landmark) Landmark.ASH_HOLLOW);
+//	final JPanel CHIMNEY_ROCK_PANEL = new landmarkPanel(this, (landmark) Landmark.CHIMNEY_ROCK);
+	
+    /**
+     *  Method to populate the landmark panel map
+     *  @author Corbin Hibler
+     *  @date 2024-04-17
+     */
+    public void initializeLandmarkPanels() {
+    	// Iterative approach to create new Panels for all landmarks in landmarkList
+        for (Landmark landmark : Landmark.landmarkList) {
+            JPanel landmarkPanel;
+           
+            // Check what type of landmark and what panel is needed
+            if (landmark instanceof River) {
+                landmarkPanel = new RiverPanel(this, (River) landmark);
+            } else if (landmark instanceof Fort) {
+                landmarkPanel = new FortPanel(this, (Fort) landmark);
+            } else {
+                landmarkPanel = new LandmarkPanel(this, (Landmark) landmark);
+            }
+            landmarkToPanelMap.put(landmark, landmarkPanel);
+        }
     }
 
 	/**

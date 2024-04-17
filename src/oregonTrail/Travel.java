@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -14,9 +12,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import oregonTrail.landmark.Fort;
 import oregonTrail.landmark.Landmark;
-import oregonTrail.landmark.River;
 
 /**
  * Handles all logic related to traveling. Contains Swing timer for traveling

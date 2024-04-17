@@ -1,14 +1,21 @@
 package oregonTrail.panel;
 
-import javax.swing.*;
-import oregonTrail.OregonTrail;
-import oregonTrail.Travel;
-import oregonTrail.landmark.Fort;
-import oregonTrail.landmark.River;
-
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import oregonTrail.OregonTrail;
+import oregonTrail.Travel;
+import oregonTrail.landmark.River;
 
 /**
  * Panel class representing options available when located at a river in the Oregon Trail game.
@@ -23,8 +30,6 @@ import java.awt.event.ActionListener;
 public class RiverPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private OregonTrail oregonTrail;
-    private Travel travelState;
-    private River river;
     private String riverName;
     private ImageIcon riverImageIcon;
     
@@ -36,8 +41,7 @@ public class RiverPanel extends JPanel {
      */
     public RiverPanel(OregonTrail pOregonTrail, River river) {
         this.oregonTrail = pOregonTrail;
-        this.travelState = pOregonTrail.getTravelState();
-        this.river = river;
+        pOregonTrail.getTravelState();
         this.riverName = river.getName();
         
         // Scale up image

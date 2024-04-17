@@ -2,12 +2,8 @@ package oregonTrail.landmark;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.spi.LocaleServiceProvider;
 
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-
-import oregonTrail.OregonTrail;
 
 /**
  * Contains methods and logic that are used by all landmarks
@@ -28,12 +24,14 @@ public class Landmark {
 	public static final Landmark KANSAS_RIVER = new River("Kansas River Crossing", new ImageIcon("src/images/KansasRiver.jpg"), 100);
 	public static final Landmark BIG_BLUE_RIVER = new River("Big Blue River Crossing", new ImageIcon("src/images/BigBlueRiver.jpg"), 150);
 	public static final Landmark FORT_STRONG = new Fort("Fort Strong", new ImageIcon("src/images/FortStrong.jpg"), 250);
+	public static final Landmark ASH_HOLLOW = new Landmark("Ash Hollow", new ImageIcon("src/images/AshHollow.jpg"), 400);
+	public static final Landmark CHIMNEY_ROCK = new Landmark("Chimney Rock", new ImageIcon("src/images/ChimneyRock.jpg"), 600);
 	public static final Landmark FORT_OREGON = new Fort("Fort Oregon", new ImageIcon("src/images/FortOregon.jpg"), 2000);
 
 	
 	// List of all landmarks in the game
 	public static final ArrayList<Landmark> landmarkList = new ArrayList<Landmark>(Arrays.asList(
-		KANSAS_RIVER, BIG_BLUE_RIVER, FORT_STRONG, FORT_OREGON
+		KANSAS_RIVER, BIG_BLUE_RIVER, FORT_STRONG, ASH_HOLLOW, CHIMNEY_ROCK, FORT_OREGON
 	));
 	
 	public Landmark(String name, ImageIcon picture, int distanceFromStart) {

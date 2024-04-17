@@ -15,23 +15,23 @@ import javax.swing.SwingConstants;
 
 import oregonTrail.OregonTrail;
 import oregonTrail.Travel;
-import oregonTrail.landmark.Fort;
+import oregonTrail.landmark.Landmark;
 
 /**
- * Panel class representing options available when located at a fort in the Oregon Trail game.
+ * Panel class representing options available when located at a landmark in the Oregon Trail game.
  * This panel displays buttons for various actions such as opening the map, changing the rate of travel,
- * changing rations, attempting to trade, opening the shop, and continuing the trail.
+ * changing rations, attempting to trade, and continuing the trail.
  * It also includes action listeners for each button to handle the corresponding actions.
  * 
- * @author Lukas Dunbar
- * @date 2024-04-09
- * @filename FortPanel.java
+ * @author Corbin Hibler
+ * @date 2024-04-17
+ * @filename LandmarkPanel.java
  */
-public class FortPanel extends JPanel {
+public class LandmarkPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private OregonTrail oregonTrail;
-    private String fortName;
-    private ImageIcon fortImageIcon;
+    private String landmarkName;
+    private ImageIcon landmarkImageIcon;
     
     /**
      * Constructs a new FortPanel with the specified OregonTrail instance and fort image icon
@@ -40,31 +40,31 @@ public class FortPanel extends JPanel {
      * @param pOregonTrail The OregonTrail instance associated with the game.
      * @param fort The Fort object used for this panel.
      */
-    public FortPanel(OregonTrail pOregonTrail, Fort fort) {
+    public LandmarkPanel(OregonTrail pOregonTrail, Landmark landmark) {
         this.oregonTrail = pOregonTrail;
         pOregonTrail.getTravelState();
-        this.fortName = fort.getName();
+        this.landmarkName = landmark.getName();
         
         // Scale up image
     	// Assuming river.getPicture() returns an ImageIcon
-        ImageIcon originalIcon = fort.getPicture();
+        ImageIcon originalIcon = landmark.getPicture();
         Image originalImage = originalIcon.getImage();
 
         // Scale the image using getScaledInstance
         Image scaledImage = originalImage.getScaledInstance(1000, 500, Image.SCALE_SMOOTH);
 
         // Convert the scaled Image back to ImageIcon
-        this.fortImageIcon = new ImageIcon(scaledImage);
+        this.landmarkImageIcon = new ImageIcon(scaledImage);
         
 
         setLayout(new BorderLayout());
-        JLabel welcomeLabel = new JLabel("Welcome to " + fortName +"!!!");
+        JLabel welcomeLabel = new JLabel("Welcome to " + landmarkName +"!!!");
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Set font size to 24
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Create image label and add it to the top half
-        JLabel imageLabel = new JLabel(fortImageIcon);
+        JLabel imageLabel = new JLabel(landmarkImageIcon);
         add(imageLabel, BorderLayout.CENTER);
 
         // Create panel for buttons on the bottom half
@@ -76,7 +76,6 @@ public class FortPanel extends JPanel {
         JButton changeRateButton = new JButton("Change Rate of Travel");
         JButton changeRationsButton = new JButton("Change Rations");
         JButton attemptTradeButton = new JButton("Attempt to Trade");
-        JButton openShopButton = new JButton("Open Shop");
         JButton continueButton = new JButton("Continue Trail");
 
         // Add buttons to button panel
@@ -84,7 +83,6 @@ public class FortPanel extends JPanel {
         buttonPanel.add(changeRateButton);
         buttonPanel.add(changeRationsButton);
         buttonPanel.add(attemptTradeButton);
-        buttonPanel.add(openShopButton);
         buttonPanel.add(continueButton);
 
         // Add action listeners to buttons
@@ -109,12 +107,6 @@ public class FortPanel extends JPanel {
         attemptTradeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 oregonTrail.openPanel(oregonTrail.TRADE_PANEL);
-            }
-        });
-
-        openShopButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                oregonTrail.openPanel(oregonTrail.SHOP_PANEL);
             }
         });
         
