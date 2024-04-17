@@ -110,7 +110,7 @@ public class TravelPanel extends JPanel {
 	 */
 	public TravelPanel(OregonTrail oregonTrail) {
 		setOpaque(false);
-		setLayout(new MigLayout("", "[50.00%:50.00%:50.00%,grow][50.00%:50.00%:50.00%,grow,right]", "[35.00%:50.00%:50.00%,grow,top][27px][][grow 25][grow 25][grow 25][grow 25][grow 25][grow 25][]"));
+		setLayout(new MigLayout("", "[50.00%:50.00%:50.00%,grow][50.00%:50.00%:50.00%,grow,right]", "[35.00%:50.00%:50.00%,grow,top][27px][][grow 25][grow 25][grow 25][grow 25][grow 25][grow 25][25px:n]"));
 		
 		btnContinue = new JButton("GO!!!!!!!!");
 		btnContinue.setPreferredSize(new Dimension(77, 50));
