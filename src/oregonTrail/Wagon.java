@@ -161,13 +161,17 @@ public class Wagon {
 	}
 	
 	/**
-	 * 
+	 * Gets the amount of money that the wagon party has, used for shopping and ferries
 	 * @return the remaining amount of money that the wagon party has
 	 */
 	public double getMoney() {
 		return this.money;
 	}
 	
+	/**
+	 * Changes the amount of money that the wagon party has
+	 * @param amount amount that the wagon's money is being changed by (make negative if subtracting)
+	 */
 	public void changeMoney(double amount) {
 		this.money += amount;
 	}

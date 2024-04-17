@@ -26,11 +26,11 @@ public class Shop {
 	 */
 	public Shop(int fortNum) {
 		priceMultiplier = .25*fortNum;
-		oxenPrice *= priceMultiplier;
-		foodPrice *= priceMultiplier;
-		clothingPrice *= priceMultiplier;
-		ammoPrice *= priceMultiplier;
-		partsPrice *= priceMultiplier;
+		oxenPrice += oxenPrice* priceMultiplier;
+		foodPrice += foodPrice* priceMultiplier;
+		clothingPrice += foodPrice * priceMultiplier;
+		ammoPrice += ammoPrice * priceMultiplier;
+		partsPrice += partsPrice * priceMultiplier;
 	}
 	
 	
