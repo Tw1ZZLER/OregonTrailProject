@@ -25,7 +25,8 @@ public class OregonTrail {
 	public final TrailMenuPanel TRAIL_MENU_PANEL;
  	public HuntingPanel huntingPanel;
  	public final TradePanel TRADE_PANEL;
-
+ 	public final ShopPanel SHOP_PANEL;
+ 	
 	/**
 	 * Launch the application.
 	 */
@@ -55,6 +56,7 @@ public class OregonTrail {
 		WAGON.setTotalFoodWeight(350);
 		WAGON.addItem(new Item("Cast Iron Stove"));
 		
+		SHOP_PANEL = new ShopPanel(this);
 		STARTUP_PANEL = new StartupPanel();
 		TRAVEL_PANEL = new TravelPanel(this);
 		travelState = new Travel(this);

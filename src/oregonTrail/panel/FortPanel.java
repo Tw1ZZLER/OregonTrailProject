@@ -100,7 +100,7 @@ public class FortPanel extends JPanel {
 
         openShopButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Open Shop button clicked");
+                oregonTrail.openPanel(oregonTrail.SHOP_PANEL);
             }
         });
         

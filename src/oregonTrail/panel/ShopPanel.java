@@ -40,10 +40,12 @@ public class ShopPanel extends JPanel {
 	 * @author Ethan Vaughn
 	 * @filename ShopPanel.java
 	 */
-	public ShopPanel(OregonTrail pOregonTrail, Fort fort) {
+	public ShopPanel(OregonTrail pOregonTrail) {
 		
+		orderedItems = new ArrayList();
+		orderCost = 0;
 		this.oregonTrail = pOregonTrail;
-		this.fort = fort;
+		
 		
 		setLayout(new MigLayout("", "[][grow][][][]", "[][][][][][][][][][][][][]"));
 		
@@ -101,6 +103,12 @@ public class ShopPanel extends JPanel {
 		JLabel perPartLabel = new JLabel("Per Part");
 		add(perPartLabel, "cell 4 7");
 		
+		JLabel currentFundsLabel = new JLabel("Current Funds:");
+		add(currentFundsLabel, "cell 2 9");
+		
+		JLabel moneyLabel = new JLabel(""+oregonTrail.WAGON.getMoney());
+		add(moneyLabel, "cell 3 9");
+		
 		JLabel instructionLabel = new JLabel("Enter the number of the item you'd like to buy!");
 		add(instructionLabel, "cell 1 10");
 		
@@ -119,7 +127,9 @@ public class ShopPanel extends JPanel {
 				    // get the number of items purchased, use in conjunction with the item purchased to get price and add to orderCost
 				    double price = shop.getPrice(itemPurchased, numPurchased);
 					orderCost+= price;
-				} else if (numPurchased ==0){
+
+				} 
+				else if (numPurchased ==0){
 				    double price = 0;
 					orderCost+= price;
 				}
@@ -139,19 +149,27 @@ public class ShopPanel extends JPanel {
 		JButton confirmButton = new JButton("Confirm Order");
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					if(orderCost>oregonTrail.WAGON.getMoney()) {
+				//if funds are insufficient for the order, clear everything.	
+				if(orderCost>oregonTrail.WAGON.getMoney()) {
 						JOptionPane.showMessageDialog(null, "Insufficient Funds");
 						orderCost = 0;
 						orderedItems.clear();
 						orderCostLabel.setText("$"+orderCost);
 					}
-					else {
+				
+				//if funds are sufficient, add the items to the wagon, subtract the money from the wagon.	
+				else {
 						oregonTrail.WAGON.changeMoney(-orderCost);
 						
+						//go through orderedItems to add all items to WAGON
 						for(Item i : orderedItems) {
 							oregonTrail.WAGON.addItem(i);
 						}
-						
+						orderCost = 0;
+						orderedItems.clear();
+						JOptionPane.showMessageDialog(null, "Purchase Complete!");
+						moneyLabel.setText(""+oregonTrail.WAGON.getMoney());
+						orderCostLabel.setText(""+orderCost);
 					}
 				
 				
