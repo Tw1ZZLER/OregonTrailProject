@@ -1,36 +1,46 @@
 package oregonTrail;
-
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Class to generate trade offers and contains information related to trading.
- * @author Lukas Dunbar
+ * @author Lukas Dunbar Corbin Hibler
  * @date 2024-04-12
  */
 public class Trading {
     private final static Item[] itemChoices = {
-		new Item("Food"), 
-		new Item("Water"), 
-		new Item("Clothing"), 
-		new Item("Ammunition"), 
-		new Item("Oxen"), 
-		new Item("Scrap"), 
-		new Item("Wheels")
-	};
+            new Item("Food"),
+            new Item("Water"),
+            new Item("Clothing"),
+            new Item("Ammunition"),
+            new Item("Oxen"),
+            new Item("Scrap"),
+            new Item("Wheels")
+    };
 
-    public static String generateTradeOffer() {
+    private Set<String> generatedTrades = new HashSet<>();
+
+    public String generateTradeOffer() {
         Random random = new Random();
-        
-        // Generate Items
-        int index1 = random.nextInt(itemChoices.length);
-        int index2 = random.nextInt(itemChoices.length);
-        while (index2 == index1) { // Ensure different items are selected for trade
-            index2 = random.nextInt(itemChoices.length);
-        }
 
-        return "Would you like to trade " + itemChoices[index1].getName() +
-                " for " + itemChoices[index2].getName() + "?";
+        String tradeOffer;
+        do {
+            // Generate Items
+            int index1 = random.nextInt(itemChoices.length);
+            int index2 = random.nextInt(itemChoices.length);
+            while (index2 == index1) { // Ensure different items are selected for trade
+                index2 = random.nextInt(itemChoices.length);
+            }
+
+            // Generate random quantities for each item
+            int quantity1 = random.nextInt(10) + 1; // Random quantity between 1 and 10
+            int quantity2 = random.nextInt(10) + 1; // Random quantity between 1 and 10
+
+            tradeOffer = "Would you like to trade " + quantity1 + " " + itemChoices[index1].getName() +
+                    " for " + quantity2 + " " + itemChoices[index2].getName() + "?";
+        } while (!generatedTrades.add(tradeOffer)); // Ensure the trade offer is unique
+
+        return tradeOffer;
     }
 }
-
-

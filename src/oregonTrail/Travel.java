@@ -159,4 +159,9 @@ public class Travel {
 	public void setMilesNextLandmark(int milesNextLandmark) {
 		this.milesNextLandmark = milesNextLandmark;
 	}
+	
+	
+	public int getMilesTraveled() {
+		return milesTraveled;
+	}
 }

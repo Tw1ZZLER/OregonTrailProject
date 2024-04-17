@@ -93,6 +93,9 @@ public class TravelPanel extends JPanel {
         String string = milesNextLandmark + " miles";
         lblNextLandmarkMiles.setText(string);
     }
+    public int currentDistanceTraveled(int milesDistanceTraveled) {
+    	return milesDistanceTraveled;
+    }
     
     /**
      * Sets text of the next landmark's name label

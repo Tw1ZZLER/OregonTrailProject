@@ -53,7 +53,7 @@ public class OregonTrail {
 		WAGON.addItem(new Item("Bacon"));
 		WAGON.addItem(new Item("Water"));
 		WAGON.addItem(new Item("Bullets"));
-		WAGON.setTotalFoodWeight(350);
+		WAGON.setTotalFoodWeight(2000);
 		WAGON.addItem(new Item("Cast Iron Stove"));
 		
 		SHOP_PANEL = new ShopPanel(this);

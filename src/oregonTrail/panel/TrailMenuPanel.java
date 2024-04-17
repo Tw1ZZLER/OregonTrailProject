@@ -114,7 +114,7 @@ public class TrailMenuPanel extends JPanel {
 
         changeRationsButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {
                 oregonTrail.WAGON.foodConsumptionDialog(TrailMenuPanel.this);
             }
         });
