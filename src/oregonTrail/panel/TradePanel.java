@@ -5,20 +5,12 @@ import javax.swing.*;
 import oregonTrail.panel.TravelPanel;
 import oregonTrail.OregonTrail;
 import oregonTrail.Travel;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import net.miginfocom.swing.MigLayout;
-import oregonTrail.landmark.Landmark;
 import java.awt.*;
 import java.util.Random;
 
@@ -91,15 +83,12 @@ public class TradePanel extends JPanel {
         updateTradeOffer();
     }
 
-    // Method to close the trade panel
-    private void closeTradePanel() {
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        frame.dispose();
-    }
 
+  
     // Method to generate and update trade offer
     private void updateTradeOffer() {
     	firstDistance=oregonTrail.getTravelState().getMilesTraveled();
+    	systemPrintOut(firstDistance);
     	if(firstDistance!=secondDistance) {
     		tradeHappenedToday=false;
     	}
@@ -124,9 +113,10 @@ public class TradePanel extends JPanel {
         }
     }
 
-    private int getTravelState() {
+   
+	private void systemPrintOut(int firstDistance2) {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
 
 	// Method to generate trade offer
