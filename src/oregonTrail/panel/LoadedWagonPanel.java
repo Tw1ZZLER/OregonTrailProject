@@ -10,6 +10,7 @@ import java.awt.*;
  * Shows information about the loaded wagon
  * @author Lukas Dunbar
  * @date 2024-04-09
+ * @filename LoadedWagonPanel.java
  */
 public class LoadedWagonPanel extends JPanel {
     // Set initial values for food, water, ammo, and clothing

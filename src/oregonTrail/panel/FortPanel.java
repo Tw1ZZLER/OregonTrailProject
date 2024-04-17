@@ -45,12 +45,8 @@ public class FortPanel extends JPanel {
         ImageIcon originalIcon = fort.getPicture();
         Image originalImage = originalIcon.getImage();
 
-        // Calculate the new dimensions (double the original size)
-        int newWidth = originalImage.getWidth(null) * 2;
-        int newHeight = originalImage.getHeight(null) * 2;
-
         // Scale the image using getScaledInstance
-        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image scaledImage = originalImage.getScaledInstance(1000, 500, Image.SCALE_SMOOTH);
 
         // Convert the scaled Image back to ImageIcon
         this.fortImageIcon = new ImageIcon(scaledImage);

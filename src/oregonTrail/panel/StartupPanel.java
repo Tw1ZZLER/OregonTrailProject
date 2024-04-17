@@ -17,7 +17,7 @@ import java.awt.Dimension;
  * Java Swing panel for flair to show a quick startup animation
  * @author Corbin Hibler
  * @date 2024-04-05
- * @filename StartupPanel
+ * @filename StartupPanel.java
  */
 public class StartupPanel extends JPanel {
 

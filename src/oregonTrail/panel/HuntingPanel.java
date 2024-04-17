@@ -11,6 +11,12 @@ import javax.swing.Timer;
 import javax.swing.JOptionPane;
 import java.util.Random;
 
+/**
+ * Java Swing panel for hunting mini-game
+ * @author Ray Otto
+ * @date 2024-04-04
+ * @filename HuntingPanel.java
+ */
 public class HuntingPanel extends JPanel {
 
     private JLabel sprite;

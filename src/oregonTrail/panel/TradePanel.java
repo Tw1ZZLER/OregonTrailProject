@@ -7,7 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-
+/**
+ * Java Swing panel when trading is activated.
+ * Can open from Forts, Rivers, or anywhere when traveling.
+ * @author Lukas Dunbar
+ * @date 2024-04-16
+ * @filename TradePanel.java
+ */
 public class TradePanel extends JPanel {
 	private OregonTrail oregonTrail;
 	

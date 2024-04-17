@@ -26,13 +26,14 @@ public class Landmark {
 	protected boolean visited;
 
 	public static final Landmark KANSAS_RIVER = new River("Kansas River Crossing", new ImageIcon("src/images/KansasRiver.jpg"), 100);
-	public static final Landmark FORT_STRONG = new Fort("Fort Strong", new ImageIcon("src/images/FortStrong.jpg"), 150);
-	public static final Landmark FORT_OREGON = new Fort("Fort Oregon", new ImageIcon("src/images/FortOregon.jpg"), 400);
+	public static final Landmark BIG_BLUE_RIVER = new River("Big Blue River Crossing", new ImageIcon("src/images/BigBlueRiver.jpg"), 150);
+	public static final Landmark FORT_STRONG = new Fort("Fort Strong", new ImageIcon("src/images/FortStrong.jpg"), 250);
+	public static final Landmark FORT_OREGON = new Fort("Fort Oregon", new ImageIcon("src/images/FortOregon.jpg"), 2000);
 
 	
 	// List of all landmarks in the game
 	public static final ArrayList<Landmark> landmarkList = new ArrayList<Landmark>(Arrays.asList(
-		KANSAS_RIVER, FORT_STRONG, FORT_OREGON
+		KANSAS_RIVER, BIG_BLUE_RIVER, FORT_STRONG, FORT_OREGON
 	));
 	
 	public Landmark(String name, ImageIcon picture, int distanceFromStart) {

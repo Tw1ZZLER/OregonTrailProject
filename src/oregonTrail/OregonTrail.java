@@ -105,12 +105,14 @@ public class OregonTrail {
     // Example method to populate the map (call this during initialization)
     public void initializeLandmarkPanels() {
         // Create JPanels for each landmark
-		final JPanel KANSAS_RIVER_PANEL = new RiverPanel (this, (River) Landmark.KANSAS_RIVER);
+		final JPanel KANSAS_RIVER_PANEL = new RiverPanel(this, (River) Landmark.KANSAS_RIVER);
+		final JPanel BIG_BLUE_RIVER_PANEL = new RiverPanel(this, (River) Landmark.BIG_BLUE_RIVER);
 		final JPanel FORT_STRONG_PANEL = new FortPanel(this, (Fort) Landmark.FORT_STRONG);
 		final JPanel FORT_OREGON_PANEL = new FortPanel(this, (Fort) Landmark.FORT_OREGON);
 
         // Populate the map with associations
         landmarkToPanelMap.put(Landmark.KANSAS_RIVER, KANSAS_RIVER_PANEL);
+        landmarkToPanelMap.put(Landmark.BIG_BLUE_RIVER, BIG_BLUE_RIVER_PANEL);
         landmarkToPanelMap.put(Landmark.FORT_STRONG, FORT_STRONG_PANEL);
         landmarkToPanelMap.put(Landmark.FORT_OREGON, FORT_OREGON_PANEL);
     }

@@ -16,6 +16,14 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Creates a panel with options for purchasing different items. Tallies up the cost of items ordered as orderCost, and stores ordered items as an ArrayList.
+ * When the player hits the "Confirm Order" button, it will check to see if they are capable of actually purchasing the items and add the ArrayList to the Wagon if so.
+ * 
+ * @author Ethan Vaughn
+ * @date 2024-04-16
+ * @filename ShopPanel.java
+ */
 public class ShopPanel extends JPanel {
 
 	private Shop shop = new Shop(0); //Still gotta figure out how to find out how many forts it's been
@@ -34,11 +42,8 @@ public class ShopPanel extends JPanel {
 	private Fort fort;
 	
 	/**
-	 * Creates a panel with options for purchasing different items. Tallies up the cost of items ordered as orderCost, and stores ordered items as an ArrayList.
-	 * When the player hits the "Confirm Order" button, it will check to see if they are capable of actually purchasing the items and add the ArrayList to the Wagon if so.
-	 * 
-	 * @author Ethan Vaughn
-	 * @filename ShopPanel.java
+	 * Shop Panel constructor to create a ShopPanel
+	 * @param pOregonTrail oregonTrail game object
 	 */
 	public ShopPanel(OregonTrail pOregonTrail) {
 		

@@ -7,6 +7,9 @@ import javax.swing.JOptionPane;
 
 import oregonTrail.panel.RiverPanel;
 
+/**
+ * 
+ */
 public class River extends Landmark {
 	
 	private int width;
