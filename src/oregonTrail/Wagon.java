@@ -168,4 +168,8 @@ public class Wagon {
 		return this.money;
 	}
 	
+	public void changeMoney(double amount) {
+		this.money += amount;
+	}
+	
 }

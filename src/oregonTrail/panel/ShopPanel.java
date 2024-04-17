@@ -1,7 +1,5 @@
 package oregonTrail.panel;
 
-
-
 import javax.swing.JPanel;
 import java.util.ArrayList;
 import net.miginfocom.swing.MigLayout;
@@ -9,6 +7,7 @@ import oregonTrail.Item;
 import oregonTrail.Shop;
 import oregonTrail.OregonTrail;
 import oregonTrail.Wagon;
+import oregonTrail.landmark.Fort;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -31,11 +30,21 @@ public class ShopPanel extends JPanel {
 	private JButton leaveButton;
 	private ArrayList<Item> orderedItems;
 	private double orderCost = 0;
+	private OregonTrail oregonTrail;
+	private Fort fort;
 	
 	/**
-	 * Create the panel.
+	 * Creates a panel with options for purchasing different items. Tallies up the cost of items ordered as orderCost, and stores ordered items as an ArrayList.
+	 * When the player hits the "Confirm Order" button, it will check to see if they are capable of actually purchasing the items and add the ArrayList to the Wagon if so.
+	 * 
+	 * @author Ethan Vaughn
+	 * @filename ShopPanel.java
 	 */
-	public ShopPanel() {
+	public ShopPanel(OregonTrail pOregonTrail, Fort fort) {
+		
+		this.oregonTrail = pOregonTrail;
+		this.fort = fort;
+		
 		setLayout(new MigLayout("", "[][grow][][][]", "[][][][][][][][][][][][][]"));
 		
 		JLabel welcomeLabel = new JLabel("Welcome to the shop! ");
@@ -107,7 +116,7 @@ public class ShopPanel extends JPanel {
 				int itemPurchased = Integer.parseInt(orderField.getText());
 				int numPurchased = Integer.parseInt(JOptionPane.showInputDialog(null, "How Many?:", "", JOptionPane.INFORMATION_MESSAGE));
 				if (numPurchased != 0) {
-				    // get the number of items purchased, use in conjunction with the item purchased to get price and add to itemsOrdered
+				    // get the number of items purchased, use in conjunction with the item purchased to get price and add to orderCost
 				    double price = shop.getPrice(itemPurchased, numPurchased);
 					orderCost+= price;
 				} else if (numPurchased ==0){
@@ -115,6 +124,7 @@ public class ShopPanel extends JPanel {
 					orderCost+= price;
 				}
 				
+				//add the ordered items to 
 				for(int i = 0; i<numPurchased; i++) {
 					orderedItems.add(shop.itemPurchased(itemPurchased));
 				}
@@ -129,10 +139,18 @@ public class ShopPanel extends JPanel {
 		JButton confirmButton = new JButton("Confirm Order");
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					if(orderCost<) {
-						
+					if(orderCost>oregonTrail.WAGON.getMoney()) {
+						JOptionPane.showMessageDialog(null, "Insufficient Funds");
+						orderCost = 0;
+						orderedItems.clear();
+						orderCostLabel.setText("$"+orderCost);
 					}
 					else {
+						oregonTrail.WAGON.changeMoney(-orderCost);
+						
+						for(Item i : orderedItems) {
+							oregonTrail.WAGON.addItem(i);
+						}
 						
 					}
 				
@@ -144,7 +162,10 @@ public class ShopPanel extends JPanel {
 		leaveButton = new JButton("Leave Shop");
 		leaveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				orderedItems.clear();
+				orderCost = 0;
+                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
+
 			}
 		});
 		add(leaveButton, "cell 2 12");
