@@ -6,12 +6,10 @@ import net.miginfocom.swing.MigLayout;
 import oregonTrail.Item;
 import oregonTrail.Shop;
 import oregonTrail.OregonTrail;
-import oregonTrail.Wagon;
 import oregonTrail.landmark.Fort;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -47,7 +45,7 @@ public class ShopPanel extends JPanel {
 	 */
 	public ShopPanel(OregonTrail pOregonTrail) {
 		
-		orderedItems = new ArrayList();
+		orderedItems = new ArrayList<Item>();
 		orderCost = 0;
 		this.oregonTrail = pOregonTrail;
 		

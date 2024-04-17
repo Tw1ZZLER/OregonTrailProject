@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import oregonTrail.OregonTrail;
-import oregonTrail.Travel;
 import oregonTrail.landmark.River;
 
 /**

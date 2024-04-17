@@ -1,18 +1,17 @@
 package oregonTrail.panel;
 
-import javax.swing.*;
-
-import oregonTrail.panel.TravelPanel;
-import oregonTrail.OregonTrail;
-import oregonTrail.Travel;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.*;
-import java.util.Random;
+
+import oregonTrail.OregonTrail;
 
 /**
  * Java Swing panel when trading is activated.
@@ -28,8 +27,6 @@ public class TradePanel extends JPanel {
     private JButton closeButton;
     private boolean tradeHappenedToday = false;
     private OregonTrail oregonTrail;
-    private OregonTrail TravelPanel;
-    private Travel travelState;
     private int firstDistance;
     private int secondDistance;
 

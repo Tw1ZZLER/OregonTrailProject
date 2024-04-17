@@ -118,9 +118,6 @@ public class OregonTrail {
 		return this.travelState;
 	}
 	
-
-//	final JPanel ASH_HOLLOW_PANEL = new landmarkPanel(this, (landmark) Landmark.ASH_HOLLOW);
-//	final JPanel CHIMNEY_ROCK_PANEL = new landmarkPanel(this, (landmark) Landmark.CHIMNEY_ROCK);
 	
     /**
      *  Method to populate the landmark panel map
