@@ -26,6 +26,7 @@ public class Wagon {
 			"Cookware & Eating Utensils", "Lard", "Granny’s Clock", "Salt", "Gun Making Tools", "Sugar",
 			"Keepsakes", "Rice", "Lead Shot", "Water", "Mirror", "Whiskey", "Gunpowder", "Tent & Gear", "Tools",
 			"Toys" };
+	private double money = 400; //placeholder money amount for now
 
 	/**
 	 * Constructor creates contents ArrayList and sets defaults
@@ -158,4 +159,13 @@ public class Wagon {
 	public void setTotalFoodWeight(int totalFoodWeight) {
 		this.totalFoodWeight = totalFoodWeight;
 	}
+	
+	/**
+	 * 
+	 * @return the remaining amount of money that the wagon party has
+	 */
+	public double getMoney() {
+		return this.money;
+	}
+	
 }
