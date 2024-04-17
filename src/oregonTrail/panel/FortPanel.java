@@ -38,8 +38,22 @@ public class FortPanel extends JPanel {
         this.oregonTrail = pOregonTrail;
         this.travelState = pOregonTrail.getTravelState();
         this.fort = fort;
-        this.fortImageIcon = fort.getPicture();
         this.fortName = fort.getName();
+        
+        // Scale up image
+    	// Assuming river.getPicture() returns an ImageIcon
+        ImageIcon originalIcon = fort.getPicture();
+        Image originalImage = originalIcon.getImage();
+
+        // Calculate the new dimensions (double the original size)
+        int newWidth = originalImage.getWidth(null) * 2;
+        int newHeight = originalImage.getHeight(null) * 2;
+
+        // Scale the image using getScaledInstance
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Convert the scaled Image back to ImageIcon
+        this.fortImageIcon = new ImageIcon(scaledImage);
         
 
         setLayout(new BorderLayout());
@@ -49,7 +63,6 @@ public class FortPanel extends JPanel {
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Create image label and add it to the top half
-        Image scaledImage = fortImageIcon.getImage().getScaledInstance(800, 400, Image.SCALE_SMOOTH);
         JLabel imageLabel = new JLabel(fortImageIcon);
         add(imageLabel, BorderLayout.CENTER);
 

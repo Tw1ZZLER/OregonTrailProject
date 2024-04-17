@@ -9,13 +9,26 @@ import oregonTrail.panel.RiverPanel;
 
 public class River extends Landmark {
 	
+	private int width;
+	private int height;
+	private int flow;
+	
 	private static Random rnd = new Random();
 
 	public River(String name, ImageIcon picture, int distanceFromStart) {
 		super(name, picture, distanceFromStart);
+		
+		Random rnd = new Random();
+		width = rnd.nextInt(91) + 10;
+		height = rnd.nextInt(10) + 1;
+		flow = rnd.nextInt(5) + 1;
 	}
 	
-	public static void caulkWagon(RiverPanel riverPanel) {
+	public void viewRiverData(RiverPanel riverPanel) {
+		JOptionPane.showMessageDialog(riverPanel, "River Width: " + width + "\nRiver Height: " + height + "\nRiver Flow: " + flow);
+	}
+	
+	public void caulkWagon(RiverPanel riverPanel) {
         int randomNumber = rnd.nextInt(); // Generate random number between 1 and 100
         if (randomNumber <= 70) {
         	JOptionPane.showMessageDialog(riverPanel, "You have successfully caulked the wagon!");
@@ -25,7 +38,7 @@ public class River extends Landmark {
         }
 	}
 	
-	public static void attemptToCross(RiverPanel riverPanel) {
+	public void attemptToCross(RiverPanel riverPanel) {
         int random = (int)(Math.random() * 100) + 1; // Generate random number between 1 and 100
         if (random <= 70) {
             JOptionPane.showMessageDialog(null, "You successfully crossed the river!");

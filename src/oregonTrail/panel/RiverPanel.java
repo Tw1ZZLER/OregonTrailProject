@@ -38,8 +38,22 @@ public class RiverPanel extends JPanel {
         this.oregonTrail = pOregonTrail;
         this.travelState = pOregonTrail.getTravelState();
         this.river = river;
-        this.riverImageIcon = river.getPicture();
         this.riverName = river.getName();
+        
+        // Scale up image
+        // Assuming river.getPicture() returns an ImageIcon
+        ImageIcon originalIcon = river.getPicture();
+        Image originalImage = originalIcon.getImage();
+
+        // Calculate the new dimensions (double the original size)
+        int newWidth = originalImage.getWidth(null) * 2;
+        int newHeight = originalImage.getHeight(null) * 2;
+
+        // Scale the image using getScaledInstance
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Convert the scaled Image back to ImageIcon
+        this.riverImageIcon = new ImageIcon(scaledImage);
         
 
         setLayout(new BorderLayout());
@@ -58,6 +72,7 @@ public class RiverPanel extends JPanel {
 
         // Create buttons
         JButton openMapButton = new JButton("Open Map");
+        JButton viewRiverDataButton = new JButton("River Stats");
         JButton changeRateButton = new JButton("Change Rate of Travel");
         JButton changeRationsButton = new JButton("Change Rations");
         JButton attemptToCrossButton = new JButton("Attempt to Cross");
@@ -66,6 +81,7 @@ public class RiverPanel extends JPanel {
 
         // Add buttons to button panel
         buttonPanel.add(openMapButton);
+        buttonPanel.add(viewRiverDataButton);
         buttonPanel.add(changeRateButton);
         buttonPanel.add(changeRationsButton);
         buttonPanel.add(attemptToCrossButton);
@@ -77,6 +93,12 @@ public class RiverPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Open Map button clicked");
             }
+        });
+        
+        viewRiverDataButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		river.viewRiverData(RiverPanel.this);
+        	}
         });
 
         changeRateButton.addActionListener(new ActionListener() {
@@ -93,14 +115,14 @@ public class RiverPanel extends JPanel {
 
         attemptToCrossButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	River.attemptToCross(RiverPanel.this);
+            	river.attemptToCross(RiverPanel.this);
                 oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
             }
         });
       
         caulkWagonButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-				River.caulkWagon(RiverPanel.this);
+				river.caulkWagon(RiverPanel.this);
 	        	oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
             }
         });
