@@ -1,17 +1,13 @@
 package oregonTrail.panel;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+
+import oregonTrail.OregonTrail;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
-import oregonTrail.OregonTrail;
 
 /**
  * Java Swing panel when trading is activated.
@@ -26,10 +22,12 @@ public class TradePanel extends JPanel {
     private JButton noButton;
     private JButton closeButton;
     private boolean tradeHappenedToday = false;
-    private OregonTrail oregonTrail;
-    private int firstDistance;
-    private int secondDistance;
+	private OregonTrail oregonTrail;
 
+    /**
+     * Constructs a TradePanel.
+     * @param oregonTrail The main game instance.
+     */
     public TradePanel(OregonTrail oregonTrail) {
         setLayout(new BorderLayout());
         
@@ -81,16 +79,10 @@ public class TradePanel extends JPanel {
     }
 
 
-  
-    // Method to generate and update trade offer
+    /**
+     * Updates the trade offer based on the current game state.
+     */
     private void updateTradeOffer() {
-    	firstDistance=oregonTrail.getTravelState().getMilesTraveled();
-    	systemPrintOut(firstDistance);
-    	if(firstDistance!=secondDistance) {
-    		tradeHappenedToday=false;
-    	}
-    	secondDistance=firstDistance;
-    
         if (!tradeHappenedToday) {
             double tradeChance = Math.random(); // Random number between 0 and 1
             if (tradeChance <= 0.2) {
@@ -110,13 +102,11 @@ public class TradePanel extends JPanel {
         }
     }
 
-   
-	private void systemPrintOut(int firstDistance2) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	// Method to generate trade offer
+    /**
+     * Generates a random trade offer.
+     * @return The generated trade offer string.
+     */
     private String generateTradeOffer() {
         Random random = new Random();
 
