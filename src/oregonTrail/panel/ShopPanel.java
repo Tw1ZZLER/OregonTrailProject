@@ -47,7 +47,7 @@ public class ShopPanel extends JPanel {
 	 * @param pOregonTrail oregonTrail game object
 	 */
 	public ShopPanel(OregonTrail pOregonTrail) {
-		
+
 		orderedItems = new ArrayList<Item>();
 		System.out.println(fortNum);
 		Shop shop = new Shop(fortNum);
