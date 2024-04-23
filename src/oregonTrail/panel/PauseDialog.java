@@ -13,7 +13,6 @@ import javax.swing.SwingConstants;
 
 import net.miginfocom.swing.MigLayout;
 import oregonTrail.OregonTrail;
-import oregonTrail.PauseKeyListener;
 
 public class PauseDialog extends JDialog {
 
