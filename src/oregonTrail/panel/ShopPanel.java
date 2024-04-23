@@ -47,14 +47,10 @@ public class ShopPanel extends JPanel {
 	 * @param pOregonTrail oregonTrail game object
 	 */
 	public ShopPanel(OregonTrail pOregonTrail) {
-<<<<<<< Updated upstream
 		
 		orderedItems = new ArrayList<Item>();
-=======
-System.out.println(fortNum);
+		System.out.println(fortNum);
 		Shop shop = new Shop(fortNum);
-		orderedItems = new ArrayList();
->>>>>>> Stashed changes
 		orderCost = 0;
 		this.oregonTrail = pOregonTrail;
 		
