@@ -40,25 +40,18 @@ public class RiverPanel extends JPanel {
      */
     public RiverPanel(OregonTrail pOregonTrail, River river) {
         this.oregonTrail = pOregonTrail;
-        pOregonTrail.getTravelState();
         this.riverName = river.getName();
         
         // Scale up image
-        // Assuming river.getPicture() returns an ImageIcon
         ImageIcon originalIcon = river.getPicture();
         Image originalImage = originalIcon.getImage();
-
-        // Scale the image using getScaledInstance
         Image scaledImage = originalImage.getScaledInstance(1000, 500, Image.SCALE_SMOOTH);
-
-        // Convert the scaled Image back to ImageIcon
         this.riverImageIcon = new ImageIcon(scaledImage);
         
-
         setLayout(new BorderLayout());
         JLabel welcomeLabel = new JLabel("Welcome to the " + riverName);
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Set font size to 24
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Create image label and add it to the top half
@@ -88,48 +81,33 @@ public class RiverPanel extends JPanel {
         buttonPanel.add(waitButton);
 
         // Add action listeners to buttons
-        openMapButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Open Map button clicked");
-            }
-        });
-        
-        viewRiverDataButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		river.viewRiverData(RiverPanel.this);
-        	}
-        });
+        openMapButton.addActionListener(e -> System.out.println("Open Map button clicked"));
 
-        changeRateButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                oregonTrail.WAGON.travelSpeedDialog(RiverPanel.this);
-            }
-        });
+        viewRiverDataButton.addActionListener(e -> river.viewRiverData(this));
 
-        changeRationsButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                oregonTrail.WAGON.foodConsumptionDialog(RiverPanel.this);
-            }
-        });
+        changeRateButton.addActionListener(e -> oregonTrail.WAGON.travelSpeedDialog(this));
 
-        attemptToCrossButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	river.attemptToCross(RiverPanel.this);
-                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
-            }
+        changeRationsButton.addActionListener(e -> oregonTrail.WAGON.foodConsumptionDialog(this));
+
+        attemptToCrossButton.addActionListener(e -> {
+            river.attemptToCross(this);
+            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
         });
       
-        caulkWagonButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-				river.caulkWagon(RiverPanel.this);
-	        	oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
-            }
+        caulkWagonButton.addActionListener(e -> {
+            river.caulkWagon(this);
+            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
         });
 
-        waitButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
-            }
+        waitButton.addActionListener(e -> {
+            // Move the player back 12 miles
+            oregonTrail.getTravelState().moveBack(12);
+            // Update the display with the new distance traveled
+            oregonTrail.getTravelState().getMilesTraveled();
+            // Update the next landmark based on the new position
+            oregonTrail.getTravelState().updateNextLandmark();
+            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
         });
     } 
 }
+

@@ -47,6 +47,81 @@ public class HuntingPanel extends JPanel {
     public HuntingPanel() {
         setLayout(null); // For absolute positioning
         initialize();
+        gameRunning = true;
+        punchCooldown = false;
+        blocking = false;
+        countdown = 60; // Initialize countdown to 60 seconds
+        playerHealth = 5;
+        Random rand = new Random();
+        int random = rand.nextInt(5) + 1;
+
+        switch (random) {
+            case 1:
+                enemyHealth = 1; // Squirrel
+                enemyType = "Squirrel";
+                enemyLabel.setText(enemyType + " Health: " + enemyHealth);
+                rotateSprite(squirrelImage);
+                enemyAttackTimer.setDelay(2000); // Squirrel attacks every 2 seconds
+                break;
+            case 2:
+                enemyHealth = 8; // Deer
+                enemyType = "Deer";
+                enemyLabel.setText(enemyType + " Health: " + enemyHealth);
+                rotateSprite(deerImage);
+                enemyAttackTimer.setDelay(5000); // Deer attacks every 5 seconds
+                break;
+            case 3:
+                enemyHealth = 12; // Coyote
+                enemyType = "Coyote";
+                enemyLabel.setText(enemyType + " Health: " + enemyHealth);
+                rotateSprite(coyoteImage);
+                // Set the delay for enemy attacks here if needed
+                break;
+            case 4:
+                enemyHealth = 20; // Bison
+                enemyType = "Bison";
+                enemyLabel.setText(enemyType + " Health: " + enemyHealth);
+                rotateSprite(bisonImage);
+                enemyAttackTimer.setDelay(10000); // Bison attacks every 10 seconds
+                break;
+            case 5:
+                enemyHealth = 999; // LaurieMoo
+                enemyType = "LaurieMoo";
+                enemyLabel.setText(enemyType + " Health: " + enemyHealth);
+                rotateSprite(laurieMooImage);
+                enemyAttackTimer.setDelay(20000); // LaurieMoo attacks every 20 seconds
+                break;
+            default:
+                break;
+        }
+
+        if (gameRunning) {
+            enemyAttackTimer.start();
+            // Start a countdown timer for 60 seconds
+            Timer countdownTimer = new Timer(1000, e -> {
+                // Decrement the countdown
+                if (gameRunning) {
+                    if (playerHealth > 0) {
+                        // Decrease countdown if player is alive
+                        winnerLabel.setText("Time Left: " + (--countdown) + " seconds");
+                    } else {
+                        // Game over if player health is zero
+                        gameRunning = false;
+                        sprite.setVisible(false);
+                        JOptionPane.showMessageDialog(this, "You've been defeated! The enemy " + enemyType + " ran away.");
+                    }
+                    // If countdown reaches 0, end the game
+                    if (countdown == 0) {
+                        gameRunning = false;
+                        sprite.setVisible(false);
+                        enemySprite.setVisible(false);
+                        winnerLabel.setText("Time's up! The enemy " + enemyType + " ran away.");
+                    }
+                }
+            });
+            countdownTimer.setInitialDelay(0);
+            countdownTimer.start();
+        }
     }
 
     private void initialize() {
@@ -69,30 +144,31 @@ public class HuntingPanel extends JPanel {
         coyoteImage = scaleImageIcon(coyoteImage, 1);
 
         sprite = new JLabel(standingIcon);
-        sprite.setBounds(200, 145, standingIcon.getIconWidth(), standingIcon.getIconHeight());
+        sprite.setBounds(823, 334, standingIcon.getIconWidth(), standingIcon.getIconHeight());
         add(sprite);
 
         enemySprite = new JLabel();
         enemySprite.setHorizontalAlignment(SwingConstants.CENTER);
-        enemySprite.setBounds(200, 4, 320, 300); // Adjusted bounds
+        enemySprite.setBounds(823, 193, 320, 300); // Adjusted bounds
+        enemySprite.setIcon(laurieMooImage);
         add(enemySprite);
 
         enemyLabel = new JLabel("Enemy");
         enemyLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        enemyLabel.setBounds(250, 86, 198, 14);
+        enemyLabel.setBounds(873, 275, 198, 14);
         add(enemyLabel);
 
         winnerLabel = new JLabel();
         winnerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        winnerLabel.setBounds(250, 507, 198, 20);
+        winnerLabel.setBounds(873, 696, 198, 20);
         add(winnerLabel);
 
         JLabel playerHealthLabel = new JLabel("Player Health: ");
-        playerHealthLabel.setBounds(314, 476, 120, 20);
+        playerHealthLabel.setBounds(937, 665, 120, 20);
         add(playerHealthLabel);
 
         JLabel playerHealthValueLabel = new JLabel("5");
-        playerHealthValueLabel.setBounds(408, 476, 40, 20);
+        playerHealthValueLabel.setBounds(1031, 665, 40, 20);
         add(playerHealthValueLabel);
 
         addKeyListener(new KeyAdapter() {
@@ -103,6 +179,9 @@ public class HuntingPanel extends JPanel {
                 if (key == KeyEvent.VK_DOWN) {
                     sprite.setIcon(blockingIcon);
                     blocking = true;
+                    
+                    System.out.println();
+                    
                 } else if ((key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) && !punchCooldown) {
                     if (key == KeyEvent.VK_LEFT) {
                         sprite.setIcon(leftPunchIcon);
@@ -186,6 +265,7 @@ public class HuntingPanel extends JPanel {
                         gameRunning = false;
                         sprite.setVisible(false);
                         JOptionPane.showMessageDialog(getParent(), "You've been defeated! The enemy " + enemyType + " ran away.");
+                        System. exit(0);
                     }
                 });
                 attackTimer.setRepeats(false);

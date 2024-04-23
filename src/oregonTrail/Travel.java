@@ -160,4 +160,43 @@ public class Travel {
 	public int getMilesTraveled() {
 		return milesTraveled;
 	}
+	/**
+	 * Moves the player back a specified number of miles.
+	 * 
+	 * @param milesBack The number of miles to move back.
+	 */
+	public void moveBack(int milesBack) {
+	    if (milesTraveled >= milesBack) {
+	        milesTraveled -= milesBack;
+	        oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
+	        // Recalculate miles until next landmark
+	        milesNextLandmark += milesBack;
+	        oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
+	        // Update the next landmark based on the new position
+	        updateNextLandmark();
+	        System.out.println("Moved back " + milesBack + " miles.");
+	    } else {
+	        System.out.println("Cannot move back " + milesBack + " miles. Already at the starting point.");
+	    }
+	}
+
+	/**
+	 * Updates the information about the next landmark based on the current position.
+	 */
+	public void updateNextLandmark() {
+	    for (Landmark landmark : Landmark.landmarkList) {
+	        if (milesNextLandmark <= 0 && milesTraveled >= landmark.getDistanceFromStart() && !landmark.isVisited()) {
+	            this.nextLandmark = landmark.getNextLandmark();
+	            // Ensure milesNextLandmark is updated correctly for the next landmark
+	            try {
+	                milesNextLandmark = this.nextLandmark.getDistanceFromPrevious();
+	            } catch (NullPointerException e) {
+	                // If at the end of the trail, there is no next Landmark:
+	                milesNextLandmark = 0;
+	            }
+	            updateLandmarkReached(landmark, nextLandmark);
+	            break;
+	        }
+	    }
+	}
 }
