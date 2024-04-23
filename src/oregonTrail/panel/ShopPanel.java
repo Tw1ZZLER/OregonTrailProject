@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import oregonTrail.landmark.Landmark;
+
 
 /**
  * Creates a panel with options for purchasing different items. Tallies up the cost of items ordered as orderCost, and stores ordered items as an ArrayList.
@@ -24,7 +26,8 @@ import java.awt.event.ActionEvent;
  */
 public class ShopPanel extends JPanel {
 
-	private Shop shop = new Shop(0); //Still gotta figure out how to find out how many forts it's been
+	private int fortNum = 0;
+	private Shop shop = new Shop(fortNum); 
 	private static final long serialVersionUID = 1L;
 	private JLabel oxPriceLabel;
 	private JLabel foodPriceLabel;
@@ -44,8 +47,14 @@ public class ShopPanel extends JPanel {
 	 * @param pOregonTrail oregonTrail game object
 	 */
 	public ShopPanel(OregonTrail pOregonTrail) {
+<<<<<<< Updated upstream
 		
 		orderedItems = new ArrayList<Item>();
+=======
+System.out.println(fortNum);
+		Shop shop = new Shop(fortNum);
+		orderedItems = new ArrayList();
+>>>>>>> Stashed changes
 		orderCost = 0;
 		this.oregonTrail = pOregonTrail;
 		
@@ -64,7 +73,7 @@ public class ShopPanel extends JPanel {
 		JLabel oxenLabel = new JLabel("1- Oxen");
 		add(oxenLabel, "cell 2 3");
 		
-		oxPriceLabel = new JLabel("$40");
+		oxPriceLabel = new JLabel("$"+shop.getPrice(1,1));
 		add(oxPriceLabel, "cell 3 3");
 		
 		JLabel yokeLabel = new JLabel("Per Yoke");
@@ -73,7 +82,7 @@ public class ShopPanel extends JPanel {
 		JLabel foodLabel = new JLabel("2- Food");
 		add(foodLabel, "cell 2 4");
 		
-		foodPriceLabel = new JLabel("$0.20");
+		foodPriceLabel = new JLabel("$"+shop.getPrice(2,1));
 		add(foodPriceLabel, "cell 3 4");
 		
 		JLabel poundLabel = new JLabel("Per Pound");
@@ -82,7 +91,7 @@ public class ShopPanel extends JPanel {
 		JLabel clothingLabel = new JLabel("3- Clothing");
 		add(clothingLabel, "cell 2 5");
 		
-		clothesPriceLabel = new JLabel("$10");
+		clothesPriceLabel = new JLabel("$"+shop.getPrice(3,1));
 		add(clothesPriceLabel, "cell 3 5");
 		
 		JLabel perSetlabel = new JLabel("Per Set");
@@ -91,7 +100,7 @@ public class ShopPanel extends JPanel {
 		JLabel ammunitionLabel = new JLabel("4- Ammunition");
 		add(ammunitionLabel, "cell 2 6");
 		
-		ammoPriceLabel = new JLabel("$20");
+		ammoPriceLabel = new JLabel("$"+shop.getPrice(4,1));
 		add(ammoPriceLabel, "cell 3 6");
 		
 		JLabel perBoxLabel = new JLabel("Per Box (20 Bullets)");
@@ -100,7 +109,7 @@ public class ShopPanel extends JPanel {
 		JLabel partsLabel = new JLabel("5- Wagon Parts");
 		add(partsLabel, "cell 2 7");
 		
-		partPriceLabel = new JLabel("$10");
+		partPriceLabel = new JLabel("$"+shop.getPrice(5,1));
 		add(partPriceLabel, "cell 3 7");
 		
 		JLabel perPartLabel = new JLabel("Per Part");
@@ -186,7 +195,7 @@ public class ShopPanel extends JPanel {
 				orderedItems.clear();
 				orderCost = 0;
                 oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
-
+                fortNum++;
 			}
 		});
 		add(leaveButton, "cell 2 12");
