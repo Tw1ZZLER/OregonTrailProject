@@ -6,15 +6,18 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.Fort;
+import oregonTrail.landmark.Landmark;
 
 /**
  * Panel class representing options available when located at a fort in the Oregon Trail game.
@@ -77,6 +80,7 @@ public class FortPanel extends JPanel {
         JButton attemptTradeButton = new JButton("Attempt to Trade");
         JButton openShopButton = new JButton("Open Shop");
         JButton continueButton = new JButton("Continue Trail");
+        JButton talkToLocals = new JButton("Talk to Locals");
 
         // Add buttons to button panel
         buttonPanel.add(openMapButton);
@@ -85,6 +89,7 @@ public class FortPanel extends JPanel {
         buttonPanel.add(attemptTradeButton);
         buttonPanel.add(openShopButton);
         buttonPanel.add(continueButton);
+        buttonPanel.add(talkToLocals);
 
         // Add action listeners to buttons
         openMapButton.addActionListener(new ActionListener() {
@@ -120,6 +125,29 @@ public class FortPanel extends JPanel {
         continueButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
+            }
+        });
+        talkToLocals.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            	 // Create an instance of Random class
+                Random random = new Random();
+
+                // Generate a random number between 1 and 20
+                int randomNumber = random.nextInt(20) + 1;
+                if(randomNumber>=2) {
+            	if(Landmark.FORT_LARAMIE.isVisited())
+            	JOptionPane.showMessageDialog(null, "(You're met by a short young girl with blonde hair, you think her name might be Alice from locals chating) Did you see all those indians last night? I swear there must have been hundreds of em");
+            	if(Landmark.FORT_OREGON.isVisited()) {
+            		JOptionPane.showMessageDialog(null, "(You're met by god?)So you finally made it, congratulations, we lost nearly all of our family and it looks like you almost shared the same fate. Now are you gonna play again?");
+                	
+            	}
+            	else {
+            		JOptionPane.showMessageDialog(null, "No one wanted to talk with you (Probably cause you stink)");
+            	}
+                }
+            	else {
+            		JOptionPane.showMessageDialog(null, "No one wanted to talk with you (Probably cause you stink)");
+            	}
             }
         });
     } 

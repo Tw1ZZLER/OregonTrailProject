@@ -1,10 +1,13 @@
 package oregonTrail;
+
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
 /**
  * Class to generate trade offers and contains information related to trading.
+ * This class generates trade offers with random items and quantities,
+ * ensuring that each generated trade offer is unique.
  * @author Lukas Dunbar Corbin Hibler
  * @date 2024-04-12
  */
@@ -21,6 +24,10 @@ public class Trading {
 
     private Set<String> generatedTrades = new HashSet<>();
 
+    /**
+     * Generates a trade offer.
+     * @return The generated trade offer string.
+     */
     public String generateTradeOffer() {
         Random random = new Random();
 
