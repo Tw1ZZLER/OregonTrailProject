@@ -3,8 +3,13 @@ package oregonTrail;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,25 +17,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import oregonTrail.landmark.Fort;
-import oregonTrail.landmark.Landmark;
-import oregonTrail.landmark.River;
-import oregonTrail.panel.FortPanel;
-import oregonTrail.panel.HuntingPanel;
-import oregonTrail.panel.LandmarkPanel;
-import oregonTrail.panel.RiverPanel;
-import oregonTrail.panel.ShopPanel;
-import oregonTrail.panel.StartupPanel;
-import oregonTrail.panel.TradePanel;
-import oregonTrail.panel.TrailMenuPanel;
-import oregonTrail.panel.TravelPanel;
+import oregonTrail.landmark.*;
+import oregonTrail.panel.*;
 
 /**
  * Main class containing all game logic for switching between panels and instantiating panels
  * @authors Corbin Hibler, Lukas Dunbar, Ray Otto, Ethan Vaughn
  * @date 2024-04-09
  */
-public class OregonTrail {
+public class OregonTrail implements Serializable {
 	
 	private JFrame frame;
 	private Travel travelState;
@@ -42,6 +37,9 @@ public class OregonTrail {
  	public HuntingPanel huntingPanel;
  	public final TradePanel TRADE_PANEL;
  	public final ShopPanel SHOP_PANEL;
+ 	public final PauseDialog PAUSE_DIALOG;
+ 	private KeyboardFocusManager manager;
+ 	private JPanel glassPane;
  	
 	/**
 	 * Launch the application.
@@ -78,6 +76,7 @@ public class OregonTrail {
 		travelState = new Travel(this);
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
 		TRADE_PANEL = new TradePanel(this);
+		PAUSE_DIALOG = new PauseDialog(this);
 		initializeLandmarkPanels();
 		initialize();
 	}
@@ -104,6 +103,54 @@ public class OregonTrail {
 		
 		frame.getContentPane().revalidate();
 		frame.getContentPane().repaint();
+	}
+	
+	/**
+	 * Function that is called whenever the ESC key is pressed during a game
+	 * Must only be called during a state that is considered "pausable"
+	 * (e.g., not during a cutscene or similar)
+	 * @author Corbin Hibler
+	 * @date 2024-04-22
+	 */
+	public void pause() {
+		System.out.println("PAUSED");
+
+		if (!PAUSE_DIALOG.isVisible()) {
+			glassPane = new JPanel() {
+				@Override
+				protected void paintComponent(Graphics g) {
+					g.setColor(new Color(15, 15, 15, 100));
+					g.fillRect(0, 0, getWidth(), getHeight());
+					super.paintComponent(g);
+				}
+			};
+			
+			// Mouse event INTERCEPTOR, does not allow anything beneath
+			// the glass pane to be clicked when active
+			glassPane.addMouseListener(new MouseAdapter() {
+		        @Override
+		        public void mouseClicked(MouseEvent e) {
+		            e.consume();
+		        }
+
+		        @Override
+		        public void mousePressed(MouseEvent e) {
+		            e.consume();
+		        }
+		    });
+			
+			glassPane.setOpaque(false);
+			glassPane.setBackground(new Color(15, 15, 15));
+			frame.setGlassPane(glassPane);
+			glassPane.setVisible(true);
+			
+			PAUSE_DIALOG.pack();
+			PAUSE_DIALOG.setLocationRelativeTo(frame);
+			PAUSE_DIALOG.setVisible(true);
+		} else {
+			glassPane.setVisible(false);
+			PAUSE_DIALOG.setVisible(false);
+		}
 	}
 	
 	public JPanel getPanelForLandmark(Landmark landmark) {
@@ -146,6 +193,8 @@ public class OregonTrail {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+		manager.addKeyEventDispatcher(new PauseKeyEventDispatcher(this));
 		frame.setBackground(Color.GRAY);
 		frame.setTitle("Oregon Trail");
 		frame.setBounds(100, 100, 839, 544);
@@ -166,7 +215,6 @@ public class OregonTrail {
 			public void actionPerformed(ActionEvent arg0) {
 				// After startup screen is finished, display first panel
 				openPanel(TRAVEL_PANEL);
-				
 			}
 		});
 		startupTimer.setRepeats(false);
