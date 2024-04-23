@@ -48,13 +48,9 @@ public class ShopPanel extends JPanel {
 	 */
 	public ShopPanel(OregonTrail pOregonTrail) {
 
-		
 		orderedItems = new ArrayList<Item>();
-
-System.out.println(fortNum);
+		System.out.println(fortNum);
 		Shop shop = new Shop(fortNum);
-		orderedItems = new ArrayList();
-
 		orderCost = 0;
 		this.oregonTrail = pOregonTrail;
 		
