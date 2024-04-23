@@ -122,7 +122,6 @@ public class LandmarkPanel extends JPanel {
             public void actionPerformed(ActionEvent arg0) {
             	 // Create an instance of Random class
                 Random random = new Random();
-
                 // Generate a random number between 1 and 20
                 int randomNumber = random.nextInt(20) + 1;
                 if(randomNumber>=2) {
