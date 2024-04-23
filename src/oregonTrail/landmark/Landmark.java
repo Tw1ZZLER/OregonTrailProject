@@ -28,7 +28,6 @@ public class Landmark {
 	public static final Landmark CHIMNEY_ROCK = new Landmark("Chimney Rock", new ImageIcon("src/images/ChimneyRock.jpg"), 600);
 	public static final Landmark FORT_OREGON = new Fort("Fort Oregon", new ImageIcon("src/images/FortOregon.jpg"), 2000);
 
-	
 	// List of all landmarks in the game
 	public static final ArrayList<Landmark> landmarkList = new ArrayList<Landmark>(Arrays.asList(
 		KANSAS_RIVER, BIG_BLUE_RIVER, FORT_STRONG, ASH_HOLLOW, CHIMNEY_ROCK, FORT_OREGON
