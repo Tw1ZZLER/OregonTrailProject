@@ -80,7 +80,7 @@ public class PauseDialog extends JDialog {
 					break;
 				case 1:
 					// Exit without saving
-					System.out.println("exit without saving");
+					System.exit(0);
 					break;
 				case 2:
 					// Cancel: do nothing

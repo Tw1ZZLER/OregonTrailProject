@@ -22,6 +22,7 @@ import oregonTrail.panel.*;
 
 /**
  * Main class containing all game logic for switching between panels and instantiating panels
+ * Serializable and works as save data for where a player is
  * @authors Corbin Hibler, Lukas Dunbar, Ray Otto, Ethan Vaughn
  * @date 2024-04-09
  */
