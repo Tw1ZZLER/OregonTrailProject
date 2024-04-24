@@ -38,6 +38,7 @@ public class OregonTrail implements Serializable {
  	public final TradePanel TRADE_PANEL;
  	public final ShopPanel SHOP_PANEL;
  	public final PauseDialog PAUSE_DIALOG;
+ 	public final MainMenuPanel MAIN_MENU;
  	private KeyboardFocusManager manager;
  	private JPanel glassPane;
  	
@@ -77,6 +78,7 @@ public class OregonTrail implements Serializable {
 		TRAIL_MENU_PANEL = new TrailMenuPanel(this);
 		TRADE_PANEL = new TradePanel(this);
 		PAUSE_DIALOG = new PauseDialog(this);
+		MAIN_MENU = new MainMenuPanel(this);
 		initializeLandmarkPanels();
 		initialize();
 	}
@@ -213,8 +215,11 @@ public class OregonTrail implements Serializable {
 		
 		Timer startupTimer = new Timer(StartupPanel.STARTUP_TIME, new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				//opens main menu
+				openPanel(MAIN_MENU);
 				// After startup screen is finished, display first panel
-				openPanel(TRAVEL_PANEL);
+	
 			}
 		});
 		startupTimer.setRepeats(false);

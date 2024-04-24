@@ -176,24 +176,35 @@ public class HuntingPanel extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if (!gameRunning) return;
                 int key = e.getKeyCode();
-                if (key == KeyEvent.VK_DOWN) {
-                    sprite.setIcon(blockingIcon);
-                    blocking = true;
-                    
-                    System.out.println();
-                    
-                } else if ((key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) && !punchCooldown) {
-                    if (key == KeyEvent.VK_LEFT) {
-                        sprite.setIcon(leftPunchIcon);
-                    } else {
-                        sprite.setIcon(rightPunchIcon);
-                    }
-                    if (enemyHealth > 0 && !blocking) {
-                        enemyHealth -= 1;
-                        updateEnemyLabel();
-                    }
-                    startPunchTimer();
-                    punchCooldown = true;
+                switch (key) {
+                    case KeyEvent.VK_DOWN:
+                        sprite.setIcon(blockingIcon);
+                        blocking = true;
+                        break;
+                    case KeyEvent.VK_LEFT:
+                        if (!punchCooldown) {
+                            sprite.setIcon(leftPunchIcon);
+                            if (enemyHealth > 0 && !blocking) {
+                                enemyHealth -= 1;
+                                updateEnemyLabel();
+                            }
+                            startPunchTimer();
+                            punchCooldown = true;
+                        }
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        if (!punchCooldown) {
+                            sprite.setIcon(rightPunchIcon);
+                            if (enemyHealth > 0 && !blocking) {
+                                enemyHealth -= 1;
+                                updateEnemyLabel();
+                            }
+                            startPunchTimer();
+                            punchCooldown = true;
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
 
@@ -240,6 +251,12 @@ public class HuntingPanel extends JPanel {
                             // Deer attacks every 5 seconds and deals 2 damage
                             if (!blocking) {
                                 playerHealth -= 2;
+                                playerHealthValueLabel.setText(Integer.toString(playerHealth));
+                            }
+                        case "Coyote":
+                            // Coyote attacks every 5 seconds and deals 2 damage
+                            if (!blocking) {
+                                playerHealth -= 1;
                                 playerHealthValueLabel.setText(Integer.toString(playerHealth));
                             }
                             break;
