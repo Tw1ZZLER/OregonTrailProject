@@ -43,6 +43,7 @@ public class TravelPanel extends JPanel {
     private JLabel lblNameOfNext;
     private JLabel lblNextLandmarkName;
     
+    
     /**
      * Sets text of date label
      * @param string Descriptive string date in long format
