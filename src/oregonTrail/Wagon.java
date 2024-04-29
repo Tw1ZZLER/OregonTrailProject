@@ -1,7 +1,7 @@
 package oregonTrail;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 

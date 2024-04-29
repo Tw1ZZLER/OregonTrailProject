@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.Landmark;
+import oregonTrail.landmark.LandmarkType;
 
 /**
  * Panel class representing options available when located at a landmark in the Oregon Trail game.
@@ -125,7 +126,7 @@ public class LandmarkPanel extends JPanel {
                 // Generate a random number between 1 and 20
                 int randomNumber = random.nextInt(20) + 1;
                 if(randomNumber>=2) {
-            	if(Landmark.ASH_HOLLOW.isVisited()) {
+            	if(LandmarkType.ASH_HOLLOW.getLandmark().isVisited()) {
             		JOptionPane.showMessageDialog(null, "(You're met by Uncle Hugh) Look at all those reeds it almost makes me want to set up camp here, its a shame its so wide open though. I wouldnt make it a week!");
             	}
             	else {

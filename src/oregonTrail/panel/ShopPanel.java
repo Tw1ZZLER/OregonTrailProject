@@ -13,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import oregonTrail.landmark.Landmark;
 
 
 /**
@@ -27,7 +26,6 @@ import oregonTrail.landmark.Landmark;
 public class ShopPanel extends JPanel {
 
 	private int fortNum = 0;
-	private Shop shop = new Shop(fortNum); 
 	private static final long serialVersionUID = 1L;
 	private JLabel oxPriceLabel;
 	private JLabel foodPriceLabel;
