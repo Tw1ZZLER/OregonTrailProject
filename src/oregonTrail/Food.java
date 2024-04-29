@@ -23,7 +23,7 @@ public class Food extends Item {
 	public static boolean isFood(Item item) {
 		switch (item.getName()) {
 		case "Apple Vinegar", "Bacon", "Beans", "Coffee", "Dried Apples", "Flour", 
-		     "Hardtack", "Lard", "Salt", "Sugar", "Rice", "Water", "Whiskey":
+		     "Hardtack", "Lard", "Salt", "Sugar", "Rice", "Water", "Whiskey", "Food":
 			return true;
 		default:
 			return false; // Not food

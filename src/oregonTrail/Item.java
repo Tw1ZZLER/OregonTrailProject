@@ -94,6 +94,8 @@ public class Item {
 			return 50;
 		case "Toys":
 			return 15;
+		case "Food":
+			return 1;
 		default:
 			return 0; // Unknown item
 		}
