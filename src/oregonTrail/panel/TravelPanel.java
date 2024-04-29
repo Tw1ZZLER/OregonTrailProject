@@ -3,10 +3,12 @@ package oregonTrail.panel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -43,6 +45,7 @@ public class TravelPanel extends JPanel {
     public JButton btnSizeUpThe;
     private JLabel lblNameOfNext;
     private JLabel lblNextLandmarkName;
+    private JLabel lblImage;
     
     
     /**
@@ -109,10 +112,11 @@ public class TravelPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param OregonTrail oregonTrail object required for the game
 	 */
 	public TravelPanel(OregonTrail oregonTrail) {
 		setOpaque(false);
-		setLayout(new MigLayout("", "[50.00%:50.00%:50.00%,grow][50.00%:50.00%:50.00%,grow,right]", "[35.00%:50.00%:50.00%,grow,top][27px][][grow 25][grow 25][grow 25][grow 25][grow 25][grow 25][25px:n]"));
+		setLayout(new MigLayout("", "[50.00%:50.00%:50.00%,grow][50.00%:50.00%:50.00%,grow,right]", "[15.00%:50.00%:50.00%,grow,top][27px][][grow 25][grow 25][grow 25][grow 25][grow 25][grow 25][27px]"));
 		
 		btnContinue = new JButton("GO!!!!!!!!");
 		btnContinue.setPreferredSize(new Dimension(77, 50));
@@ -132,8 +136,16 @@ public class TravelPanel extends JPanel {
 				oregonTrail.openPanel(oregonTrail.TRAIL_MENU_PANEL);
 			}
 		});
+		
+		lblImage = new JLabel();
+		add(lblImage, "cell 0 0 2 1");
+		
+		// Scale wagon image appropriately
+		ImageIcon imageIcon = new ImageIcon("src/images/wagon.png");
+		Image scaledImage = imageIcon.getImage().getScaledInstance(1200, 300, Image.SCALE_SMOOTH);
+		ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+		lblImage.setIcon(scaledImageIcon);
 		btnSizeUpThe.setBackground(Color.BLACK);
-		btnSizeUpThe.setForeground(Color.WHITE);
 		add(btnSizeUpThe, "cell 0 1 2 1,growx,aligny center");
 		
 		lblDateLabel = new JLabel("Date:");
@@ -201,11 +213,5 @@ public class TravelPanel extends JPanel {
 		lblWeatherLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblWeatherLabel, "cell 0 3,alignx right,aligny center");
 		add(btnContinue, "cell 0 9 2 1,growx,aligny bottom");
-
-
     }
-
-	public TravelPanel(MouseAdapter mouseAdapter) {
-		// TODO Auto-generated constructor stub
-	}
 }
