@@ -31,7 +31,7 @@ public class Landmark {
 
 	// List of all landmarks in the game
 	public static final ArrayList<Landmark> landmarkList = new ArrayList<Landmark>(Arrays.asList(
-		KANSAS_RIVER, BIG_BLUE_RIVER, FORT_STRONG, ASH_HOLLOW,FORT_LARAMIE, CHIMNEY_ROCK, FORT_OREGON
+		KANSAS_RIVER, BIG_BLUE_RIVER, FORT_STRONG, ASH_HOLLOW, CHIMNEY_ROCK, FORT_LARAMIE,  FORT_OREGON
 	));
 	
 	public Landmark(String name, ImageIcon picture, int distanceFromStart) {

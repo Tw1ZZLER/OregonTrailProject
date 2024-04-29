@@ -28,7 +28,7 @@ public class River extends Landmark {
 	}
 	
 	public void viewRiverData(RiverPanel riverPanel) {
-		JOptionPane.showMessageDialog(riverPanel, "River Width: " + width + "\nRiver Height: " + height + "\nRiver Flow: " + flow);
+		JOptionPane.showMessageDialog(riverPanel, "River Width: " + width + " ft" + "\nRiver Height: " + height + " ft" +  "\nRiver Flow: " + flow + " mph");
 	}
 	
 	public void caulkWagon(RiverPanel riverPanel) {
