@@ -242,7 +242,6 @@ public class HuntingPanel extends JPanel {
                     enemySprite.setLocation(enemySprite.getX(), enemySprite.getY() - 20);
 
                     // Enemy attacking logic
-                    Random rand = new Random();
                     switch (enemyType) {
                         case "Squirrel":
                             // Squirrel attacks every 2 seconds but deals zero damage

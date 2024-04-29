@@ -6,7 +6,6 @@ import net.miginfocom.swing.MigLayout;
 import oregonTrail.Item;
 import oregonTrail.Shop;
 import oregonTrail.OregonTrail;
-import oregonTrail.landmark.Fort;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -38,8 +37,6 @@ public class ShopPanel extends JPanel {
 	private ArrayList<Item> orderedItems;
 	private double orderCost = 0;
 	private OregonTrail oregonTrail;
-	private Fort fort;
-	
 	/**
 	 * Shop Panel constructor to create a ShopPanel
 	 * @param pOregonTrail oregonTrail game object

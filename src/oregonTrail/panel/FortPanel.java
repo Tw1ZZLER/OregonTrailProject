@@ -17,7 +17,6 @@ import javax.swing.SwingConstants;
 
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.Fort;
-import oregonTrail.landmark.Landmark;
 import oregonTrail.landmark.LandmarkType;
 
 /**

@@ -18,6 +18,10 @@ public enum LandmarkType {
 
 	private final Landmark landmark;
 	
+	/**
+	 * Constructor to create LandmarkType constants from Landmarks
+	 * @param landmark The landmark to create an enum
+	 */
 	LandmarkType(Landmark landmark) {
 		this.landmark = landmark;
 	}

@@ -20,7 +20,7 @@ public class PauseDialog extends JDialog {
 	private OregonTrail oregonTrail;
 
 	/**
-	 * Create the dialog.
+	 * Creates a 3-button menu containing options for when you pause the game.
 	 * @param oregonTrail 
 	 */
 	public PauseDialog(OregonTrail oregonTrail) {
