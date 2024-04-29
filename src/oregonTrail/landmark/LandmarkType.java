@@ -12,8 +12,8 @@ public enum LandmarkType {
 	BIG_BLUE_RIVER (new River("Big Blue River Crossing", new ImageIcon("src/images/BigBlueRiver.jpg"), 150)),
 	FORT_STRONG (new Fort("Fort Strong", new ImageIcon("src/images/FortStrong.jpg"), 250)),
 	ASH_HOLLOW (new Landmark("Ash Hollow", new ImageIcon("src/images/AshHollow.jpg"), 400)),
-	FORT_LARAMIE (new Fort("Fort Laramie", new ImageIcon("src/images/FortLaramie.jpg"), 700)),
 	CHIMNEY_ROCK (new Landmark("Chimney Rock", new ImageIcon("src/images/ChimneyRock.jpg"), 600)),
+	FORT_LARAMIE (new Fort("Fort Laramie", new ImageIcon("src/images/FortLaramie.jpg"), 700)),
 	FORT_OREGON (new Fort("Fort Oregon", new ImageIcon("src/images/FortOregon.jpg"), 2000));
 
 	private final Landmark landmark;
