@@ -8,7 +8,11 @@ import javax.swing.JOptionPane;
 import oregonTrail.panel.RiverPanel;
 
 /**
- * 
+ * Subclass of Landmark for River landmarks
+ * Contains methods for crossing, caulking, and viewing river data.
+ * @author Corbin Hibler
+ * @date 2024-04-05
+ * @filename River.java
  */
 public class River extends Landmark {
 	

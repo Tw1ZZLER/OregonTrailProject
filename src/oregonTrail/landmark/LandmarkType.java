@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
  * Enumerated type for all Landmarks in the game
  * @author Corbin Hibler
  * @date 2024-04-29
+ * @filename LandmarkType.java
  */
 public enum LandmarkType {
 	KANSAS_RIVER (new River("Kansas River Crossing", new ImageIcon("src/images/KansasRiver.jpg"), 100)),
@@ -27,7 +28,9 @@ public enum LandmarkType {
 	}
 
 	/**
-	 * @return the landmark
+	 * Getter method to get a Landmark object from a LandmarkType object
+	 * (LandmarkType does nothing, Landmark is what you need in most cases).
+	 * @return the Landmark object.
 	 */
 	public Landmark getLandmark() {
 		return landmark;
