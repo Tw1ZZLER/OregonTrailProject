@@ -2,6 +2,7 @@ package oregonTrail.landmark;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.swing.ImageIcon;
@@ -24,6 +25,7 @@ public class Landmark {
 	protected boolean visited;
 	
 	public static List<Landmark> landmarkList = Arrays.stream(LandmarkType.values())
+            							  .filter(Objects::nonNull)
 	                                      .map(LandmarkType::getLandmark)
 	                                      .collect(Collectors.toList());
 	
