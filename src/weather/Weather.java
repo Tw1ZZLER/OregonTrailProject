@@ -1,6 +1,8 @@
-package oregonTrail;
+package weather;
 
 import java.util.Random;
+
+import oregonTrail.OregonTrail;
 
 /**
  * Contains information related to the current state of the weather.
@@ -12,7 +14,9 @@ import java.util.Random;
  */
 public class Weather {
     private WeatherType weatherType;
+    private WeatherZone weatherZone;
     private OregonTrail oregonTrail;
+    private static Random rand = new Random();
 
     /**
      * Default constructor.
@@ -20,6 +24,7 @@ public class Weather {
      */
     public Weather(OregonTrail oregonTrail) {
         this.weatherType = WeatherType.WARM;
+        this.weatherZone = WeatherZone.ZONE_1;
         this.oregonTrail = oregonTrail;
     }
     
@@ -31,6 +36,7 @@ public class Weather {
      */
     public Weather(OregonTrail oregonTrail, WeatherType weatherType) {
         this.weatherType = weatherType;
+        this.weatherZone = WeatherZone.ZONE_1;
         this.oregonTrail = oregonTrail;
     }
 
@@ -71,7 +77,7 @@ public class Weather {
     }
     
     /**
-     * Method to use travel data and location data to calculate weather somewhat randomly.
+     * Uses current temperature to get the weather type and set accordingly
      * Uses the algorithm described in 'You Have Died of Dysentery'.
      * Gets called per travel cycle in Travel.java.
      * 
@@ -82,5 +88,20 @@ public class Weather {
         Random rand = new Random();
         int option = rand.nextInt();
         // Add implementation for weather calculation
+    }
+    
+    
+    public int calcTemperature() {
+    	int randomModifier = rand.nextInt(weatherZone.getTempModifier());
+    	int zone;
+    	int month;
+    	switch (zone) {
+    	case 1:
+    		switch (month) {
+    		case 1, 2, 3:  return 1;
+    		}
+    	}
+    	// Error case
+    	return 0;
     }
 }

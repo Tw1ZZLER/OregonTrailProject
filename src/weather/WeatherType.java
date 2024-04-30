@@ -1,4 +1,4 @@
-package oregonTrail;
+package weather;
 
 /**
  * Enumerated type containing the static constants for
