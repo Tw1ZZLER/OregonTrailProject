@@ -18,195 +18,196 @@ import oregonTrail.landmark.LandmarkType;
 /**
  * Handles all logic related to traveling. Contains Swing timer for traveling
  * and updates TravelPanel accordingly.
+ * 
  * @author Corbin Hibler
+ * @version 1.0
  * @date 2024-04-30
  * @filename Travel.java
  */
 public class Travel {
-	private OregonTrail oregonTrail;
-	private int milesTraveled;
-	private int milesNextLandmark;
-	private Landmark nextLandmark;
-	private static Random rand = new Random();
-	private Calendar date = new GregorianCalendar(1848, 8, 11); // Set to August 11, 1848
-	private Timer timer = new Timer(10, new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			travelCycle();
-		}
-	});	
-	
-	public Travel(OregonTrail oregonTrail) {
-		this.oregonTrail = oregonTrail;
-		this.nextLandmark = LandmarkType.KANSAS_RIVER.getLandmark(); // default to first landmark!
-		this.milesNextLandmark = LandmarkType.KANSAS_RIVER.getLandmark().getDistanceFromPrevious();
-	}
-	
-	/**
-	 * Function that gets called every time the Swing timer runs
-	 * Moves date forward, generates miles traveled, updates miles until next landmark,
-	 * and calculates food weight.
-	 * @author Corbin Hibler
-	 * @date 2024-04-09
-	 */
-	private void travelCycle() {
-		// Use GregorianCalendar library as way of keeping track of time, and update panel accordingly
-		date.add(GregorianCalendar.DAY_OF_MONTH, 1);
-	    DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
-	    String formattedDate = dateFormat.format(date.getTime());
-	    oregonTrail.TRAVEL_PANEL.setDateText(formattedDate);
-	    oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
-	    
-	    // Update weather
-	    oregonTrail.weatherState.calcWeather();
-	    
-	    
-	    // Update health
-	    // TODO
-	    
-	    // Generate miles generated and update label
-	    int milesTraveledCycle = rand.nextInt(oregonTrail.WAGON.getTravelSpeed());
-	    milesTraveled += milesTraveledCycle;
-	    oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
-	    
-	    // Update miles until next landmark
-	    milesNextLandmark -= milesTraveledCycle;
-	    oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
-	    
-	    // Calculate new food weight and set accordingly based on the mathematical models used in the original game [1]
-	    // [1] R. P. Bouchard, “Chapter 16: Building the Mathematical Models,” in  R. Philip Bouchard; 1st edition (January 28, 2016), 
-	    int totalFoodWeight = oregonTrail.WAGON.getTotalFoodWeight();
-	    int newFoodWeight = (int) (totalFoodWeight-(oregonTrail.WAGON.getFoodConsumptionRate()*5)); 
-	    oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
-	    oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
-	    
-	    // Check if we have reached next landmark
-	    checkLandmarks();
-	}
-	
-	/**
-	 * Function to handle starting and stopping of the travel timer
-	 * @author Corbin Hibler
-	 * @date 2024-04-09
-	 */
-	public void travelToggle() {
-		this.oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
+    private OregonTrail oregonTrail;
+    private int milesTraveled;
+    private int milesNextLandmark;
+    private Landmark nextLandmark;
+    private static Random rand = new Random();
+    private Calendar date = new GregorianCalendar(1848, 8, 11); // Set to August 11, 1848
+    private Timer timer = new Timer(10, new ActionListener() {
+        public void actionPerformed(ActionEvent arg0) {
+            travelCycle();
+        }
+    });
 
-		if (!timer.isRunning()) {
-			timer.start();
-			oregonTrail.TRAVEL_PANEL.btnContinue.setText("Stop Traveling!");
-		}
-		else {
-			timer.stop();
-			oregonTrail.TRAVEL_PANEL.btnContinue.setText("Continue on Trail!");
-		}
-	}
-	
-	/**
-	 * Method to check if a landmark has been reached
-	 */
-	public void checkLandmarks() {
-	    for (Landmark landmark : Landmark.landmarkList) {
-	        if (milesNextLandmark <= 0 && 
-	        	milesTraveled >= landmark.getDistanceFromStart() && 
-	        	!landmark.isVisited()) {
-	            this.nextLandmark = landmark.getNextLandmark();
-	            // Ensure milesNextLandmark is updated correctly for the next landmark
-	            try {
-	                milesNextLandmark = this.nextLandmark.getDistanceFromPrevious();
-	            } catch (NullPointerException e) {
-	            	// If at the end of the trail, there is no next Landmark:
-	                milesNextLandmark = 0;
-	            }
-	            updateLandmarkReached(landmark, nextLandmark);
-	            break;
-	        }
-	    }
-	}
+    /**
+     * Constructor for Travel class.
+     * 
+     * @param oregonTrail The instance of the OregonTrail class.
+     */
+    public Travel(OregonTrail oregonTrail) {
+        this.oregonTrail = oregonTrail;
+        this.nextLandmark = LandmarkType.KANSAS_RIVER.getLandmark(); // default to first landmark!
+        this.milesNextLandmark = LandmarkType.KANSAS_RIVER.getLandmark().getDistanceFromPrevious();
+    }
 
-	/**
-	 *  Method to update the game state when a landmark is reached
-	 * @param currentLandmark
-	 * @param currentLandmarkPanel
-	 * @param nextLandmark
-	 */
-	private void updateLandmarkReached(Landmark currentLandmark, Landmark nextLandmark) {
-	    // Update the UI
-		System.out.println("landmark passed to updatelandmarkreached: " + currentLandmark.getName());
+    /**
+     * Function that gets called every time the Swing timer runs.
+     * Moves date forward, generates miles traveled, updates miles until next landmark,
+     * and calculates food weight.
+     */
+    private void travelCycle() {
+        // Use GregorianCalendar library as way of keeping track of time, and update panel accordingly
+        date.add(GregorianCalendar.DAY_OF_MONTH, 1);
+        DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
+        String formattedDate = dateFormat.format(date.getTime());
+        oregonTrail.TRAVEL_PANEL.setDateText(formattedDate);
+        oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
+
+        // Update weather
+       // oregonTrail.weatherState.calcWeather();
+
+        // Generate miles generated and update label
+        int milesTraveledCycle = rand.nextInt(oregonTrail.WAGON.getTravelSpeed());
+        milesTraveled += milesTraveledCycle;
+        oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
+
+        // Update miles until next landmark
+        milesNextLandmark -= milesTraveledCycle;
+        oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
+
+        // Calculate new food weight and set accordingly based on the mathematical models used in the original game
+        int totalFoodWeight = oregonTrail.WAGON.getTotalFoodWeight();
+        int newFoodWeight = (int) (totalFoodWeight - (oregonTrail.WAGON.getFoodConsumptionRate() * 5));
+        oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
+        oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
+
+        // Check if we have reached next landmark
+        checkLandmarks();
+    }
+
+    /**
+     * Function to handle starting and stopping of the travel timer.
+     */
+    public void travelToggle() {
+        this.oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
+
+        if (!timer.isRunning()) {
+            timer.start();
+            oregonTrail.TRAVEL_PANEL.btnContinue.setText("Stop Traveling!");
+        } else {
+            timer.stop();
+            oregonTrail.TRAVEL_PANEL.btnContinue.setText("Continue on Trail!");
+        }
+    }
+
+    /**
+     * Method to check if a landmark has been reached.
+     */
+    public void checkLandmarks() {
+        for (Landmark landmark : Landmark.landmarkList) {
+            if (milesNextLandmark <= 0 && milesTraveled >= landmark.getDistanceFromStart() && !landmark.isVisited()) {
+                this.nextLandmark = landmark.getNextLandmark();
+                // Ensure milesNextLandmark is updated correctly for the next landmark
+                try {
+                    milesNextLandmark = this.nextLandmark.getDistanceFromPrevious();
+                } catch (NullPointerException e) {
+                    // If at the end of the trail, there is no next Landmark:
+                    milesNextLandmark = 0;
+                }
+                updateLandmarkReached(landmark, nextLandmark);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Method to update the game state when a landmark is reached.
+     * 
+     * @param currentLandmark The current landmark reached.
+     * @param nextLandmark    The next landmark to be reached.
+     */
+    private void updateLandmarkReached(Landmark currentLandmark, Landmark nextLandmark) {
+        // Update the UI
         JPanel panel = oregonTrail.getPanelForLandmark(currentLandmark);
-	    oregonTrail.openPanel(panel);
-	    
-	    // Make sure landmark cannot be visited again
+        oregonTrail.openPanel(panel);
+
+        // Make sure landmark cannot be visited again
         currentLandmark.setVisited();
-	    
-	    try {
-		    // Next Landmark and associated variables
-		    oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText(nextLandmark.getName());
-		    this.nextLandmark = nextLandmark.getNextLandmark();
-		    milesNextLandmark = nextLandmark.getDistanceFromPrevious();
-		} catch (NullPointerException e) {
-			// If at Fort Oregon, no next landmark is available
-			System.out.println("Last Fort has been reached, no next landmark available.");
-		    oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("END OF GAME");
-		}
-	    travelToggle();
-	}
 
+        try {
+            // Next Landmark and associated variables
+            oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText(nextLandmark.getName());
+            this.nextLandmark = nextLandmark.getNextLandmark();
+            milesNextLandmark = nextLandmark.getDistanceFromPrevious();
+        } catch (NullPointerException e) {
+            // If at Fort Oregon, no next landmark is available
+            oregonTrail.TRAVEL_PANEL.setNextLandmarkNameText("END OF GAME");
+        }
+        travelToggle();
+    }
 
-	/**
-	 * @return the milesNextLandmark
-	 */
-	public int getMilesNextLandmark() {
-		return milesNextLandmark;
-	}
+    /**
+     * Gets the number of miles remaining until the next landmark.
+     * 
+     * @return The number of miles remaining until the next landmark.
+     */
+    public int getMilesNextLandmark() {
+        return milesNextLandmark;
+    }
 
-	/**
-	 * @param milesNextLandmark the milesNextLandmark to set
-	 */
-	public void setMilesNextLandmark(int milesNextLandmark) {
-		this.milesNextLandmark = milesNextLandmark;
-	}
-	
-	
-	public int getMilesTraveled() {
-		return milesTraveled;
-	}
-	/**
-	 * Moves the player back a specified number of miles.
-	 * 
-	 * @param milesBack The number of miles to move back.
-	 */
-	public void moveBack(int milesBack) {
-	    if (milesTraveled >= milesBack) {
-	        milesTraveled -= milesBack;
-	        oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
-	        // Recalculate miles until next landmark
-	        milesNextLandmark += milesBack;
-	        oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
-	        // Update the next landmark based on the new position
-	        updateNextLandmark();
-	        System.out.println("Moved back " + milesBack + " miles.");
-	    } else {
-	        System.out.println("Cannot move back " + milesBack + " miles. Already at the starting point.");
-	    }
-	}
+    /**
+     * Sets the number of miles remaining until the next landmark.
+     * 
+     * @param milesNextLandmark The number of miles remaining until the next landmark.
+     */
+    public void setMilesNextLandmark(int milesNextLandmark) {
+        this.milesNextLandmark = milesNextLandmark;
+    }
 
-	/**
-	 * Updates the information about the next landmark based on the current position.
-	 */
-	public void updateNextLandmark() {
-	    for (Landmark landmark : Landmark.landmarkList) {
-	        if (milesNextLandmark <= 0 && milesTraveled >= landmark.getDistanceFromStart() && !landmark.isVisited()) {
-	            this.nextLandmark = landmark.getNextLandmark();
-	            // Ensure milesNextLandmark is updated correctly for the next landmark
-	            try {
-	                milesNextLandmark = this.nextLandmark.getDistanceFromPrevious();
-	            } catch (NullPointerException e) {
-	                // If at the end of the trail, there is no next Landmark:
-	                milesNextLandmark = 0;
-	            }
-	            updateLandmarkReached(landmark, nextLandmark);
-	            break;
-	        }
-	    }
-	}
+    /**
+     * Gets the total miles traveled.
+     * 
+     * @return The total miles traveled.
+     */
+    public int getMilesTraveled() {
+        return milesTraveled;
+    }
+
+    /**
+     * Moves the player back a specified number of miles.
+     * 
+     * @param milesBack The number of miles to move back.
+     */
+    public void moveBack(int milesBack) {
+        if (milesTraveled >= milesBack) {
+            milesTraveled -= milesBack;
+            oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
+            // Recalculate miles until next landmark
+            milesNextLandmark += milesBack;
+            oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
+            // Update the next landmark based on the new position
+            updateNextLandmark();
+            System.out.println("Moved back " + milesBack + " miles.");
+        } else {
+            System.out.println("Cannot move back " + milesBack + " miles. Already at the starting point.");
+        }
+    }
+
+    /**
+     * Updates the information about the next landmark based on the current position.
+     */
+    public void updateNextLandmark() {
+        for (Landmark landmark : Landmark.landmarkList) {
+            if (milesNextLandmark <= 0 && milesTraveled >= landmark.getDistanceFromStart() && !landmark.isVisited()) {
+                this.nextLandmark = landmark.getNextLandmark();
+                // Ensure milesNextLandmark is updated correctly for the next landmark
+                try {
+                    milesNextLandmark = this.nextLandmark.getDistanceFromPrevious();
+                } catch (NullPointerException e) {
+                    // If at the end of the trail, there is no next Landmark:
+                    milesNextLandmark = 0;
+                }
+                updateLandmarkReached(landmark, nextLandmark);
+                break;
+            }
+        }
+    }
 }

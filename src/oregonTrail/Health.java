@@ -1,26 +1,30 @@
-
 /**
  * File: Health.java
  * Author: Lukas Dunbar
  * Version: 1.0
  * Date: April 29, 2024
  * Description: Class to track the health of a single party member in a game simulation.
+ *
+ * @author Lukas Dunbar
+ * @version 1.0
  */
 package oregonTrail;
-
 import javax.swing.*;
 
 /**
- * The Health class tracks the health of a single party member in a game simulation.
+ * The {@code Health} class tracks the health of a single party member in a game simulation.
  * It includes methods to update the general health based on various factors and terminates
  * the program if the health reaches a critical level.
+ *
+ * @author Lukas Dunbar
+ * @version 1.0
  */
 public class Health {
 
     private int generalHealth; // The general health of the party member
 
     /**
-     * Constructs a new Health object and initializes the general health to 0.
+     * Constructs a new {@code Health} object and initializes the general health to 0.
      */
     public Health() {
         generalHealth = 0;
