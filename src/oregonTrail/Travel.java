@@ -179,6 +179,14 @@ public class Travel {
     public int getMilesTraveled() {
         return milesTraveled;
     }
+    
+    /**
+     * Gets the current month from the GregorianCalendar object.
+     * @return The current month
+     */
+    public int getMonth() {
+    	return date.get(Calendar.MONTH);
+    }
 
     /**
      * Moves the player back a specified number of miles.
