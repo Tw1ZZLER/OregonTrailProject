@@ -57,7 +57,7 @@ public class Travel {
 	    oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
 	    
 	    // Update weather
-	    oregonTrail.weatherState.calcWeather();
+	    // oregonTrail.weatherState.calcWeather();
 	    
 	    
 	    // Update health

@@ -31,7 +31,7 @@ public class OregonTrail implements Serializable {
 	
 	private JFrame frame;
 	private Travel travelState;
-	Weather weatherState;
+	private Weather weatherState;
 	private Map<Landmark, JPanel> landmarkToPanelMap = new HashMap<>();
 	public final Wagon WAGON;
 	public final StartupPanel STARTUP_PANEL;
@@ -118,8 +118,6 @@ public class OregonTrail implements Serializable {
 	 * @date 2024-04-22
 	 */
 	public void pause() {
-		System.out.println("PAUSED");
-
 		if (!PAUSE_DIALOG.isVisible()) {
 			glassPane = new JPanel() {
 				@Override
@@ -158,6 +156,11 @@ public class OregonTrail implements Serializable {
 		}
 	}
 	
+	/**
+	 * Acquires a JPanel from the Map for Landmarks to JPanels
+	 * @param landmark the Landmark you need a JPanel for
+	 * @return JPanel the JPanel representing the landmark
+	 */
 	public JPanel getPanelForLandmark(Landmark landmark) {
         return landmarkToPanelMap.get(landmark);
     }
@@ -170,6 +173,13 @@ public class OregonTrail implements Serializable {
 		return this.travelState;
 	}
 	
+	/**
+	 * Getter method for instantiation of Weather class
+	 * @return the weatherState
+	 */
+	public Weather getWeatherState() {
+		return this.weatherState;
+	}
 	
     /**
      *  Method to populate the landmark panel map
