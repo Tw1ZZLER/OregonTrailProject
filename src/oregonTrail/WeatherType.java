@@ -1,5 +1,13 @@
 package oregonTrail;
 
+/**
+ * Enumerated type containing the static constants for
+ * each weather type. These weather types come from the original Apple II game
+ * and from 'You have Died of Dysentery.'
+ * @author Corbin Hibler
+ * @date 2024-04-30
+ * @filename WeatherType.java
+ */
 public enum WeatherType {
 	VERY_HOT (2, 90, 120, "Very Hot"),
 	HOT (1, 70, 90, "Hot"), 
@@ -13,6 +21,13 @@ public enum WeatherType {
 	private final int maxTemp;
 	private final String weatherString;
 	
+	/**
+	 * Constructor to create a WeatherType.
+	 * @param healthModifier The effect the weatherType has on the player's health.
+	 * @param minTemp The minimum temperature for the weather type.
+	 * @param maxTemp The maximum temperature for the weather type.
+	 * @param weatherString The string version of the variable name for the weather type.
+	 */
 	WeatherType(int healthModifier, int minTemp, int maxTemp, String weatherString) {
 		this.healthModifier = healthModifier;
 		this.minTemp = minTemp;
