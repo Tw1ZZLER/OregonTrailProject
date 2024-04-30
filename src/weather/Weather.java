@@ -104,7 +104,25 @@ public class Weather {
     public void calcWeather() {
         Random rand = new Random();
         int option = rand.nextInt();
+        int temperature = this.calcTemperature();
+        
         // Add implementation for weather calculation
+        // Check current temperature against the minimum temperatures of each weather condition, setting it to that condition if it falls in range.
+       if((temperature) > WeatherType.VERY_HOT.getMinTemp() && (temperature) < WeatherType.VERY_HOT.getMaxTemp()) {
+    	   this.setWeatherType(WeatherType.VERY_HOT);
+       }
+       else if((temperature) > WeatherType.HOT.getMinTemp()) {
+    	   this.setWeatherType(WeatherType.HOT);
+       }
+       else if((temperature) > WeatherType.COOL.getMinTemp()) {
+    	   this.setWeatherType(WeatherType.COOL);
+       }
+       else if((temperature) > WeatherType.COLD.getMinTemp()) {
+    	   this.setWeatherType(WeatherType.COLD);
+       }
+       else if((temperature) > WeatherType.VERY_COLD.getMinTemp()) {
+    	   this.setWeatherType(WeatherType.VERY_COLD);
+       } 
     }
     
     
