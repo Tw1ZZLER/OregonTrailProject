@@ -12,13 +12,15 @@ import java.util.Random;
  */
 public class Weather {
     private WeatherType weatherType;
+    private OregonTrail oregonTrail;
 
     /**
      * Default constructor.
      * Sets WeatherType to warm.
      */
-    public Weather() {
+    public Weather(OregonTrail oregonTrail) {
         this.weatherType = WeatherType.WARM;
+        this.oregonTrail = oregonTrail;
     }
     
     /**
@@ -27,8 +29,9 @@ public class Weather {
      * 
      * @param weatherType WeatherType to set.
      */
-    public Weather(WeatherType weatherType) {
+    public Weather(OregonTrail oregonTrail, WeatherType weatherType) {
         this.weatherType = weatherType;
+        this.oregonTrail = oregonTrail;
     }
 
     /**

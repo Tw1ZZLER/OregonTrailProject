@@ -80,6 +80,7 @@ public class OregonTrail implements Serializable {
         STARTUP_PANEL = new StartupPanel();
         TRAVEL_PANEL = new TravelPanel(this);
         travelState = new Travel(this);
+        weatherState = new Weather(this);
         TRAIL_MENU_PANEL = new TrailMenuPanel(this);
         TRADE_PANEL = new TradePanel(this);
         PAUSE_DIALOG = new PauseDialog(this);
