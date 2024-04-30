@@ -1,5 +1,7 @@
 package oregonTrail;
 
+import java.util.Random;
+
 public class Weather {
 	private WeatherType weatherType;
 
@@ -37,6 +39,22 @@ public class Weather {
 	}
 	
 	/**
+	 * Getter method for health modifier
+	 * @return healthModifier int based on health modifiers from 'You have Died of Dysentery'
+	 */
+	public int getHealthModifier() {
+		return this.weatherType.getHealthModifier();
+	}
+	
+	/**
+	 * Getter method for descriptive weather string
+	 * @return string String describing the weather
+	 */
+	public String getWeatherString() {
+		return this.weatherType.getWeatherString();
+	}
+	
+	/**
 	 * Method to use travel data and location data to calculate weather somewhat randomly
 	 * Uses the algorithm described in 'You Have Died of Dysentery'
 	 * Gets called per travel cycle in Travel.java
@@ -44,7 +62,7 @@ public class Weather {
 	 * @date 2024-04-29
 	 */
 	public void calcWeather() {
-		
+		Random rand = new Random();
+		int option = rand.nextInt();
 	}
-
 }
