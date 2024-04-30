@@ -20,7 +20,6 @@ import oregonTrail.landmark.LandmarkType;
  * and updates TravelPanel accordingly.
  * 
  * @author Corbin Hibler
- * @version 1.0
  * @date 2024-04-30
  * @filename Travel.java
  */
@@ -85,62 +84,12 @@ public class Travel {
 	    checkLandmarks();
 	}
 	
-	/**
-	 * Function to handle starting and stopping of the travel timer
-	 * @author Corbin Hibler
-	 * @date 2024-04-09
-	 */
-	public void travelToggle() {
-		this.oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);}
 
-    /**
-     * Constructor for Travel class.
-     * 
-     * @param oregonTrail The instance of the OregonTrail class.
-     */
-    public Travel(OregonTrail oregonTrail) {
-        this.oregonTrail = oregonTrail;
-        this.nextLandmark = LandmarkType.KANSAS_RIVER.getLandmark(); // default to first landmark!
-        this.milesNextLandmark = LandmarkType.KANSAS_RIVER.getLandmark().getDistanceFromPrevious();
-    }
-
-    /**
-     * Function that gets called every time the Swing timer runs.
-     * Moves date forward, generates miles traveled, updates miles until next landmark,
-     * and calculates food weight.
-     */
-    private void travelCycle() {
-        // Use GregorianCalendar library as way of keeping track of time, and update panel accordingly
-        date.add(GregorianCalendar.DAY_OF_MONTH, 1);
-        DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
-        String formattedDate = dateFormat.format(date.getTime());
-        oregonTrail.TRAVEL_PANEL.setDateText(formattedDate);
-        oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
-
-        // Update weather
-       // oregonTrail.weatherState.calcWeather();
-
-        // Generate miles generated and update label
-        int milesTraveledCycle = rand.nextInt(oregonTrail.WAGON.getTravelSpeed());
-        milesTraveled += milesTraveledCycle;
-        oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
-
-        // Update miles until next landmark
-        milesNextLandmark -= milesTraveledCycle;
-        oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
-
-        // Calculate new food weight and set accordingly based on the mathematical models used in the original game
-        int totalFoodWeight = oregonTrail.WAGON.getTotalFoodWeight();
-        int newFoodWeight = (int) (totalFoodWeight - (oregonTrail.WAGON.getFoodConsumptionRate() * 5));
-        oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
-        oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
-
-        // Check if we have reached next landmark
-        checkLandmarks();
-    }
 
     /**
      * Function to handle starting and stopping of the travel timer.
+     * @author Corbin Hibler
+     * @date 2024-04-23
      */
     public void travelToggle() {
         this.oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
@@ -156,6 +105,8 @@ public class Travel {
 
     /**
      * Method to check if a landmark has been reached.
+     * @author Corbin Hibler
+     * @date 2024-04-23
      */
     public void checkLandmarks() {
         for (Landmark landmark : Landmark.landmarkList) {
@@ -179,6 +130,8 @@ public class Travel {
      * 
      * @param currentLandmark The current landmark reached.
      * @param nextLandmark    The next landmark to be reached.
+     * @author Corbin Hibler
+     * @date 2024-04-22
      */
     private void updateLandmarkReached(Landmark currentLandmark, Landmark nextLandmark) {
         // Update the UI
@@ -231,6 +184,8 @@ public class Travel {
      * Moves the player back a specified number of miles.
      * 
      * @param milesBack The number of miles to move back.
+     * @author Ray Otto
+     * @date 2024-04-23
      */
     public void moveBack(int milesBack) {
         if (milesTraveled >= milesBack) {
@@ -249,6 +204,8 @@ public class Travel {
 
     /**
      * Updates the information about the next landmark based on the current position.
+     * @author Corbin Hibler
+     * @date 2024-04-25
      */
     public void updateNextLandmark() {
         for (Landmark landmark : Landmark.landmarkList) {
