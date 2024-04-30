@@ -75,6 +75,23 @@ public class Weather {
     public String getWeatherString() {
         return this.weatherType.getWeatherString();
     }
+
+	/**
+	 * Getter method for the current weather zone
+	 * @return the weatherZone
+	 */
+	public WeatherZone getWeatherZone() {
+		return weatherZone;
+	}
+
+	/**
+	 * Sets the current weather zone
+	 * Used in Travel.java to set weather zone every travel cycle
+	 * @param weatherZone the weatherZone to set
+	 */
+	public void setWeatherZone(WeatherZone weatherZone) {
+		this.weatherZone = weatherZone;
+	}
     
     /**
      * Uses current temperature to get the weather type and set accordingly
