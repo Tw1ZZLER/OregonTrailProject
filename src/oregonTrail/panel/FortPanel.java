@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.Fort;
 import oregonTrail.landmark.LandmarkType;
@@ -44,18 +43,12 @@ public class FortPanel extends JPanel {
      */
     public FortPanel(OregonTrail pOregonTrail, Fort fort) {
         this.oregonTrail = pOregonTrail;
-        pOregonTrail.getTravelState();
         this.fortName = fort.getName();
         
         // Scale up image
-    	// Assuming river.getPicture() returns an ImageIcon
         ImageIcon originalIcon = fort.getPicture();
         Image originalImage = originalIcon.getImage();
-
-        // Scale the image using getScaledInstance
         Image scaledImage = originalImage.getScaledInstance(1000, 500, Image.SCALE_SMOOTH);
-
-        // Convert the scaled Image back to ImageIcon
         this.fortImageIcon = new ImageIcon(scaledImage);
         
 
@@ -94,19 +87,21 @@ public class FortPanel extends JPanel {
         // Add action listeners to buttons
         openMapButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Open Map button clicked");
+                oregonTrail.openMap(fortName);
             }
         });
 
         changeRateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Change Rate of Travel button clicked");
+                //oregonTrail.getTravelState().changeRateOfTravel(this);
+            	  System.out.println("Change Rate of Travel button clicked");
             }
         });
 
         changeRationsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Change Rations button clicked");
+               // oregonTrail.getTravelState().changeRations(this);
+            	  System.out.println("Change Rattions button clicked");
             }
         });
 
@@ -162,4 +157,4 @@ public class FortPanel extends JPanel {
         });
     }
 }
-    
+
