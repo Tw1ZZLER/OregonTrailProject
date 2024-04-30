@@ -44,6 +44,12 @@ public class HuntingPanel extends JPanel {
     private boolean punchCooldown;
     private boolean blocking;
 
+    /**
+     * Randomly chooses an enemy type to hunt (fight)
+     * Creates game timer for game to loop over
+     * @author Ray Otto
+     * @date 2024-03-25
+     */
     public HuntingPanel() {
         setLayout(null); // For absolute positioning
         initialize();
@@ -124,6 +130,12 @@ public class HuntingPanel extends JPanel {
         }
     }
 
+    /**
+     * Creates all necessary labels for the game
+     * Also contains all KeyListener logic for fighting
+     * @author Ray Otto
+     * @date 2024-03-29
+     */
     private void initialize() {
         standingIcon = new ImageIcon("src/images/standing1.png");
         blockingIcon = new ImageIcon("src/images/blocking1.png");

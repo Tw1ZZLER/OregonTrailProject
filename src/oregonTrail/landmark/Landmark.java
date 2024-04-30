@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
  * Subclasses: Fort, River
  * @author Corbin Hibler
  * @date 2024-04-16
+ * @filename Landmark.java
  */
 public class Landmark {
 	protected String name;
