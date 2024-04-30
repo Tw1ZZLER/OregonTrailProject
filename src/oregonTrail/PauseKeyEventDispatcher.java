@@ -4,11 +4,11 @@ import java.awt.KeyEventDispatcher;
 import java.awt.event.KeyEvent;
 
 /**
- * This class listens for key events and triggers the game's pause functionality when the ESC key is pressed.
- * 
+ * KeyEventDispatcher for the whole game
+ * Allows you to pause no matter where you are (with some exceptions)
  * @author Corbin Hibler
- * @version 1.0
- * @date 2024-04-29
+ * @date 2024-4-25
+ * @filename PauseKeyEventDispatcher.java
  */
 public class PauseKeyEventDispatcher implements KeyEventDispatcher {
     private OregonTrail oregonTrail;

@@ -171,6 +171,7 @@ public class OregonTrail implements Serializable {
         return landmarkToPanelMap.get(landmark);
     }
 
+
     /**
      * Getter method for instantiation of Travel class.
      *

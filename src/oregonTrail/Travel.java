@@ -25,17 +25,73 @@ import oregonTrail.landmark.LandmarkType;
  * @filename Travel.java
  */
 public class Travel {
-    private OregonTrail oregonTrail;
-    private int milesTraveled;
-    private int milesNextLandmark;
-    private Landmark nextLandmark;
-    private static Random rand = new Random();
-    private Calendar date = new GregorianCalendar(1848, 8, 11); // Set to August 11, 1848
-    private Timer timer = new Timer(10, new ActionListener() {
-        public void actionPerformed(ActionEvent arg0) {
-            travelCycle();
-        }
-    });
+	private OregonTrail oregonTrail;
+	private int milesTraveled;
+	private int milesNextLandmark;
+	private Landmark nextLandmark;
+	private static Random rand = new Random();
+	private Calendar date = new GregorianCalendar(1848, 8, 11); // Set to August 11, 1848
+	private Timer timer = new Timer(10, new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			travelCycle();
+		}
+	});	
+	
+	public Travel(OregonTrail oregonTrail) {
+		this.oregonTrail = oregonTrail;
+		this.nextLandmark = LandmarkType.KANSAS_RIVER.getLandmark(); // default to first landmark!
+		this.milesNextLandmark = LandmarkType.KANSAS_RIVER.getLandmark().getDistanceFromPrevious();
+	}
+	
+	/**
+	 * Function that gets called every time the Swing timer runs
+	 * Moves date forward, generates miles traveled, updates miles until next landmark,
+	 * and calculates food weight.
+	 * @author Corbin Hibler
+	 * @date 2024-04-09
+	 */
+	private void travelCycle() {
+		// Use GregorianCalendar library as way of keeping track of time, and update panel accordingly
+		date.add(GregorianCalendar.DAY_OF_MONTH, 1);
+	    DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
+	    String formattedDate = dateFormat.format(date.getTime());
+	    oregonTrail.TRAVEL_PANEL.setDateText(formattedDate);
+	    oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
+	    
+	    // Update weather
+	    // oregonTrail.weatherState.calcWeather();
+	    
+	    
+	    // Update health
+	    // TODO
+	    
+	    // Generate miles generated and update label
+	    int milesTraveledCycle = rand.nextInt(oregonTrail.WAGON.getTravelSpeed());
+	    milesTraveled += milesTraveledCycle;
+	    oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
+	    
+	    // Update miles until next landmark
+	    milesNextLandmark -= milesTraveledCycle;
+	    oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
+	    
+	    // Calculate new food weight and set accordingly based on the mathematical models used in the original game [1]
+	    // [1] R. P. Bouchard, “Chapter 16: Building the Mathematical Models,” in  R. Philip Bouchard; 1st edition (January 28, 2016), 
+	    int totalFoodWeight = oregonTrail.WAGON.getTotalFoodWeight();
+	    int newFoodWeight = (int) (totalFoodWeight-(oregonTrail.WAGON.getFoodConsumptionRate()*5)); 
+	    oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
+	    oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
+	    
+	    // Check if we have reached next landmark
+	    checkLandmarks();
+	}
+	
+	/**
+	 * Function to handle starting and stopping of the travel timer
+	 * @author Corbin Hibler
+	 * @date 2024-04-09
+	 */
+	public void travelToggle() {
+		this.oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);}
 
     /**
      * Constructor for Travel class.
