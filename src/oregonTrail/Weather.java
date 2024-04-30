@@ -2,6 +2,13 @@ package oregonTrail;
 
 import java.util.Random;
 
+/**
+ * Contains information related to the current state of the weather
+ * Uses WeatherType.java for enumerated type
+ * @author Corbin Hibler
+ * @date 2024-04-30
+ * @filename Weather.java
+ */
 public class Weather {
 	private WeatherType weatherType;
 

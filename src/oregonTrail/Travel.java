@@ -18,6 +18,9 @@ import oregonTrail.landmark.LandmarkType;
 /**
  * Handles all logic related to traveling. Contains Swing timer for traveling
  * and updates TravelPanel accordingly.
+ * @author Corbin Hibler
+ * @date 2024-04-30
+ * @filename Travel.java
  */
 public class Travel {
 	private OregonTrail oregonTrail;
@@ -53,12 +56,18 @@ public class Travel {
 	    oregonTrail.TRAVEL_PANEL.setDateText(formattedDate);
 	    oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
 	    
+	    // Update weather
+	    oregonTrail.weatherState.calcWeather();
+	    
+	    
+	    // Update health
+	    // TODO
+	    
 	    // Generate miles generated and update label
 	    int milesTraveledCycle = rand.nextInt(oregonTrail.WAGON.getTravelSpeed());
 	    milesTraveled += milesTraveledCycle;
 	    oregonTrail.TRAVEL_PANEL.setDistanceTraveledText(milesTraveled);
 	    
-	   
 	    // Update miles until next landmark
 	    milesNextLandmark -= milesTraveledCycle;
 	    oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);

@@ -25,11 +25,13 @@ import oregonTrail.panel.*;
  * Serializable and works as save data for where a player is
  * @authors Corbin Hibler, Lukas Dunbar, Ray Otto, Ethan Vaughn
  * @date 2024-04-09
+ * @filename OregonTrail.java
  */
 public class OregonTrail implements Serializable {
 	
 	private JFrame frame;
 	private Travel travelState;
+	Weather weatherState;
 	private Map<Landmark, JPanel> landmarkToPanelMap = new HashMap<>();
 	public final Wagon WAGON;
 	public final StartupPanel STARTUP_PANEL;
