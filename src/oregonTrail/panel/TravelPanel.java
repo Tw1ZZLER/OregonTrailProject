@@ -172,6 +172,8 @@ public class TravelPanel extends JPanel {
 		lblNameOfNext.setFont(new Font("Dialog", Font.BOLD, 24));
 		add(lblNameOfNext, "cell 0 7,alignx right");
 		
+		System.out.println("LINE 175");
+		System.out.println(LandmarkType.KANSAS_RIVER.getLandmark().getName());
 		lblNextLandmarkName = new JLabel(LandmarkType.KANSAS_RIVER.getLandmark().getName());
 		lblNextLandmarkName.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNextLandmarkName.setFont(new Font("Dialog", Font.BOLD, 24));

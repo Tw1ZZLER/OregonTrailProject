@@ -112,13 +112,13 @@ public class Weather {
     	int randomModifier = rand.nextInt(weatherZone.getTempModifier());
     	int zone;
     	int month;
-    	switch (zone) {
-    	case 1:
-    		switch (month) {
-    		case 1, 2, 3:  return 1;
-    		}
-    	}
-    	// Error case
+//    	switch (zone) {
+//    	case 1:
+//    		switch (month) {
+//    		case 1, 2, 3:  return 1;
+//    		}
+//    	}
+//    	// Error case
     	return 0;
     }
 }

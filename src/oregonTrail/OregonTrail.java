@@ -182,6 +182,14 @@ public class OregonTrail implements Serializable {
     public Travel getTravelState() {
         return this.travelState;
     }
+    
+	/**
+	 * Getter method for instantiation of Weather class.
+	 * @return the weatherState
+	 */
+	public Weather getWeatherState() {
+		return weatherState;
+	}
 
     /**
      * Method to populate the landmark panel map.
@@ -236,5 +244,6 @@ public class OregonTrail implements Serializable {
         startupTimer.setRepeats(false);
         startupTimer.start();
     }
+
 
 }

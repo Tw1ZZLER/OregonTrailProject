@@ -14,6 +14,7 @@ import javax.swing.Timer;
 
 import oregonTrail.landmark.Landmark;
 import oregonTrail.landmark.LandmarkType;
+import weather.WeatherZone;
 
 /**
  * Handles all logic related to traveling. Contains Swing timer for traveling
@@ -57,13 +58,6 @@ public class Travel {
 	    oregonTrail.TRAVEL_PANEL.setDateText(formattedDate);
 	    oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
 	    
-	    // Update weather
-	    // oregonTrail.weatherState.calcWeather();
-	    
-	    
-	    // Update health
-	    // TODO
-	    
 	    // Generate miles generated and update label
 	    int milesTraveledCycle = rand.nextInt(oregonTrail.WAGON.getTravelSpeed());
 	    milesTraveled += milesTraveledCycle;
@@ -79,6 +73,23 @@ public class Travel {
 	    int newFoodWeight = (int) (totalFoodWeight-(oregonTrail.WAGON.getFoodConsumptionRate()*5)); 
 	    oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
 	    oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
+	    
+	    // Update WeatherZone based on miles traveled
+	    for (WeatherZone zone : WeatherZone.values()) {
+			if (milesTraveled > zone.getMileMarker()) {
+				oregonTrail.getWeatherState().setWeatherZone(zone);
+			}
+	    }
+	    
+	    // Update WeatherType
+	    oregonTrail.getWeatherState().calcWeather();
+	    
+	    // Update weather label for current weather
+	    String weatherString = oregonTrail.getWeatherState().getWeatherString();
+	    oregonTrail.TRAVEL_PANEL.setWeatherText(weatherString);
+	    
+	    // Update health
+	    // TODO
 	    
 	    // Check if we have reached next landmark
 	    checkLandmarks();
