@@ -204,6 +204,35 @@ public class OregonTrail implements Serializable {
             landmarkToPanelMap.put(landmark, landmarkPanel);
         }
     }
+    
+    public void openMap(String landmarkName) {
+        String imagePath = "";
+
+        // Determine the image path based on the landmark name
+        switch (landmarkName) {
+            case "Kansas River Crossing":
+                imagePath = "src/images/mapKansasRiver.png";
+                break;
+            case "Big Blue River Crossing":
+                imagePath = "src/images/mapBigBlue.png";
+                break;
+            case "Fort Strong":
+                imagePath = "src/images/mapFortStrong.png";
+                break;
+            case "Ash Hollow":
+                imagePath = "src/images/mapAshHollow.png";
+                break;
+            case "Chimney Rock":
+                imagePath = "src/images/mapChimneyRock.png";
+                break;
+            case "Fort Laramie":
+                imagePath = "src/images/mapFortLaramie.png";
+                break;
+            default:
+                System.out.println("Map not found for the specified landmark.");
+                return;
+        }
+    }
 
     /**
      * Initialize the contents of the frame.

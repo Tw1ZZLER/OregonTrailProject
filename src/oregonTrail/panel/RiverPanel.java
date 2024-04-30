@@ -79,14 +79,21 @@ public class RiverPanel extends JPanel {
         buttonPanel.add(waitButton);
 
         // Add action listeners to buttons
-        openMapButton.addActionListener(e -> System.out.println("Open Map button clicked"));
-
+        openMapButton.addActionListener(e -> oregonTrail.openMap(riverName));
+        
         viewRiverDataButton.addActionListener(e -> river.viewRiverData(this));
 
         changeRateButton.addActionListener(e -> oregonTrail.WAGON.travelSpeedDialog(this));
 
         changeRationsButton.addActionListener(e -> oregonTrail.WAGON.foodConsumptionDialog(this));
 
+        attemptToCrossButton.addActionListener(e -> {
+            river.attemptToCross(this);
+            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
+            // Display dialogue box with message
+            JOptionPane.showMessageDialog(this, "There’s plenty of water and grass for the horses. We should catch some fish in the meantime. +3 fish");
+        });
+      
         attemptToCrossButton.addActionListener(e -> {
             river.attemptToCross(this);
             oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
@@ -110,4 +117,3 @@ public class RiverPanel extends JPanel {
         });
     } 
 }
-
