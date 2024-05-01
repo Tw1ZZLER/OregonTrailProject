@@ -1,4 +1,4 @@
-package weather;
+package oregonTrail.weather;
 
 /**
  * Enumerated type for the weather zones

@@ -14,9 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.Fort;
-import oregonTrail.landmark.LandmarkType;
+import oregonTrail.landmark.Landmark;
 
 /**
  * Panel class representing options available when located at a fort in the Oregon Trail game.
@@ -141,9 +142,9 @@ public class FortPanel extends JPanel {
                         eventOccurred = true; // Set to true to indicate the special event has occurred
                     } else {
                         // Normal dialogue
-                        if (LandmarkType.FORT_LARAMIE.getLandmark().isVisited()) {
+                        if (Landmark.FORT_LARAMIE.isVisited()) {
                             JOptionPane.showMessageDialog(null, "(You're met by a short young girl with blonde hair, you think her name might be Alice from locals chatting) Did you see all those indians last night? I swear there must have been hundreds of em");
-                        } else if (LandmarkType.FORT_OREGON.getLandmark().isVisited()) {
+                        } else if (Landmark.FORT_OREGON.isVisited()) {
                             JOptionPane.showMessageDialog(null, "(You're met by god?) So you finally made it, congratulations, we lost nearly all of our family and it looks like you almost shared the same fate. Now are you gonna play again?");
                         } else {
                             JOptionPane.showMessageDialog(null, "No one wanted to talk with you (Probably cause you stink)");

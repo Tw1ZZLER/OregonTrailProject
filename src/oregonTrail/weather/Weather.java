@@ -1,4 +1,4 @@
-package weather;
+package oregonTrail.weather;
 
 import java.util.Random;
 

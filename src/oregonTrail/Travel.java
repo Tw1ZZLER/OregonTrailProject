@@ -13,8 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import oregonTrail.landmark.Landmark;
-import oregonTrail.landmark.LandmarkType;
-import weather.WeatherZone;
+import oregonTrail.weather.WeatherZone;
 
 /**
  * Handles all logic related to traveling. Contains Swing timer for traveling
@@ -39,8 +38,8 @@ public class Travel {
 	
 	public Travel(OregonTrail oregonTrail) {
 		this.oregonTrail = oregonTrail;
-		this.nextLandmark = LandmarkType.KANSAS_RIVER.getLandmark(); // default to first landmark!
-		this.milesNextLandmark = LandmarkType.KANSAS_RIVER.getLandmark().getDistanceFromPrevious();
+		this.nextLandmark = Landmark.KANSAS_RIVER; // default to first landmark!
+		this.milesNextLandmark = Landmark.KANSAS_RIVER.getDistanceFromPrevious();
 	}
 	
 	/**

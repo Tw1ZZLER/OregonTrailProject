@@ -1,7 +1,5 @@
 package oregonTrail.landmark;
 
-import javax.swing.ImageIcon;
-
 /**
  * Enumerated type for all Landmarks in the game
  * @author Corbin Hibler
@@ -9,14 +7,17 @@ import javax.swing.ImageIcon;
  * @filename LandmarkType.java
  */
 public enum LandmarkType {
-	KANSAS_RIVER   (new River("Kansas River Crossing", new ImageIcon(LandmarkType.class.getResource("src/images/KansasRiver.jpg")), 100)),
-	BIG_BLUE_RIVER (new River("Big Blue River Crossing", new ImageIcon(LandmarkType.class.getResource("src/images/BigBlueRiver.jpg")), 150)),
-	FORT_STRONG    (new Fort("Fort Strong", new ImageIcon(LandmarkType.class.getResource("src/images/FortStrong.jpg")), 250)),
-	ASH_HOLLOW     (new Landmark("Ash Hollow", new ImageIcon(LandmarkType.class.getResource("src/images/AshHollow.jpg")), 400)),
-	CHIMNEY_ROCK   (new Landmark("Chimney Rock", new ImageIcon(LandmarkType.class.getResource("src/images/ChimneyRock.jpg")), 600)),
-	FORT_LARAMIE   (new Fort("Fort Laramie", new ImageIcon(LandmarkType.class.getResource("src/images/FortLaramie.jpg")), 700)),
-	FORT_OREGON    (new Fort("Fort Oregon", new ImageIcon(LandmarkType.class.getResource("src/images/FortOregon.jpg")), 2000));
+// Enum causes errors at the moment, needs a later fix but right now we need it to work
+//	KANSAS_RIVER   (new River("Kansas River Crossing", new ImageIcon(LandmarkType.class.getResource("src/images/KansasRiver.jpg")), 100)),
+//	BIG_BLUE_RIVER (new River("Big Blue River Crossing", new ImageIcon(LandmarkType.class.getResource("src/images/BigBlueRiver.jpg")), 150)),
+//	FORT_STRONG    (new Fort("Fort Strong", new ImageIcon(LandmarkType.class.getResource("src/images/FortStrong.jpg")), 250)),
+//	ASH_HOLLOW     (new Landmark("Ash Hollow", new ImageIcon(LandmarkType.class.getResource("src/images/AshHollow.jpg")), 400)),
+//	CHIMNEY_ROCK   (new Landmark("Chimney Rock", new ImageIcon(LandmarkType.class.getResource("src/images/ChimneyRock.jpg")), 600)),
+//	FORT_LARAMIE   (new Fort("Fort Laramie", new ImageIcon(LandmarkType.class.getResource("src/images/FortLaramie.jpg")), 700)),
+//	FORT_OREGON    (new Fort("Fort Oregon", new ImageIcon(LandmarkType.class.getResource("src/images/FortOregon.jpg")), 2000));
 
+	PLACEHOLDER (null);
+	
 	private final Landmark landmark;
 	
 	/**

@@ -19,7 +19,7 @@ import javax.swing.Timer;
 
 import oregonTrail.landmark.*;
 import oregonTrail.panel.*;
-import weather.Weather;
+import oregonTrail.weather.Weather;
 
 /**
  * Main class containing all game logic for switching between panels and instantiating panels.
