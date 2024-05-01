@@ -128,7 +128,6 @@ public class Weather {
     
     public int calcTemperature() {
     	int randomModifier = rand.nextInt(weatherZone.getTempModifier());
-    	int zone;
     	int month = oregonTrail.getTravelState().getMonth();
        	// Switch to check which month it is. Uses a modifier from the location to change the temperature of the month.
 		switch (month) {
@@ -161,4 +160,40 @@ public class Weather {
     	// Error case
     	return 0;
     }
+    
+    public double calcPrecipitationChance() {
+    	double chance = 0;
+    	// get base rain chance based on zone
+    	switch(this.getWeatherZone()) {
+    		case ZONE_1:
+    			chance += .1;
+    		
+    		case ZONE_2:
+    			chance += .05;
+    			
+    		case ZONE_3,ZONE_4,ZONE_5:
+    			chance += .025;
+    		
+    		case ZONE_6:
+    			chance += .2;
+    	}
+    	
+    	// add/subtract rain chance based on month
+    	switch(oregonTrail.getTravelState().getMonth()) {
+    	case 12, 1, 2, 3:
+    		chance += .05;
+    	
+    	case 4, 5, 6:
+    		chance += .07;
+    	
+    	case 7, 8:
+    		chance -= .02;
+    	
+    	case 9, 10, 11:
+    		chance += .03;
+    	}
+    	
+    	return chance;
+    }
+    
 }
