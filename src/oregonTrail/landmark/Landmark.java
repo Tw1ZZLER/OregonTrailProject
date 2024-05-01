@@ -35,12 +35,6 @@ public class Landmark {
 		KANSAS_RIVER, BIG_BLUE_RIVER, FORT_STRONG, ASH_HOLLOW,FORT_LARAMIE, CHIMNEY_ROCK, FORT_OREGON
 	));
 	
-// Enum causes error that cannot be fixed at the current moment, leave this here for later fix:
-//	public static List<Landmark> landmarkList = Arrays.stream(LandmarkType.values())
-//            							  .filter(Objects::nonNull)
-//	                                      .map(LandmarkType::getLandmark)
-//	                                      .collect(Collectors.toList());
-	
 	public Landmark(String name, ImageIcon picture, int distanceFromStart) {
 		this.name = name;
 		this.picture = picture;
