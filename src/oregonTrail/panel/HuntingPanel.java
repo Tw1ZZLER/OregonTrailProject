@@ -91,7 +91,7 @@ public class HuntingPanel extends JPanel {
                 enemyAttackTimer.setDelay(10000); // Bison attacks every 10 seconds
                 break;
             case 5:
-                enemyHealth = 999; // LaurieMoo
+                enemyHealth = 0; // LaurieMoo
                 enemyType = "LaurieMoo";
                 enemyLabel.setText(enemyType + " Health: " + enemyHealth);
                 rotateSprite(laurieMooImage);
@@ -281,7 +281,7 @@ public class HuntingPanel extends JPanel {
                         case "LaurieMoo":
                             // LaurieMoo attacks every 20 seconds and deals 999 damage
                             if (!blocking) {
-                                playerHealth -= 999;
+                                playerHealth -= -1;
                                 playerHealthValueLabel.setText(Integer.toString(playerHealth));
                             }
                             break;
