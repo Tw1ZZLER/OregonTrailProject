@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import net.miginfocom.swing.MigLayout;
+import oregonTrail.Health;
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.Landmark;
 
@@ -45,6 +46,7 @@ public class TravelPanel extends JPanel {
     private JLabel lblNameOfNext;
     private JLabel lblNextLandmarkName;
     private JLabel lblImage;
+    private Health health;
     
     
     /**
@@ -65,7 +67,7 @@ public class TravelPanel extends JPanel {
 
     /**
      * Sets text of health label
-     * @param string Descriptive string of health condition
+     * @param string Descriptive string of health conditionprivate Health health;
      */
     public void setHealthText(String string) {
         lblHealth.setText(string);
@@ -114,6 +116,7 @@ public class TravelPanel extends JPanel {
 	 * @param OregonTrail oregonTrail object required for the game
 	 */
 	public TravelPanel(OregonTrail oregonTrail) {
+		health = new Health(); // Initialize the Health instance
 		setOpaque(false);
 		setLayout(new MigLayout("", "[50.00%:50.00%:50.00%,grow][50.00%:50.00%:50.00%,grow,right]", "[15.00%:50.00%:50.00%,grow,top][27px][][grow 25][grow 25][grow 25][grow 25][grow 25][grow 25][27px]"));
 		
@@ -213,4 +216,9 @@ public class TravelPanel extends JPanel {
 		add(lblWeatherLabel, "cell 0 3,alignx right,aligny center");
 		add(btnContinue, "cell 0 9 2 1,growx,aligny bottom");
     }
+	// Method to set the health label
+	public void updateHealthLabel() {
+	    lblHealth.setText(health.getGeneralHealthAsString());
+	}
+
 }

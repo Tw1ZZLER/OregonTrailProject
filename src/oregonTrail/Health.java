@@ -99,4 +99,23 @@ public class Health {
             System.exit(0);
         }
     }
+
+    /**
+     * Gets the general health of the party member.
+     *
+     * @return The general health of the party member.
+     */
+    public int getGeneralHealth1() {
+        return generalHealth;
+    }
+
+
+    /**
+     * Returns the general health as a string.
+     * 
+     * @return The general health as a string.
+     */
+    public String getGeneralHealthAsString() {
+        return Integer.toString(generalHealth);
+    }
 }
