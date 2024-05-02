@@ -2,6 +2,7 @@ package oregonTrail.panel;
 
 import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
+import oregonTrail.Health;
 import oregonTrail.OregonTrail;
 import java.awt.Font;
 
@@ -31,6 +32,7 @@ public class TrailMenuPanel extends JPanel {
     private JButton huntButton;
     private JButton paceButton;
     private JLabel foodRationingValueLabel;
+    private Health health;
 
     /**
      * Constructs a TrailMenuPanel with the specified OregonTrail instance.
@@ -107,4 +109,7 @@ public class TrailMenuPanel extends JPanel {
     public void setDateText(String string) {
         dateValueLabel.setText(string);
     }
+    public void updateHealthLabel() {
+	    healthValueLabel.setText(health.getGeneralHealthAsString());
+	}
 }
