@@ -28,6 +28,7 @@ public class TrailMenuPanel extends JPanel {
     private JButton checkSuppliesButton;
     private JButton lookMapButton;
     private JButton changeRationsButton;
+    private JButton changePaceButton;
     private JButton restButton;
     private JButton tradeButton;
     private JButton huntButton;
@@ -42,7 +43,7 @@ public class TrailMenuPanel extends JPanel {
     public TrailMenuPanel(OregonTrail pOregonTrail) {
         this.oregonTrail = pOregonTrail;
         
-        setLayout(new MigLayout("wrap 2", "[grow]10[grow]", "[grow]10[]10[]10[]10[]10[]10[]10[]10[]10[]10[]10[]10[]"));
+        setLayout(new MigLayout("wrap 2", "[grow]10[grow]", "[grow]10[]10[]10[]10[]10[]10[]10[]10[]10[]10[]10[]10[]10[]"));
         
 		lblSituation = new JLabel("THE SITUATION");
 		lblSituation.setFont(new Font("Impact", Font.BOLD, 72));
@@ -94,41 +95,47 @@ public class TrailMenuPanel extends JPanel {
 		
 		// Add action listeners to buttons
 		continueButton.addActionListener(e -> oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL));
+        changePaceButton = new JButton("Change Pace");
+        changePaceButton.setBackground(Color.BLACK);
+        changePaceButton.setForeground(Color.WHITE);
+        changePaceButton.setFont(new Font("Impact", Font.PLAIN, 24));
+        add(changePaceButton, "cell 0 6 2 1,growx");
+        changePaceButton.addActionListener(e -> paceValueLabel.setText(oregonTrail.WAGON.travelSpeedDialog(TrailMenuPanel.this)));
         checkSuppliesButton = new JButton("Check Supplies");
         checkSuppliesButton.setBackground(Color.BLACK);
         checkSuppliesButton.setForeground(Color.WHITE);
         checkSuppliesButton.setFont(new Font("Impact", Font.PLAIN, 24));
-        add(checkSuppliesButton, "cell 0 6 2 1,growx");
+        add(checkSuppliesButton, "cell 0 7 2 1,growx");
         checkSuppliesButton.addActionListener(e -> oregonTrail.openPanel(oregonTrail.SUPPLIES_PANEL));
         lookMapButton = new JButton("Look at Map");
         lookMapButton.setBackground(Color.BLACK);
         lookMapButton.setForeground(Color.WHITE);
         lookMapButton.setFont(new Font("Impact", Font.PLAIN, 24));
-        add(lookMapButton, "cell 0 7 2 1,growx");
+        add(lookMapButton, "cell 0 8 2 1,growx");
         lookMapButton.addActionListener(e -> System.out.println("Look at Map button clicked"));
         changeRationsButton = new JButton("Change Food Rations");
         changeRationsButton.setBackground(Color.BLACK);
         changeRationsButton.setForeground(Color.WHITE);
         changeRationsButton.setFont(new Font("Impact", Font.PLAIN, 24));
-        add(changeRationsButton, "cell 0 8 2 1,growx");
+        add(changeRationsButton, "cell 0 9 2 1,growx");
         changeRationsButton.addActionListener(e -> oregonTrail.WAGON.foodConsumptionDialog(TrailMenuPanel.this));
         restButton = new JButton("Stop to Rest");
         restButton.setBackground(Color.BLACK);
         restButton.setForeground(Color.WHITE);
         restButton.setFont(new Font("Impact", Font.PLAIN, 24));
-        add(restButton, "cell 0 9 2 1,growx");
-        restButton.addActionListener(e -> System.out.println("Stop to Rest button clicked"));
+        add(restButton, "cell 0 10 2 1,growx");
+        restButton.addActionListener(e -> oregonTrail.getTravelState().rest(this));
         tradeButton = new JButton("Attempt to Trade");
         tradeButton.setBackground(Color.BLACK);
         tradeButton.setForeground(Color.WHITE);
         tradeButton.setFont(new Font("Impact", Font.PLAIN, 24));
-        add(tradeButton, "cell 0 10 2 1,growx");
+        add(tradeButton, "cell 0 11 2 1,growx");
         tradeButton.addActionListener(e -> oregonTrail.openPanel(oregonTrail.TRADE_PANEL));
         huntButton = new JButton("Hunt for Food");
         huntButton.setBackground(Color.BLACK);
         huntButton.setForeground(Color.WHITE);
         huntButton.setFont(new Font("Impact", Font.PLAIN, 24));
-        add(huntButton, "cell 0 11 2 1,growx");
+        add(huntButton, "cell 0 12 2 1,growx");
         huntButton.addActionListener(e -> oregonTrail.openPanel(oregonTrail.huntingPanel));
     }
 

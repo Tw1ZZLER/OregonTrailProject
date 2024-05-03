@@ -149,8 +149,6 @@ public class TravelPanel extends JPanel {
 		
 		// Scale wagon image appropriately
 		ImageIcon imageIcon = new ImageIcon("src/images/wagon.png");
-//		Image scaledImage = imageIcon.getImage().getScaledInstance(1200, 300, Image.SCALE_SMOOTH);
-//		ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
 		lblImage.setIcon(imageIcon);
 		btnSizeUpThe.setBackground(Color.BLACK);
 		add(btnSizeUpThe, "cell 0 1 2 1,growx,aligny center");

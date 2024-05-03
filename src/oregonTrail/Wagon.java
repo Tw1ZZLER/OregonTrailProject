@@ -131,7 +131,7 @@ public class Wagon {
      */
     public String travelSpeedDialog(JPanel panel) {
         int travelSpeed = DEFAULT_TRAVEL_SPEED;
-        String speedInput = JOptionPane.showInputDialog(panel, "Enter travel speed (miles per day):");
+        String speedInput = JOptionPane.showInputDialog(panel, "Enter travel speed (miles per day, 12-20):");
         try {
             travelSpeed = Integer.parseInt(speedInput);
             if (travelSpeed < 12 || travelSpeed > 20) {
