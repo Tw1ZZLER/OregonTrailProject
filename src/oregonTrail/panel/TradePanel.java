@@ -36,12 +36,20 @@ public class TradePanel extends JPanel {
 
         // Initialize trade offer label
         tradeOfferLabel = new JLabel();
+        tradeOfferLabel.setOpaque(true);
+        tradeOfferLabel.setFont(new Font("Impact", Font.PLAIN, 24));
+        tradeOfferLabel.setBackground(Color.BLACK);
+        tradeOfferLabel.setForeground(Color.WHITE);
+        tradeOfferLabel.setText("really long placeholder text");
         tradeOfferLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(tradeOfferLabel, BorderLayout.CENTER);
 
         // Initialize buttons
         JPanel buttonPanel = new JPanel();
         yesButton = new JButton("Yes");
+        yesButton.setBackground(Color.BLACK);
+        yesButton.setForeground(Color.WHITE);
+        yesButton.setFont(new Font("Impact", Font.BOLD, 48));
         yesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,6 +61,9 @@ public class TradePanel extends JPanel {
         buttonPanel.add(yesButton);
 
         noButton = new JButton("No");
+        noButton.setBackground(Color.BLACK);
+        noButton.setForeground(Color.WHITE);
+        noButton.setFont(new Font("Impact", Font.BOLD, 48));
         noButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,6 +75,9 @@ public class TradePanel extends JPanel {
         buttonPanel.add(noButton);
 
         closeButton = new JButton("Close");
+        closeButton.setBackground(Color.BLACK);
+        closeButton.setForeground(Color.WHITE);
+        closeButton.setFont(new Font("Impact", Font.BOLD, 48));
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

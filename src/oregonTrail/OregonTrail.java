@@ -40,6 +40,7 @@ public class OregonTrail implements Serializable {
     public final StartupPanel STARTUP_PANEL;
     public final TravelPanel TRAVEL_PANEL;
     public final TrailMenuPanel TRAIL_MENU_PANEL;
+    public final LoadedWagonPanel SUPPLIES_PANEL;
     public HuntingPanel huntingPanel;
     public final TradePanel TRADE_PANEL;
     public final ShopPanel SHOP_PANEL;
@@ -83,6 +84,7 @@ public class OregonTrail implements Serializable {
         travelState = new Travel(this);
         weatherState = new Weather(this);
         TRAIL_MENU_PANEL = new TrailMenuPanel(this);
+        SUPPLIES_PANEL = new LoadedWagonPanel(this);
         TRADE_PANEL = new TradePanel(this);
         PAUSE_DIALOG = new PauseDialog(this);
         MAIN_MENU = new MainMenuPanel(this);
@@ -238,7 +240,6 @@ public class OregonTrail implements Serializable {
                 imagePath = "src/images/mapFortLaramie.png";
                 break;
             default:
-                System.out.println("Map not found for the specified landmark.");
                 return;
         }
     }

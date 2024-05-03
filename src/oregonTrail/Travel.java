@@ -30,7 +30,7 @@ public class Travel {
 	private Landmark nextLandmark;
 	private static Random rand = new Random();
 	private Calendar date = new GregorianCalendar(1848, 8, 11); // Set to August 11, 1848
-	private Timer timer = new Timer(1000, new ActionListener() {
+	private Timer timer = new Timer(50, new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			travelCycle();
 		}

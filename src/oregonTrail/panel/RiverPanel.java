@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.River;
+import java.awt.Color;
 
 /**
  * Panel class representing options available when located at a river in the Oregon Trail game.
@@ -47,9 +48,12 @@ public class RiverPanel extends JPanel {
         this.riverImageIcon = new ImageIcon(scaledImage);
         
         setLayout(new BorderLayout());
-        JLabel welcomeLabel = new JLabel("Welcome to the " + riverName);
+        JLabel welcomeLabel = new JLabel("WELCOME TO THE " + riverName);
+        welcomeLabel.setOpaque(true);
+        welcomeLabel.setBackground(Color.BLACK);
+        welcomeLabel.setForeground(Color.WHITE);
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        welcomeLabel.setFont(new Font("Impact", Font.BOLD, 30));
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Create image label and add it to the top half
@@ -62,12 +66,33 @@ public class RiverPanel extends JPanel {
 
         // Create buttons
         JButton openMapButton = new JButton("Open Map");
+        openMapButton.setBackground(Color.BLACK);
+        openMapButton.setForeground(Color.WHITE);
+        openMapButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton viewRiverDataButton = new JButton("River Stats");
+        viewRiverDataButton.setBackground(Color.BLACK);
+        viewRiverDataButton.setForeground(Color.WHITE);
+        viewRiverDataButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton changeRateButton = new JButton("Change Rate of Travel");
+        changeRateButton.setBackground(Color.BLACK);
+        changeRateButton.setForeground(Color.WHITE);
+        changeRateButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton changeRationsButton = new JButton("Change Rations");
+        changeRationsButton.setBackground(Color.BLACK);
+        changeRationsButton.setForeground(Color.WHITE);
+        changeRationsButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton attemptToCrossButton = new JButton("Attempt to Cross");
+        attemptToCrossButton.setBackground(Color.BLACK);
+        attemptToCrossButton.setForeground(Color.WHITE);
+        attemptToCrossButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton caulkWagonButton = new JButton("Caulk the Wagon");
+        caulkWagonButton.setBackground(Color.BLACK);
+        caulkWagonButton.setForeground(Color.WHITE);
+        caulkWagonButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton waitButton = new JButton("Wait");
+        waitButton.setBackground(Color.BLACK);
+        waitButton.setForeground(Color.WHITE);
+        waitButton.setFont(new Font("Impact", Font.PLAIN, 20));
 
         // Add buttons to button panel
         buttonPanel.add(openMapButton);

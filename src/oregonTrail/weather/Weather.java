@@ -127,7 +127,7 @@ public class Weather {
     
     
     public int calcTemperature() {
-    	int randomModifier = rand.nextInt(weatherZone.getTempModifier());
+    	int randomModifier = rand.nextInt(20) + weatherZone.getTempModifier();
     	int month = oregonTrail.getTravelState().getMonth();
        	// Switch to check which month it is. Uses a modifier from the location to change the temperature of the month.
 		switch (month) {

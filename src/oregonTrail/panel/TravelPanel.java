@@ -121,6 +121,7 @@ public class TravelPanel extends JPanel {
 		setLayout(new MigLayout("", "[50.00%:50.00%:50.00%,grow][50.00%:50.00%:50.00%,grow,right]", "[15.00%:50.00%:50.00%,grow,top][27px][][grow 25][grow 25][grow 25][grow 25][grow 25][grow 25][27px]"));
 		
 		btnContinue = new JButton("GO!!!!!!!!");
+		btnContinue.setFont(new Font("Impact", Font.PLAIN, 36));
 		btnContinue.setPreferredSize(new Dimension(77, 50));
 		btnContinue.setForeground(Color.WHITE);
 		btnContinue.setBackground(Color.BLACK);
@@ -131,6 +132,8 @@ public class TravelPanel extends JPanel {
 		});
 		
 		btnSizeUpThe = new JButton("Size Up the Situation");
+		btnSizeUpThe.setFont(new Font("Impact", Font.PLAIN, 36));
+		btnSizeUpThe.setForeground(Color.WHITE);
 		btnSizeUpThe.setMinimumSize(new Dimension(159, 45));
 		btnSizeUpThe.setPreferredSize(new Dimension(159, 50));
 		btnSizeUpThe.addActionListener(new ActionListener() {
@@ -140,6 +143,7 @@ public class TravelPanel extends JPanel {
 		});
 		
 		lblImage = new JLabel();
+		lblImage.setFont(new Font("Impact", Font.PLAIN, 12));
 		add(lblImage, "cell 0 0 2 1");
 		
 		// Scale wagon image appropriately
@@ -152,66 +156,66 @@ public class TravelPanel extends JPanel {
 		
 		lblDateLabel = new JLabel("Date:");
 		lblDateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDateLabel.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblDateLabel.setFont(new Font("Impact", Font.PLAIN, 24));
 		add(lblDateLabel, "cell 0 2,alignx right");
 		
 		lblDate = new JLabel("August 11, 1848");
-		lblDate.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblDate.setFont(new Font("Impact", Font.PLAIN, 24));
 		add(lblDate, "cell 1 2,alignx left");
 		
 		lblWeather = new JLabel("Severe Thunderstorm");
-		lblWeather.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblWeather.setFont(new Font("Impact", Font.PLAIN, 24));
 		add(lblWeather, "cell 1 3,alignx left");
 		
 		lblHealth = new JLabel("Fair");
-		lblHealth.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblHealth.setFont(new Font("Impact", Font.PLAIN, 24));
 		add(lblHealth, "cell 1 4,alignx left");
 		
 		lblFood = new JLabel(oregonTrail.WAGON.getTotalFoodWeight() + " pounds");
-		lblFood.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblFood.setFont(new Font("Impact", Font.PLAIN, 24));
 		add(lblFood, "cell 1 5,alignx left");
 		
 		lblNameOfNext = new JLabel("Name of Next Landmark:");
 		lblNameOfNext.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNameOfNext.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblNameOfNext.setFont(new Font("Impact", Font.PLAIN, 24));
 		add(lblNameOfNext, "cell 0 7,alignx right");
 		
 		lblNextLandmarkName = new JLabel(Landmark.KANSAS_RIVER.getName());
 		lblNextLandmarkName.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNextLandmarkName.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblNextLandmarkName.setFont(new Font("Impact", Font.PLAIN, 24));
 		add(lblNextLandmarkName, "cell 1 7,alignx left");
 		
 		lblDistanceTraveledLabel = new JLabel("Distance Traveled:");
-		lblDistanceTraveledLabel.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblDistanceTraveledLabel.setFont(new Font("Impact", Font.PLAIN, 24));
 		lblDistanceTraveledLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		add(lblDistanceTraveledLabel, "cell 0 8,alignx right");
 		
 		lblDistanceTraveled = new JLabel("0 miles");
-		lblDistanceTraveled.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblDistanceTraveled.setFont(new Font("Impact", Font.PLAIN, 24));
 		add(lblDistanceTraveled, "cell 1 8,alignx left");
 		
 		lblNextLandmarkLabel = new JLabel("Next Landmark:");
-		lblNextLandmarkLabel.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblNextLandmarkLabel.setFont(new Font("Impact", Font.PLAIN, 24));
 		lblNextLandmarkLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		add(lblNextLandmarkLabel, "cell 0 6,alignx right,aligny center");
 		
 		lblNextLandmarkMiles = new JLabel("0 miles");
-		lblNextLandmarkMiles.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblNextLandmarkMiles.setFont(new Font("Impact", Font.PLAIN, 24));
 		add(lblNextLandmarkMiles, "cell 1 6,alignx left");
 		
 		lblHealthLabel = new JLabel("Health:");
 		lblHealthLabel.setOpaque(true);
-		lblHealthLabel.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblHealthLabel.setFont(new Font("Impact", Font.PLAIN, 24));
 		lblHealthLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblHealthLabel, "cell 0 4,alignx right,aligny center");
 		
 		lblFoodLabel = new JLabel("Food:");
-		lblFoodLabel.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblFoodLabel.setFont(new Font("Impact", Font.PLAIN, 24));
 		lblFoodLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblFoodLabel, "cell 0 5,alignx right,aligny center");
 		
 		lblWeatherLabel = new JLabel("Weather:");
-		lblWeatherLabel.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblWeatherLabel.setFont(new Font("Impact", Font.PLAIN, 24));
 		lblWeatherLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblWeatherLabel, "cell 0 3,alignx right,aligny center");
 		add(btnContinue, "cell 0 9 2 1,growx,aligny bottom");

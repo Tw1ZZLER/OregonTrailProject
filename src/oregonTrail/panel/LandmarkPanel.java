@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.Landmark;
+import java.awt.Color;
 
 /**
  * Panel class representing options available when located at a landmark in the Oregon Trail game.
@@ -59,9 +60,12 @@ public class LandmarkPanel extends JPanel {
         
 
         setLayout(new BorderLayout());
-        JLabel welcomeLabel = new JLabel("Welcome to " + landmarkName +"!!!");
+        JLabel welcomeLabel = new JLabel("WELCOME TO " + landmarkName +"!!!");
+        welcomeLabel.setOpaque(true);
+        welcomeLabel.setBackground(Color.BLACK);
+        welcomeLabel.setForeground(Color.WHITE);
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Set font size to 24
+        welcomeLabel.setFont(new Font("Impact", Font.BOLD, 30)); // Set font size to 24
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Create image label and add it to the top half
@@ -74,11 +78,29 @@ public class LandmarkPanel extends JPanel {
 
         // Create buttons
         JButton openMapButton = new JButton("Open Map");
-        JButton changeRateButton = new JButton("Change Rate of Travel");
+        openMapButton.setBackground(Color.BLACK);
+        openMapButton.setForeground(Color.WHITE);
+        openMapButton.setFont(new Font("Impact", Font.PLAIN, 20));
+        JButton changeRateButton = new JButton("Change Pace");
+        changeRateButton.setBackground(Color.BLACK);
+        changeRateButton.setForeground(Color.WHITE);
+        changeRateButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton changeRationsButton = new JButton("Change Rations");
+        changeRationsButton.setBackground(Color.BLACK);
+        changeRationsButton.setForeground(Color.WHITE);
+        changeRationsButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton attemptTradeButton = new JButton("Attempt to Trade");
+        attemptTradeButton.setBackground(Color.BLACK);
+        attemptTradeButton.setForeground(Color.WHITE);
+        attemptTradeButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton continueButton = new JButton("Continue Trail");
+        continueButton.setBackground(Color.BLACK);
+        continueButton.setForeground(Color.WHITE);
+        continueButton.setFont(new Font("Impact", Font.PLAIN, 20));
         JButton talkToLocals = new JButton("Talk to Locals");
+        talkToLocals.setBackground(Color.BLACK);
+        talkToLocals.setForeground(Color.WHITE);
+        talkToLocals.setFont(new Font("Impact", Font.PLAIN, 20));
 
         // Add buttons to button panel
         buttonPanel.add(openMapButton);
