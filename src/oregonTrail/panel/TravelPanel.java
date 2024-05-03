@@ -143,14 +143,15 @@ public class TravelPanel extends JPanel {
 		});
 		
 		lblImage = new JLabel();
+		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImage.setFont(new Font("Impact", Font.PLAIN, 12));
-		add(lblImage, "cell 0 0 2 1");
+		add(lblImage, "cell 0 0 2 1,alignx center,aligny center");
 		
 		// Scale wagon image appropriately
 		ImageIcon imageIcon = new ImageIcon("src/images/wagon.png");
-		Image scaledImage = imageIcon.getImage().getScaledInstance(1200, 300, Image.SCALE_SMOOTH);
-		ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
-		lblImage.setIcon(scaledImageIcon);
+//		Image scaledImage = imageIcon.getImage().getScaledInstance(1200, 300, Image.SCALE_SMOOTH);
+//		ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+		lblImage.setIcon(imageIcon);
 		btnSizeUpThe.setBackground(Color.BLACK);
 		add(btnSizeUpThe, "cell 0 1 2 1,growx,aligny center");
 		

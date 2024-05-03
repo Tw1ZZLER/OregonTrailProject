@@ -8,7 +8,7 @@ import oregonTrail.OregonTrail;
  * Contains information related to the current state of the weather.
  * Uses WeatherType.java for enumerated type.
  * 
- * @author Corbin Hibler
+ * @author Corbin Hibler, Ethan Vaughn
  * @date 2024-04-30
  * @filename Weather.java
  */
@@ -125,7 +125,12 @@ public class Weather {
        } 
     }
     
-    
+    /**
+     * Method to calculate the current temperature based on weather information
+     * @return Current temperature in Fahreinheit
+     * @author Ethan Vaughn
+     * @date 2024-05-03
+     */
     public int calcTemperature() {
     	int randomModifier = rand.nextInt(20) + weatherZone.getTempModifier();
     	int month = oregonTrail.getTravelState().getMonth();
@@ -161,6 +166,12 @@ public class Weather {
     	return 0;
     }
     
+    /**
+     * Method to return the chance of precipitation (rain/snow)
+     * @return Percentage chance in decimal form
+     * @author Ethan Vaughn
+     * @date 2024-05-03
+     */
     public double calcPrecipitationChance() {
     	double chance = 0;
     	// get base rain chance based on zone

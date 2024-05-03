@@ -20,19 +20,47 @@ public class Landmark {
 	protected int distanceFromStart;
 	protected int distanceFromPrevious;
 	protected int distanceToNext;
-	protected boolean visited;
+	protected boolean isVisited;
 	
-	public static final Landmark KANSAS_RIVER = new River("Kansas River Crossing", new ImageIcon("src/images/KansasRiver.jpg"), 100);
-	public static final Landmark BIG_BLUE_RIVER = new River("Big Blue River Crossing", new ImageIcon("src/images/BigBlueRiver.jpg"), 150);
-	public static final Landmark FORT_STRONG = new Fort("Fort Strong", new ImageIcon("src/images/FortStrong.jpg"), 250);
-	public static final Landmark ASH_HOLLOW = new Landmark("Ash Hollow", new ImageIcon("src/images/AshHollow.jpg"), 400);
-	public static final Landmark CHIMNEY_ROCK = new Landmark("Chimney Rock", new ImageIcon("src/images/ChimneyRock.jpg"), 600);
-	public static final Landmark FORT_LARAMIE = new Fort("Fort Laramie", new ImageIcon("src/images/FortLaramie.jpg"), 700);
-	public static final Landmark FORT_OREGON = new Fort("Fort Oregon", new ImageIcon("src/images/FortOregon.jpg"), 2000);
+	public static final Landmark KANSAS_RIVER      = new River   ("Kansas River Crossing", new ImageIcon("src/images/KansasRiver.jpg"), 100);
+	public static final Landmark BIG_BLUE_RIVER    = new River   ("Big Blue River Crossing", new ImageIcon("src/images/BigBlueRiver.jpg"), 150);
+	public static final Landmark FORT_STRONG       = new Fort    ("Fort Strong", new ImageIcon("src/images/FortStrong.jpg"), 250);
+	public static final Landmark ASH_HOLLOW        = new Landmark("Ash Hollow", new ImageIcon("src/images/AshHollow.jpg"), 400);
+	public static final Landmark CHIMNEY_ROCK      = new Landmark("Chimney Rock", new ImageIcon("src/images/ChimneyRock.jpg"), 500);
+	public static final Landmark FORT_LARAMIE      = new Fort    ("Fort Laramie", new ImageIcon("src/images/FortLaramie.jpg"), 600);
+	public static final Landmark INDEPENDENCE_ROCK = new Landmark("Independence Rock", new ImageIcon("src/images/IndependenceRock.jpg"), 800);
+	public static final Landmark SOUTH_PASS		   = new Landmark("South Pass", new ImageIcon("src/images/SouthPass.jpg"), 1050);
+	public static final Landmark GREEN_RIVER       = new River   ("Green River Crossing", new ImageIcon("src/images/GreenRiver.jpg"), 1150);
+	public static final Landmark FORT_BRIDGER	   = new Fort    ("Fort Bridger", new ImageIcon("src/images/FortBridger.jpg"), 1200);
+	public static final Landmark SODA_SPRINGS      = new Landmark("Soda Springs", new ImageIcon("src/images/SodaSprings.jpg"), 1250);
+	public static final Landmark FORT_HALL         = new Fort    ("Fort Hall", new ImageIcon("src/images/FortHall.jpg"), 1300);
+	public static final Landmark SNAKE_RIVER       = new River   ("Snake River Crossing", new ImageIcon("src/images/SnakeRiver.jpg"), 1450);
+	public static final Landmark FORT_BOISE        = new Fort    ("Fort Boise", new ImageIcon("src/images/FortBoise.jpg"), 1550);
+	public static final Landmark BLUE_MOUNTAINS    = new Landmark("Blue Mountains", new ImageIcon("src/images/BlueMountains.jpg"), 1650);
+	public static final Landmark FORT_WALLA_WALLA  = new Fort    ("Fort Walla Walla", new ImageIcon("src/images/FortWallaWalla.jpg"), 1750);
+	public static final Landmark THE_DALLES        = new Landmark("The Dalles", new ImageIcon("src/images/TheDalles.jpg"), 1900);
+	public static final Landmark OREGON_CITY       = new Fort    ("Fort Oregon", new ImageIcon("src/images/OregonCity.jpg"), 2000);
 	
 	// List of all landmarks in the game
 	public static final ArrayList<Landmark> landmarkList = new ArrayList<Landmark>(Arrays.asList(
-		KANSAS_RIVER, BIG_BLUE_RIVER, FORT_STRONG, ASH_HOLLOW,FORT_LARAMIE, CHIMNEY_ROCK, FORT_OREGON
+			KANSAS_RIVER,      
+			BIG_BLUE_RIVER,    
+			FORT_STRONG,       
+			ASH_HOLLOW,       
+			CHIMNEY_ROCK,      
+			FORT_LARAMIE,      
+			INDEPENDENCE_ROCK, 
+			SOUTH_PASS,		   
+			GREEN_RIVER,       
+			FORT_BRIDGER,	   
+			SODA_SPRINGS,     
+			FORT_HALL,         
+			SNAKE_RIVER,
+			FORT_BOISE,        
+			BLUE_MOUNTAINS,    
+			FORT_WALLA_WALLA,  
+			THE_DALLES,        
+			OREGON_CITY
 	));
 	
 	public Landmark(String name, ImageIcon picture, int distanceFromStart) {
@@ -40,7 +68,7 @@ public class Landmark {
 		this.picture = picture;
 		System.out.println("Width: " + picture.getIconWidth() + ", Height: " + picture.getIconHeight());
 		this.distanceFromStart = distanceFromStart;
-		this.visited = false; // set by Travel class
+		this.isVisited = false; // set by Travel class
 	}
 
 	/**
@@ -104,10 +132,10 @@ public class Landmark {
 	/**
 	 * Set a landmark has having been visited already cannot be visited again.
 	 * Cannot set to false, must always be set to true.
-	 * @param visited the visited to set
+	 * @param isVisited the visited to set
 	 */
 	public void setVisited() {
-		this.visited = true;
+		this.isVisited = true;
 	}
 	
 
@@ -116,6 +144,6 @@ public class Landmark {
 	 * @return the visited
 	 */
 	public boolean isVisited() {
-		return visited;
+		return isVisited;
 	}
 }
