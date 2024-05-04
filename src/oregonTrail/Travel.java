@@ -92,6 +92,7 @@ public class Travel {
 	    // Update weather label for current weather
 	    String weatherString = oregonTrail.getWeatherState().getWeatherString();
 	    oregonTrail.TRAVEL_PANEL.setWeatherText(weatherString);
+	    oregonTrail.TRAIL_MENU_PANEL.setWeatherText(weatherString);
 	    
 	    // Update health
 	    // TODO
