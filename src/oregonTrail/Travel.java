@@ -9,6 +9,8 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Random;
 
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -29,7 +31,7 @@ public class Travel {
 	private int milesNextLandmark;
 	private Landmark nextLandmark;
 	private static Random rand = new Random();
-	private Calendar date = new GregorianCalendar(1848, 8, 11); // Set to August 11, 1848
+	private Calendar date = new GregorianCalendar(1848, 7, 11); // Set to August 11, 1848
 	private Timer timer = new Timer(50, new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			travelCycle();
@@ -43,6 +45,19 @@ public class Travel {
 	}
 	
 	/**
+	 * Increments the day by passed amount sets the labels accordingly
+	 * @param days The number of days to increment by
+	 */
+	private void incrementDate(int days) {
+		// Use GregorianCalendar library as way of keeping track of time, and update panel accordingly
+		date.add(GregorianCalendar.DAY_OF_MONTH, days);
+	    DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
+	    String formattedDate = dateFormat.format(date.getTime());
+	    oregonTrail.TRAVEL_PANEL.setDateText(formattedDate);
+	    oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
+	}
+	
+	/**
 	 * Function that gets called every time the Swing timer runs
 	 * Moves date forward, generates miles traveled, updates miles until next landmark,
 	 * and calculates food weight.
@@ -50,12 +65,7 @@ public class Travel {
 	 * @date 2024-04-09
 	 */
 	private void travelCycle() {
-		// Use GregorianCalendar library as way of keeping track of time, and update panel accordingly
-		date.add(GregorianCalendar.DAY_OF_MONTH, 1);
-	    DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
-	    String formattedDate = dateFormat.format(date.getTime());
-	    oregonTrail.TRAVEL_PANEL.setDateText(formattedDate);
-	    oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate);
+		incrementDate(1);
 	    
 	    // Generate miles generated and update label
 	    int milesTraveledCycle = rand.nextInt(oregonTrail.WAGON.getTravelSpeed());
@@ -66,12 +76,8 @@ public class Travel {
 	    milesNextLandmark -= milesTraveledCycle;
 	    oregonTrail.TRAVEL_PANEL.setNextLandmarkMilesText(milesNextLandmark);
 	    
-	    // Calculate new food weight and set accordingly based on the mathematical models used in the original game [1]
-	    // [1] R. P. Bouchard, “Chapter 16: Building the Mathematical Models,” in  R. Philip Bouchard; 1st edition (January 28, 2016), 
-	    int totalFoodWeight = oregonTrail.WAGON.getTotalFoodWeight();
-	    int newFoodWeight = (int) (totalFoodWeight-(oregonTrail.WAGON.getFoodConsumptionRate()*5)); 
-	    oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
-	    oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
+	    // Consumes food daily
+	    Food.consumeFood(oregonTrail);
 	    
 	    // Update WeatherZone based on miles traveled
 	    for (WeatherZone zone : WeatherZone.values()) {
@@ -113,6 +119,20 @@ public class Travel {
         }
     }
 
+    /**
+     * Function to rest (days go by without moving, increases health)
+     * @author Corbin Hibler
+     * @date 2024-03-05
+     */
+    public void rest(JComponent comp) {
+    	String restDaysString = JOptionPane.showInputDialog(comp, "Enter the amount of days you'd like to rest:");
+    	int restDays = Integer.parseInt(restDaysString);
+    	incrementDate(restDays);
+    	for (int i = 0; i < restDays; i++) {
+    		Food.consumeFood(oregonTrail);
+    	}
+    }
+    
     /**
      * Method to check if a landmark has been reached.
      * @author Corbin Hibler
