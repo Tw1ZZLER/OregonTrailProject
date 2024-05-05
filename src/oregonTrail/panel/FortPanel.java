@@ -127,7 +127,7 @@ public class FortPanel extends JPanel {
         changeRationsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                // oregonTrail.getTravelState().changeRations(this);
-            	  System.out.println("Change Rattions button clicked");
+            	  System.out.println("Change Rations button clicked");
             }
         });
 
