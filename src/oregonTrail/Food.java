@@ -39,6 +39,7 @@ public class Food extends Item {
 	    int totalFoodWeight = oregonTrail.WAGON.getTotalFoodWeight();
 	    int newFoodWeight = (int) (totalFoodWeight - (oregonTrail.WAGON.getFoodConsumptionRate() * 5)); 
 	    oregonTrail.TRAVEL_PANEL.setFoodText(newFoodWeight);
+	    oregonTrail.TRAIL_MENU_PANEL.setFoodText(newFoodWeight);
 	    oregonTrail.WAGON.setTotalFoodWeight(newFoodWeight);
     }
 }

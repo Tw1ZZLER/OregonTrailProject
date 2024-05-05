@@ -44,21 +44,14 @@ public class LandmarkPanel extends JPanel {
      */
     public LandmarkPanel(OregonTrail pOregonTrail, Landmark landmark) {
         this.oregonTrail = pOregonTrail;
-        pOregonTrail.getTravelState();
         this.landmarkName = landmark.getName();
         
         // Scale up image
-    	// Assuming river.getPicture() returns an ImageIcon
         ImageIcon originalIcon = landmark.getPicture();
         Image originalImage = originalIcon.getImage();
-
-        // Scale the image using getScaledInstance
         Image scaledImage = originalImage.getScaledInstance(1000, 500, Image.SCALE_SMOOTH);
-
-        // Convert the scaled Image back to ImageIcon
         this.landmarkImageIcon = new ImageIcon(scaledImage);
         
-
         setLayout(new BorderLayout());
         JLabel welcomeLabel = new JLabel("WELCOME TO " + landmarkName +"!!!");
         welcomeLabel.setOpaque(true);

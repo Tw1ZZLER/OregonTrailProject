@@ -21,7 +21,7 @@ public class Wagon {
     private ArrayList<Food> foodContents;
     private int totalWeight;
     private int totalFoodWeight;
-    public static final String[] FOOD_CONSUME_LEVELS = { "Sumo Wrestler", "Regular Joe", "Starving Homeless person" };
+    public static final String[] FOOD_CONSUME_LEVELS = { "Female Bodybuilder", "Regular Jane", "Starving Homeless Woman" };
     public static final int DEFAULT_TRAVEL_SPEED = 12;
     public static final int MAXIMUM_WEIGHT = 2400;
     public static final String[] itemNames = { "Apple Vinegar", "Bedroll", "Bacon", "Blacksmithing Tools", "Beans",
@@ -91,19 +91,18 @@ public class Wagon {
      */
     public String foodConsumptionDialog(JPanel panel) {
         String foodConsumptionOption = (String) JOptionPane.showInputDialog(panel, "Select food consumption level:",
-                "Food Consumption", JOptionPane.PLAIN_MESSAGE, null, Wagon.FOOD_CONSUME_LEVELS,
-                Wagon.FOOD_CONSUME_LEVELS[0]);
+                "Food Consumption", JOptionPane.PLAIN_MESSAGE, null, FOOD_CONSUME_LEVELS, FOOD_CONSUME_LEVELS[0]);
 
         // Determine food consumption rate based on user input
         double foodConsumptionRate;
         switch (foodConsumptionOption) {
-            case "Sumo Wrestler":
+            case "Female Bodybuilder":
                 foodConsumptionRate = 1.5;
                 break;
-            case "Regular Joe":
+            case "Regular Jane":
                 foodConsumptionRate = 1.0;
                 break;
-            case "Starving Homeless person":
+            case "Starving Homeless Woman":
                 foodConsumptionRate = 0.5;
                 break;
             default:

@@ -182,7 +182,7 @@ public class TravelPanel extends JPanel {
         lblDate.setFont(new Font("Impact", Font.PLAIN, 24));
         add(lblDate, "cell 1 2,alignx left");
         
-        lblWeather = new JLabel("Severe Thunderstorm");
+        lblWeather = new JLabel("Warm");
         lblWeather.setFont(new Font("Impact", Font.PLAIN, 24));
         add(lblWeather, "cell 1 3,alignx left");
         
@@ -239,6 +239,7 @@ public class TravelPanel extends JPanel {
         add(lblWeatherLabel, "cell 0 3,alignx right,aligny center");
         add(btnContinue, "cell 0 9 2 1,growx,aligny bottom");
     }
+    
     // Method to set the health label
     public void updateHealthLabel() {
         lblHealth.setText(health.getGeneralHealthAsString());
