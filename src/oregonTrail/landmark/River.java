@@ -3,9 +3,8 @@ package oregonTrail.landmark;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-
-import oregonTrail.panel.RiverPanel;
 
 /**
  * Subclass of Landmark for River landmarks
@@ -15,7 +14,6 @@ import oregonTrail.panel.RiverPanel;
  * @filename River.java
  */
 public class River extends Landmark {
-	
 	private int width;
 	private int height;
 	private int flow;
@@ -41,8 +39,8 @@ public class River extends Landmark {
 	 * @author Corbin Hibler
 	 * @date 2024-04-10
 	 */
-	public void viewRiverData(RiverPanel riverPanel) {
-		JOptionPane.showMessageDialog(riverPanel, "River Width: " + width + " ft" + "\nRiver Height: " + height + " ft" +  "\nRiver Flow: " + flow + " mph");
+	public void viewRiverData(JComponent comp) {
+		JOptionPane.showMessageDialog(comp, "River Width: " + width + " ft" + "\nRiver Height: " + height + " ft" +  "\nRiver Flow: " + flow + " mph");
 	}
 	
 	/**
@@ -51,12 +49,12 @@ public class River extends Landmark {
 	 * @author Ray Otto
 	 * @date 2024-03-29
 	 */
-	public void caulkWagon(RiverPanel riverPanel) {
+	public void caulkWagon(JComponent comp) {
         int randomNumber = rnd.nextInt(); // Generate random number between 1 and 100
         if (randomNumber <= 70) {
-        	JOptionPane.showMessageDialog(riverPanel, "You have successfully caulked the wagon!");
+        	JOptionPane.showMessageDialog(comp, "You have successfully caulked the wagon!");
         } else {
-            JOptionPane.showMessageDialog(riverPanel, "Your wagon sank to the bottom of the river");
+            JOptionPane.showMessageDialog(comp, "Your wagon sank to the bottom of the river");
             System.exit(0);
         }
 	}
@@ -67,13 +65,13 @@ public class River extends Landmark {
 	 * @author Ray Otto
 	 * @date 2024-03-25
 	 */
-	public void attemptToCross(RiverPanel riverPanel) {
+	public void attemptToCross(JComponent comp) {
         int random = (int)(Math.random() * 100) + 1; // Generate random number between 1 and 100
         if (random <= 70) {
-            JOptionPane.showMessageDialog(null, "You successfully crossed the river!");
+            JOptionPane.showMessageDialog(comp, "You successfully crossed the river!");
 
         } else {
-            JOptionPane.showMessageDialog(null, "Your wagon got swept away by the river!");
+            JOptionPane.showMessageDialog(comp, "Your wagon got swept away by the river!");
             System.exit(0);
         }
 	}
