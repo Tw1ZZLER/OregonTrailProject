@@ -195,4 +195,52 @@ public class Wagon {
         this.money += amount;
     }
 
+    /**
+     * Gets the amount of ammunition in the party's possession.
+     * 
+     * @return ammo The amount of ammunition stored in the wagon's itemContents array
+     */
+    public int getAmmoAmount() {
+    	int ammo = 0;
+    	
+    	for(Item i : itemContents) {
+    		if(i.name.equals("Ammunition")) {
+    			ammo++;
+    		}
+    	}    	
+    	return ammo;
+    }
+    
+    /**
+     * Gets the amount of clothes in the party's possession.
+     * 
+     * @return clothes The number of Items named "Clothing" in itemContents.
+     */
+    public int getClothingAmount() {
+    	int clothes = 0;
+    	
+    	for(Item i : itemContents) {
+    		if(i.name.equals("Clothing")) {
+    			clothes++;
+    		}
+    	}
+		return clothes;
+    }
+    
+    /**
+     * Gets the amount of oxen at the party's disposal.
+     * 
+     * @return oxen The amount of items named "Oxen" in itemContents
+     */
+    public int getOxenAmount() {
+    	int oxen = 0;
+    	
+    	for(Item i : itemContents) {
+    		if(i.name.equals("Oxen")) {
+    			oxen++;
+    		}
+    	}
+    	return oxen;
+    }
+    
 }
