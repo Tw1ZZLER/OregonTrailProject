@@ -5,7 +5,9 @@ import net.miginfocom.swing.MigLayout;
 import oregonTrail.Health;
 import oregonTrail.OregonTrail;
 import java.awt.Font;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -141,7 +143,23 @@ public class TrailMenuPanel extends JPanel {
         lookMapButton.setForeground(Color.WHITE);
         lookMapButton.setFont(new Font("Impact", Font.PLAIN, 24));
         add(lookMapButton, "cell 0 7 4 1,growx");
-        lookMapButton.addActionListener(e -> System.out.println("Look at Map button clicked"));
+        lookMapButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Create and configure popup window
+                JDialog popup = new JDialog();
+                
+                // Add your map content here
+                JLabel mapLabel = new JLabel(new ImageIcon("src/images/mapagain.gif"));
+                mapLabel.setFont(new Font("Impact", Font.PLAIN, 24));
+                popup.add(mapLabel);
+                
+                // Pack and display the popup window
+                popup.pack();
+                popup.setLocationRelativeTo(null);
+                popup.setVisible(true);
+            }
+        });
+       
         changeRationsButton = new JButton("Change Food Rations");
         changeRationsButton.setBackground(Color.BLACK);
         changeRationsButton.setForeground(Color.WHITE);
