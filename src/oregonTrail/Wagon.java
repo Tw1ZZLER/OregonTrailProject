@@ -70,6 +70,10 @@ public class Wagon {
         return totalWeight;
     }
 
+    public ArrayList<Item> getItemContents(){
+    	return this.itemContents;
+    }
+    
     /**
      * Searches through all items in Wagon and adds all food items to foodContents.
      */
@@ -241,5 +245,22 @@ public class Wagon {
     	}
     	return oxen;
     }
+    
+    /**
+     * Gets the amount of spare parts that the party has
+     * 
+     * @return parts The number of items named "SpareParts" in itemContents
+     */
+    public int getPartsAmount() {
+    	int parts = 0;
+    	
+    	for(Item i : itemContents) {
+    		if(i.name.equals("SpareParts")) {
+    			parts++;
+    		}
+    	}
+    	return parts;
+    }
+    
     
 }

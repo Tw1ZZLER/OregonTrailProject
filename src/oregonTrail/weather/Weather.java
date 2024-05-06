@@ -1,7 +1,6 @@
 package oregonTrail.weather;
 
 import java.util.Random;
-
 import oregonTrail.OregonTrail;
 
 /**
@@ -177,31 +176,31 @@ public class Weather {
     	// get base rain chance based on zone
     	switch(this.getWeatherZone()) {
     		case ZONE_1:
-    			chance += .1;
+    			chance += .15;
     		
     		case ZONE_2:
-    			chance += .05;
+    			chance += .1;
     			
     		case ZONE_3,ZONE_4,ZONE_5:
-    			chance += .025;
+    			chance += .05;
     		
     		case ZONE_6:
-    			chance += .2;
+    			chance += .25;
     	}
     	
     	// add/subtract rain chance based on month
     	switch(oregonTrail.getTravelState().getMonth()) {
     	case 12, 1, 2, 3:
-    		chance += .05;
+    		chance += .1;
     	
     	case 4, 5, 6:
-    		chance += .07;
+    		chance += .15;
     	
     	case 7, 8:
-    		chance -= .02;
+    		chance -= .2;
     	
     	case 9, 10, 11:
-    		chance += .03;
+    		chance += .05;
     	}
     	
     	return chance;

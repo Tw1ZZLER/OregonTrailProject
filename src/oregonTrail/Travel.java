@@ -8,7 +8,10 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Random;
-
+import oregonTrail.randomEvent.HealthEvent;
+import oregonTrail.randomEvent.WeatherEvent;
+import oregonTrail.randomEvent.PartBreakEvent;
+import oregonTrail.randomEvent.SuppliesEvent;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -48,7 +51,7 @@ public class Travel {
 	 * Increments the day by passed amount sets the labels accordingly
 	 * @param days The number of days to increment by
 	 */
-	private void incrementDate(int days) {
+	public void incrementDate(int days) {
 		// Use GregorianCalendar library as way of keeping track of time, and update panel accordingly
 		date.add(GregorianCalendar.DAY_OF_MONTH, days);
 	    DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
@@ -67,6 +70,29 @@ public class Travel {
 	private void travelCycle() {
 		incrementDate(1);
 	    
+		//Check to see if a random event occurs
+		//check if a weather event occurs
+		WeatherEvent weatherEvent = new WeatherEvent(oregonTrail);
+		weatherEvent.rollEvent();
+		
+		//if no weather event occurred, check if a supplies event occurs
+		if(!weatherEvent.getHappened()) {
+			SuppliesEvent suppliesEvent = new SuppliesEvent(oregonTrail);
+			suppliesEvent.rollEvent();
+			
+			//if no supplies event occurred, check if a partBreak event occurs
+			if(!suppliesEvent.getHappened()) {
+				PartBreakEvent partBreakEvent = new PartBreakEvent(oregonTrail);
+				partBreakEvent.rollEvent();
+				
+				//if no partBreak event occurred, check if a health event occurred
+				if(!partBreakEvent.getHappened()) {
+					HealthEvent healthEvent = new HealthEvent(oregonTrail);
+					healthEvent.rollEvent();
+				}
+			}
+		}
+		
 	    // Generate miles generated and update label
 	    int milesTraveledCycle = rand.nextInt(oregonTrail.WAGON.getTravelSpeed());
 	    milesTraveled += milesTraveledCycle;
