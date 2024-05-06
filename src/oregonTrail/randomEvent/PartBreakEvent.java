@@ -41,9 +41,9 @@ public class PartBreakEvent extends RandomEvent {
 					for(Item i: oregonTrail.WAGON.getItemContents()) {
 						if(i.getName().equals("SpareParts")) {
 							oregonTrail.WAGON.removeItem(i);
+							JOptionPane.showMessageDialog(null, "A wheel broke on your wagon, but you had spare parts to fix it!");
 							break;
 						}
-						JOptionPane.showMessageDialog(null, "A wheel broke on your wagon, but you had spare parts to fix it!");
 					}
 				}
 				else {
@@ -61,9 +61,9 @@ public class PartBreakEvent extends RandomEvent {
 					for(Item i: oregonTrail.WAGON.getItemContents()) {
 						if(i.getName().equals("SpareParts")) {
 							oregonTrail.WAGON.removeItem(i);
+							JOptionPane.showMessageDialog(null, "An axle broke on your wagon, but you had spare parts to fix it!");
 							break;
 						}
-						JOptionPane.showMessageDialog(null, "An axle broke on your wagon, but you had spare parts to fix it!");
 					}
 				}
 				else {
@@ -81,9 +81,9 @@ public class PartBreakEvent extends RandomEvent {
 					for(Item i: oregonTrail.WAGON.getItemContents()) {
 						if(i.getName().equals("SpareParts")) {
 							oregonTrail.WAGON.removeItem(i);
+							JOptionPane.showMessageDialog(null, "Your wagon's tongue broke, but you had spare parts to fix it!");
 							break;
 						}
-						JOptionPane.showMessageDialog(null, "Your wagon's tongue broke, but you had spare parts to fix it!");
 					}
 				}
 				else {

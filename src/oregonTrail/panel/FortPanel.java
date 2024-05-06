@@ -168,7 +168,7 @@ public class FortPanel extends JPanel {
                     } else {
                         // Normal dialogue
                         if (Landmark.FORT_LARAMIE.isVisited()) {
-                            JOptionPane.showMessageDialog(null, "(You're met by a short young girl with blonde hair, you think her name might be Alice from locals chatting) Did you see all those indians last night? I swear there must have been hundreds of em");
+                            JOptionPane.showMessageDialog(null, "(You're met by a short young girl with blonde hair, \nyou think her name might be Alice from locals chatting) \nDid you see all those indians last night? I swear there must have been hundreds of em");
                         } else if (Landmark.OREGON_CITY.isVisited()) {
                             JOptionPane.showMessageDialog(null, "(You're met by God?) So you finally made it, congratulations, we lost nearly all of our family and it looks like you almost shared the same fate. Now are you gonna play again?");
                         } else {
