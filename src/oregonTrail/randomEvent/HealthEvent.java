@@ -6,19 +6,11 @@ import java.lang.Math;
 import oregonTrail.weather.WeatherZone;
 
 public class HealthEvent extends RandomEvent {
-
-	private boolean happened;
-	private OregonTrail oregonTrail;
 	
-	/**
-	 * Initializes a HealthEvent object that holds whether or not an event has happened
-	 * @param oregonTrail, the current oregonTrail
-	 */
 	public HealthEvent(OregonTrail oregonTrail) {
-		this.oregonTrail = oregonTrail;
-		this.happened = false;
+		super(oregonTrail);
 	}
-	
+
 	/**
 	 * "rolls" on a table of random, health-modifying events
 	 */
@@ -87,13 +79,4 @@ public class HealthEvent extends RandomEvent {
 			}	
 		}		
 	}
-	
-	/**
-	 * Gets the current status of HealthEvents having occurred
-	 * @return happened, a boolean representing whether or not a HealthEvent occurred
-	 */
-	public boolean getHappened() {
-		return this.happened;
-	}
-
 }

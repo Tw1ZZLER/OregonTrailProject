@@ -10,19 +10,11 @@ import oregonTrail.Wagon;
 import oregonTrail.Item;
 
 public class PartBreakEvent extends RandomEvent {
-
-	private boolean happened;
-	private OregonTrail oregonTrail;
 	
-	/**
-	 * Instantiates a PartBreakEvent object, which holds a boolean that tracks whether or not an event has occurred
-	 * @param oregonTrail, the current state of the game
-	 */
 	public PartBreakEvent(OregonTrail oregonTrail) {
-		this.happened = false;
-		this.oregonTrail = oregonTrail;
+		super(oregonTrail);
 	}
-	
+
 	/**
 	 * "rolls" on a table of random events to determine if a wagon part breaks
 	 */
@@ -97,9 +89,4 @@ public class PartBreakEvent extends RandomEvent {
 			//safe travels, no parts break
 		}
 	}
-	
-	public boolean getHappened() {
-		return this.happened;
-	}
-
 }

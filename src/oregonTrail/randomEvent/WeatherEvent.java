@@ -9,19 +9,11 @@ import oregonTrail.weather.WeatherZone;
 import javax.swing.JOptionPane;
 
 public class WeatherEvent extends RandomEvent {
-
-	private boolean happened = false;
-	private OregonTrail oregonTrail;
 	
-	/**
-	 * Initializes a WeatherEvent object that holds whether or not an event has happened
-	 * @param oregonTrail
-	 */
 	public WeatherEvent(OregonTrail oregonTrail) {
-		this.happened = false;
-		this.oregonTrail = oregonTrail;
+		super(oregonTrail);
 	}
-	
+
 	/**
 	 * rolls to see what the current weather event is, if one occurs at all.
 	 * Bases possible outcomes on current month, location, and weather conditions
@@ -97,16 +89,6 @@ public class WeatherEvent extends RandomEvent {
 		else {
 			//clear skies (no event)
 			
-		}
-		
+		}		
 	}
-		
-	/**
-	 * Returns whether or not a random event in this category has happened
-	 * @return happened A variable representing the status of random events having happened
-	 */
-	public boolean getHappened() {
-		return this.happened;
-	}
-	
 }

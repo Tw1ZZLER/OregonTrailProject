@@ -9,19 +9,10 @@ import javax.swing.JOptionPane;
 
 public class SuppliesEvent extends RandomEvent {
 
-	private OregonTrail oregonTrail;
-	private boolean happened;
-	
-	/**
-	 * Initializes a SuppliesEvent object, which stores the state of whether or not an event has occurred.
-	 * 
-	 * @param oregonTrail, the current state of the game
-	 */
 	public SuppliesEvent(OregonTrail oregonTrail) {
-		this.happened = false;
-		this.oregonTrail = oregonTrail;
+		super(oregonTrail);
 	}
-	
+
 	/**
 	 * "rolls" on a table of random events that effect your current supplies
 	 */
@@ -129,13 +120,4 @@ public class SuppliesEvent extends RandomEvent {
 			//no event
 		}
 	}
-	
-	/**
-	 * Gets the current status of whether or not a SuppliesEvent has happened
-	 * @return happened, the state of whether or not an event has occurred
-	 */
-	public boolean getHappened() {
-		return this.happened;
-	}
-
 }
