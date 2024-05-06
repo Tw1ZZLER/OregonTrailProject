@@ -1,24 +1,21 @@
 package oregonTrail.panel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.Fort;
-import oregonTrail.landmark.Landmark;
-import java.awt.Color;
 
 /**
  * Panel class representing options available when located at a fort in the Oregon Trail game.
@@ -150,35 +147,8 @@ public class FortPanel extends JPanel {
         });
         
         talkToLocals.addActionListener(new ActionListener() {
-            private boolean eventOccurred = false; // Track if the special event has occurred
-
             public void actionPerformed(ActionEvent arg0) {
-                if (!eventOccurred) {
-                    // Create an instance of Random class
-                    Random random = new Random();
-
-                    // Generate a random number between 1 and 10
-                    int randomNumber = random.nextInt(10) + 1;
-                    if (randomNumber == 1) {
-                        // Show special event dialogue box
-                        JOptionPane.showMessageDialog(null, "As you were making breakfast, Dick Delay accidentally steps on his shotgun shooting Mr. Ridgel, the shop owner. You decide it's probably best to leave town.");
-                        // Continue the game
-                        oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
-                        eventOccurred = true; // Set to true to indicate the special event has occurred
-                    } else {
-                        // Normal dialogue
-                        if (Landmark.FORT_LARAMIE.isVisited()) {
-                            JOptionPane.showMessageDialog(null, "(You're met by a short young girl with blonde hair, \nyou think her name might be Alice from locals chatting) \nDid you see all those indians last night? I swear there must have been hundreds of em");
-                        } else if (Landmark.OREGON_CITY.isVisited()) {
-                            JOptionPane.showMessageDialog(null, "(You're met by God?) So you finally made it, congratulations, we lost nearly all of our family and it looks like you almost shared the same fate. Now are you gonna play again?");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "No one wanted to talk with you (Probably cause you stink)");
-                        }
-                    }
-                } else {
-                    // All further conversations after the special event
-                    JOptionPane.showMessageDialog(null, "You've already had your conversation. No one wants to talk with you again.");
-                }
+            	oregonTrail.getDialogueState().talkToFortLocals();
             }
         });
     }

@@ -39,6 +39,7 @@ public class ShopPanel extends JPanel {
 	private ArrayList<Item> orderedItems;
 	private double orderCost = 0;
 	private OregonTrail oregonTrail;
+	
 	/**
 	 * Shop Panel constructor to create a ShopPanel
 	 * @param pOregonTrail oregonTrail game object

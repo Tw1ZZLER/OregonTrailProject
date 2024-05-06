@@ -22,6 +22,7 @@ public class Landmark {
 	protected int distanceToNext;
 	protected boolean isVisited;
 	
+	// The following should be an enumerated type, however it gave us a lot of issues so we are sticking with this.
 	public static final Landmark KANSAS_RIVER      = new River   ("Kansas River Crossing", new ImageIcon("src/images/KansasRiver.jpg"), 100);
 	public static final Landmark BIG_BLUE_RIVER    = new River   ("Big Blue River Crossing", new ImageIcon("src/images/BigBlueRiver.jpg"), 150);
 	public static final Landmark FORT_STRONG       = new Fort    ("Fort Strong", new ImageIcon("src/images/FortStrong.jpg"), 250);
