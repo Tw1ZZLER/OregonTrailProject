@@ -1,5 +1,6 @@
 package oregonTrail.panel;
 
+import java.awt.AWTEvent;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -55,30 +56,31 @@ public class HuntingPanel extends JPanel {
      * @date 2024-03-25
      */
     public HuntingPanel() {
-          //prompts user
-    	  JOptionPane.showMessageDialog(this,
-    	            "Warning: You are about to play the hunting minigame.",
-    	            "Inane warning",
-    	            JOptionPane.WARNING_MESSAGE);
+    	
+        //prompts user
+        JOptionPane.showMessageDialog(this,
+                "Warning: You are about to play the hunting minigame.",
+                "Inane warning",
+                JOptionPane.WARNING_MESSAGE);
 
-    	        JOptionPane.showMessageDialog(this,
-    	            "Please note that if you proceed, the fun you will experience as well as the events in the game will not be historically accurate.",
-    	            "Inane warning",
-    	            JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this,
+                "Please note that if you proceed, the fun you will experience as well as the events in the game will not be historically accurate.",
+                "Inane warning",
+                JOptionPane.WARNING_MESSAGE);
 
-    	        int decision = JOptionPane.showConfirmDialog(this,
-    	            "Would you like to proceed?",
-    	            "A Silly Question",
-    	            JOptionPane.YES_NO_OPTION);
+        int decision = JOptionPane.showConfirmDialog(this,
+                "Would you like to proceed?",
+                "A Silly Question",
+                JOptionPane.YES_NO_OPTION);
 
-    	        if (decision == JOptionPane.NO_OPTION) {
-    	            JOptionPane.showMessageDialog(this,
-    	                "Your husband went hunting and found nothing. You could have done better, not only in hunting but also in marriage.",
-    	                "Result",
-    	                JOptionPane.INFORMATION_MESSAGE);
-    	            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL); 
-    	            return;
-    	        }
+        if (decision == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this,
+                    "Your husband went hunting and found nothing. You could have done better, not only in hunting but also in marriage.",
+                    "Result",
+                    JOptionPane.INFORMATION_MESSAGE);
+            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
+        }
+
         setLayout(null); // For absolute positioning
         initialize();
         gameRunning = true;
@@ -119,7 +121,7 @@ public class HuntingPanel extends JPanel {
                 enemyAttackTimer.setDelay(10000); // Bison attacks every 10 seconds
                 break;
             case 5:
-                enemyHealth = 0; // LaurieMoo
+                enemyHealth = 1; // LaurieMoo
                 enemyType = "LaurieMoo";
                 enemyLabel.setText(enemyType + " Health: " + enemyHealth);
                 rotateSprite(laurieMooImage);
@@ -165,6 +167,7 @@ public class HuntingPanel extends JPanel {
      * @date 2024-03-29
      */
     private void initialize() {
+    	
         standingIcon = new ImageIcon("src/images/standing1.png");
         blockingIcon = new ImageIcon("src/images/blocking1.png");
         rightPunchIcon = new ImageIcon("src/images/rightPunch1.png");
@@ -214,15 +217,16 @@ public class HuntingPanel extends JPanel {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (!gameRunning) return;
-                int key = e.getKeyCode();
-                switch (key) {
-                    case KeyEvent.VK_DOWN:
+            	 AWTEvent event = null;
+				if (event.getID() == KeyEvent.KEY_PRESSED) {
+                     if (((KeyEvent) event).getKeyCode() == KeyEvent.VK_SPACE) {
                         sprite.setIcon(blockingIcon);
                         blocking = true;
-                        break;
-                    case KeyEvent.VK_LEFT:
-                        if (!punchCooldown) {
+                     }
+            	 }
+                        if (event.getID() == KeyEvent.KEY_PRESSED) {
+                            if (((KeyEvent) event).getKeyCode() == KeyEvent.VK_A) {
+                            if (!punchCooldown) {
                             sprite.setIcon(leftPunchIcon);
                             if (enemyHealth > 0 && !blocking) {
                                 enemyHealth -= 1;
@@ -231,8 +235,10 @@ public class HuntingPanel extends JPanel {
                             startPunchTimer();
                             punchCooldown = true;
                         }
-                        break;
-                    case KeyEvent.VK_RIGHT:
+                            }
+                        }
+                            if (event.getID() == KeyEvent.KEY_PRESSED) {
+                                if (((KeyEvent) event).getKeyCode() == KeyEvent.VK_D) {
                         if (!punchCooldown) {
                             sprite.setIcon(rightPunchIcon);
                             if (enemyHealth > 0 && !blocking) {
@@ -242,11 +248,11 @@ public class HuntingPanel extends JPanel {
                             startPunchTimer();
                             punchCooldown = true;
                         }
-                        break;
-                    default:
-                        break;
-                }
+                                }
+                            }
+            
             }
+            
 
             @Override
             public void keyReleased(KeyEvent e) {
@@ -309,7 +315,7 @@ public class HuntingPanel extends JPanel {
                         case "LaurieMoo":
                             // LaurieMoo attacks every 20 seconds and deals 999 damage
                             if (!blocking) {
-                                playerHealth -= -1;
+                                playerHealth -= 1;
                                 playerHealthValueLabel.setText(Integer.toString(playerHealth));
                             }
                             break;
@@ -358,3 +364,4 @@ public class HuntingPanel extends JPanel {
         enemySprite.setIcon(enemyImage);
     }
 }
+

@@ -17,7 +17,8 @@ import javax.swing.*;
  * the program if the health reaches a critical level.
  *
  * @author Lukas Dunbar
- * @version 1.0
+ * @date 2024-05-06
+ * @filename Health.java
  */
 public class Health {
 
