@@ -52,9 +52,9 @@ public class TravelPanel extends JPanel {
     private int currentImageIndex;
     private Timer animationTimer;
     private static final String[] IMAGE_PATHS = {
-        "src\\images\\wagon.png",
-        "src\\images\\wagonframe2.png",
-        "src\\images\\wagonframe3.png"
+        "src/images/wagon.png",
+        "src/images/wagonframe2.png",
+        "src/images/wagonframe3.png"
     };
     
     /**
