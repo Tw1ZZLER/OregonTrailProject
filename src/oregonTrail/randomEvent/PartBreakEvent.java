@@ -1,13 +1,10 @@
 package oregonTrail.randomEvent;
 
-import oregonTrail.OregonTrail;
-import java.lang.Math;
-
 import javax.swing.JOptionPane;
 
-import oregonTrail.weather.WeatherZone;
-import oregonTrail.Wagon;
 import oregonTrail.Item;
+import oregonTrail.OregonTrail;
+import oregonTrail.weather.WeatherZone;
 
 /**
  * Contains the methods and constructor for determining whether or not a part-breaking random event will occur.
