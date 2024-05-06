@@ -54,8 +54,8 @@ public class HuntingPanel extends JPanel {
      */
     public HuntingPanel(OregonTrail oregonTrail) {
         this.oregonTrail = oregonTrail; // Initialize oregonTrail
-
-        //prompts user
+        
+      //prompts user
         JOptionPane.showMessageDialog(this,
                 "Warning: You are about to play the hunting minigame.",
                 "Inane warning",
