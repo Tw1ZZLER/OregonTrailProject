@@ -4,8 +4,6 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import oregonTrail.landmark.Landmark;
-
 /**
  * Class that handles talking to locals and other important dialogue
  * @author Corbin Hibler
@@ -67,42 +65,54 @@ public class Dialogue {
 	 * @date 2024-05-06
 	 */
 	public void talkToLandmarkLocals() {
-		String message;
+		String message = "-1";
 		
-        // Generate a random number between 1 and 20
-        int randomNumber = rand.nextInt(20) + 1;
+        // Generate a random number between 0 and 9
+        int option = rand.nextInt(10);
         
-        if(randomNumber>=2) {
-	    	if(!Landmark.ASH_HOLLOW.isVisited()) {
-	    		message = "(You're met by Uncle Hugh) Look at all those reeds, it almost "
-	    				+ "makes me want to set up camp here, its a shame its so wide open"
-	    				+ " though. I wouldn't make it a week!";
-	    	}
-	    	else if(!Landmark.CHIMNEY_ROCK.isVisited()) {
-	    		message = "Well I'm sure glad we managed to stock up on water and supplies but this"
-	    				+ " walk across the desert will surely test our wits. I wish we’d still have some leftover mustard"
-	    				+ " greens from last night they sure were good.-Mrs. Kirkland";
-	    	}
-	    	else if(!Landmark.THE_DALLES.isVisited()) {
-	    		message = "These horses are the most stubborn and unruly animals I ever met, I can't"
-	    				+ " get the darn harness on em and we’re already late!. -Frank";
-	    	}
-	    	else if(!Landmark.BLUE_MOUNTAINS.isVisited()) {
-	    		message ="I can’t believe those damn herders drove away two of my best damn horses"
-	    				+ " and then still made you pay 2 dollars for your troubles absolutely ridiculous -Mr. Kirkland";
-	    	}
-	    	else if(!Landmark.SODA_SPRINGS.isVisited()) {
-	    		message ="They stole my revolver!! Who in the hell stole it!! I swear I’ll kill that"
-	    				+ " rat!\"-John Smith, “Oh yeah with what gun (Laughter ensues from the crowd of soldiers)?!”-"
-	    				+ " nameless Solider";
-	    	}
-	    	else {
-	    		message = "No one wanted to talk with you (Probably cause you stink)";
-	    	}
+        switch(option) {
+        case 0:
+			message = "(You're met by Uncle Hugh) Look at all those reeds, it almost "
+					+ "makes me want to set up camp here, it's a shame its so wide open"
+					+ " though. I wouldn't make it a week!";
+			break;
+        case 1:
+			message = "Well I'm sure glad we managed to stock up on water and supplies but this"
+					+ " walk across the desert will surely test our wits. I wish we’d still have some leftover mustard"
+					+ " greens from last night they sure were good.-Mrs. Kirkland";
+			break;
+        case 2:
+			message = "These horses are the most stubborn and unruly animals I ever met, I can't"
+					+ " get the darn harness on 'em, and we’re already late!. -Frank";
+			break;
+        case 3:
+			message ="I can’t believe those damn herders drove away two of my best damn horses,"
+					+ " and then still made you pay 2 dollars for your troubles, absolutely ridiculous! -Mrs. Kirkland";
+			break;
+        case 4:
+			message ="They stole my revolver!! Who in the hell stole it!! I swear I’ll kill that"
+					+ " rat!\"-John Smith, “Oh yeah with what gun (Laughter ensues from the crowd of soldiers)?!”-"
+					+ " nameless Soldier";
+			break;
+		case 5:
+			message = "";
+			break;
+		case 6:
+			message = "";
+			break;
+		case 7:
+			message = "";
+			break;
+		case 8:
+			message = "";
+			break;
+		case 9:
+			message = "";
+			break;
+        default:
+			message = "No one wanted to talk with you (Probably cause you stink)";
+			break;
         }
-    	else {
-    		message = "No one wanted to talk with you (Probably cause you stink)";
-    	}
         
         display(message);
 	}
@@ -113,40 +123,57 @@ public class Dialogue {
 	 * @date 2024-05-06
 	 */
 	public void talkToFortLocals() {
-		String message;
+		String message = "";
 
-        // Generate a random number between 1 and 10
-        int randomNumber = rand.nextInt(10) + 1;        
+        // Generate a random number between 0 and 9
+        int option = rand.nextInt(10);        
 		
-        if (!shotgunEventOccurred) {
-            if (randomNumber == 1) {
-                // Show special event dialogue box
-                message = "As you were making breakfast, Dick Delay accidentally "
-                		+ "steps on his shotgun shooting Mr. Ridgel, the shop owner."
-                		+ " You decide it's probably best to leave town.";
-                // Continue the game
-                oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
-                shotgunEventOccurred = true; // Set to true to indicate the special event has occurred
-            } else {
-                // Normal dialogue
-                if (!Landmark.FORT_LARAMIE.isVisited()) {
-                    message = "(You're met by a short young girl with blonde hair, "
-                    		+ "you think her name might be Alice from locals chatting) "
-                    		+ "Did you see all those indians last night? I swear there "
-                    		+ "must have been hundreds of em";
-                } else if (!Landmark.OREGON_CITY.isVisited()) {
-                    message = "(You're met by God?) So you finally made it, congratulations,"
-                    		+ " we lost nearly all of our family and it looks like you almost "
-                    		+ "shared the same fate. Now are you gonna play again?";
-                } else {
-                    message = "No one wanted to talk with you (Probably cause you stink)";
-                }
-            }
-        } else {
-            // All further conversations after the special event
-            message = "You've already had your conversation. No one wants to talk with you again.";
-        }
-        
+        if (!shotgunEventOccurred && option == 0) {
+			// Show special event dialogue box
+			message = "As you were making breakfast, Dick Delay accidentally "
+					+ "steps on his shotgun shooting Mr. Ridgel, the shop owner."
+					+ " You decide it's probably best to leave town.";
+			// Continue the game
+			oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
+			shotgunEventOccurred = true; // Set to true to indicate the special event has occurred
+		} else {
+			// Normal dialogue
+			switch (option) {
+			case 0:
+				message = "(You're met by a short young girl with blonde hair, "
+						+ "you think her name might be Alice from locals chatting) "
+						+ "Did you see all those indians last night? I swear there "
+						+ "must have been hundreds of em";
+				break;
+			case 2:
+				message = "";
+				break;
+			case 3:
+				message = "";
+				break;
+			case 4:
+				message = "";
+				break;
+			case 5:
+				message = "";
+				break;
+			case 6:
+				message = "";
+				break;
+			case 7:
+				message = "";
+				break;
+			case 8:
+				message = "";
+				break;
+			case 9:
+				message = "";
+				break;
+			default:
+				message = "No one wanted to talk with you (Probably cause you stink)";
+				break;
+			}
+		}
         display(message);
 	}
 }
