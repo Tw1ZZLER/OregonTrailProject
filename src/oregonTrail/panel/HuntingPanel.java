@@ -1,5 +1,6 @@
 package oregonTrail.panel;
 
+import java.awt.AWTEvent;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -77,11 +78,7 @@ public class HuntingPanel extends JPanel {
                     "Your husband went hunting and found nothing. You could have done better, not only in hunting but also in marriage.",
                     "Result",
                     JOptionPane.INFORMATION_MESSAGE);
-
-        }
-        else if (decision == JOptionPane.YES_OPTION) {
-        	setFocusable(true);
-            gameRunning=true;
+            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
         }
 
         setLayout(null); // For absolute positioning
@@ -220,15 +217,16 @@ public class HuntingPanel extends JPanel {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (!gameRunning) return;
-                int key = e.getKeyCode();
-                switch (key) {
-                    case KeyEvent.VK_SPACE:
+            	 AWTEvent event = null;
+				if (event.getID() == KeyEvent.KEY_PRESSED) {
+                     if (((KeyEvent) event).getKeyCode() == KeyEvent.VK_SPACE) {
                         sprite.setIcon(blockingIcon);
                         blocking = true;
-                        break;
-                    case KeyEvent.VK_A:
-                        if (!punchCooldown) {
+                     }
+            	 }
+                        if (event.getID() == KeyEvent.KEY_PRESSED) {
+                            if (((KeyEvent) event).getKeyCode() == KeyEvent.VK_A) {
+                            if (!punchCooldown) {
                             sprite.setIcon(leftPunchIcon);
                             if (enemyHealth > 0 && !blocking) {
                                 enemyHealth -= 1;
@@ -237,8 +235,10 @@ public class HuntingPanel extends JPanel {
                             startPunchTimer();
                             punchCooldown = true;
                         }
-                        break;
-                    case KeyEvent.VK_D:
+                            }
+                        }
+                            if (event.getID() == KeyEvent.KEY_PRESSED) {
+                                if (((KeyEvent) event).getKeyCode() == KeyEvent.VK_D) {
                         if (!punchCooldown) {
                             sprite.setIcon(rightPunchIcon);
                             if (enemyHealth > 0 && !blocking) {
@@ -248,11 +248,11 @@ public class HuntingPanel extends JPanel {
                             startPunchTimer();
                             punchCooldown = true;
                         }
-                        break;
-                    default:
-                        break;
-                }
+                                }
+                            }
+            
             }
+            
 
             @Override
             public void keyReleased(KeyEvent e) {
