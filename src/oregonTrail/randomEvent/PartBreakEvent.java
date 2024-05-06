@@ -9,6 +9,15 @@ import oregonTrail.weather.WeatherZone;
 import oregonTrail.Wagon;
 import oregonTrail.Item;
 
+/**
+ * Contains the methods and constructor for determining whether or not a part-breaking random event will occur.
+ * Uses the rollEvent abstract class to base its own rollEvent off of.
+ * 
+ * @author Ethan Vaughn
+ * @date 2024-05-06
+ * @filename PartBreakEvent.java
+ * @version 1.0
+ */
 public class PartBreakEvent extends RandomEvent {
 
 	private boolean happened;
