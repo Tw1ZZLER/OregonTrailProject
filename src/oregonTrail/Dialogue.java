@@ -199,8 +199,7 @@ public class Dialogue {
 						+ "“‘Morning. My name is Ruth Shackleford, and those folks over there are my traveling party. "
 						+ "Looking at your group, it seems there’s a lot in common. Make sure that you take time to "
 						+ "rest and recover every once in a while. Some folks might protest, acting all tough, "
-						+ "but sometimes you’ve got to put your foot down to make sure everyone’s making it to your destination.”"
-						+ "";
+						+ "but sometimes you’ve got to put your foot down to make sure everyone’s making it to your destination.”";
 				break;
 			case 9:
 				message = "You overhear Mr. Shackleford and Mr. Kirkland (of Ruth Shackleford’s Party) having a conversation."
