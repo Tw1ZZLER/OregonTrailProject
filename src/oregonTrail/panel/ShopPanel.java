@@ -39,6 +39,7 @@ public class ShopPanel extends JPanel {
 	private ArrayList<Item> orderedItems;
 	private double orderCost = 0;
 	private OregonTrail oregonTrail;
+	
 	/**
 	 * Shop Panel constructor to create a ShopPanel
 	 * @param pOregonTrail oregonTrail game object
@@ -71,7 +72,7 @@ public class ShopPanel extends JPanel {
 		oxenLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(oxenLabel, "cell 2 3");
 		
-		oxPriceLabel = new JLabel("$"+shop.getPrice(1,1));
+		oxPriceLabel = new JLabel("$"+String.format("%.2f", shop.getPrice(1,1)));
 		oxPriceLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(oxPriceLabel, "cell 3 3");
 		
@@ -83,7 +84,7 @@ public class ShopPanel extends JPanel {
 		foodLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(foodLabel, "cell 2 4");
 		
-		foodPriceLabel = new JLabel("$"+shop.getPrice(2,1));
+		foodPriceLabel = new JLabel("$"+String.format("%.2f",shop.getPrice(2,1)));
 		foodPriceLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(foodPriceLabel, "cell 3 4");
 		
@@ -95,7 +96,7 @@ public class ShopPanel extends JPanel {
 		clothingLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(clothingLabel, "cell 2 5");
 		
-		clothesPriceLabel = new JLabel("$"+shop.getPrice(3,1));
+		clothesPriceLabel = new JLabel("$"+String.format("%.2f",shop.getPrice(3,1)));
 		clothesPriceLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(clothesPriceLabel, "cell 3 5");
 		
@@ -107,7 +108,7 @@ public class ShopPanel extends JPanel {
 		ammunitionLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(ammunitionLabel, "cell 2 6");
 		
-		ammoPriceLabel = new JLabel("$"+shop.getPrice(4,1));
+		ammoPriceLabel = new JLabel("$"+String.format("%.2f",shop.getPrice(4,1)));
 		ammoPriceLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(ammoPriceLabel, "cell 3 6");
 		
@@ -119,7 +120,7 @@ public class ShopPanel extends JPanel {
 		partsLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(partsLabel, "cell 2 7");
 		
-		partPriceLabel = new JLabel("$"+shop.getPrice(5,1));
+		partPriceLabel = new JLabel("$"+String.format("%.2f",shop.getPrice(5,1)));
 		partPriceLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(partPriceLabel, "cell 3 7");
 		
@@ -131,7 +132,7 @@ public class ShopPanel extends JPanel {
 		currentFundsLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(currentFundsLabel, "cell 2 9");
 		
-		JLabel moneyLabel = new JLabel(""+oregonTrail.WAGON.getMoney());
+		JLabel moneyLabel = new JLabel(""+String.format("%.2f",oregonTrail.WAGON.getMoney()));
 		moneyLabel.setFont(new Font("Impact", Font.PLAIN, 20));
 		add(moneyLabel, "cell 3 9");
 		
@@ -169,7 +170,7 @@ public class ShopPanel extends JPanel {
 					orderedItems.add(shop.itemPurchased(itemPurchased));
 				}
 				
-				orderCostLabel.setText("$"+orderCost);
+				orderCostLabel.setText("$"+String.format("%.2f",orderCost));
 				
 			}
 		});

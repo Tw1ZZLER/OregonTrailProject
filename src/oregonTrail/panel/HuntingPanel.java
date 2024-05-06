@@ -8,6 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+
+import oregonTrail.OregonTrail;
+
 import javax.swing.JOptionPane;
 import java.util.Random;
 
@@ -43,6 +46,7 @@ public class HuntingPanel extends JPanel {
 
     private boolean punchCooldown;
     private boolean blocking;
+    private OregonTrail oregonTrail;
 
     /**
      * Randomly chooses an enemy type to hunt (fight)
@@ -51,6 +55,30 @@ public class HuntingPanel extends JPanel {
      * @date 2024-03-25
      */
     public HuntingPanel() {
+          //prompts user
+    	  JOptionPane.showMessageDialog(this,
+    	            "Warning: You are about to play the hunting minigame.",
+    	            "Inane warning",
+    	            JOptionPane.WARNING_MESSAGE);
+
+    	        JOptionPane.showMessageDialog(this,
+    	            "Please note that if you proceed, the fun you will experience as well as the events in the game will not be historically accurate.",
+    	            "Inane warning",
+    	            JOptionPane.WARNING_MESSAGE);
+
+    	        int decision = JOptionPane.showConfirmDialog(this,
+    	            "Would you like to proceed?",
+    	            "A Silly Question",
+    	            JOptionPane.YES_NO_OPTION);
+
+    	        if (decision == JOptionPane.NO_OPTION) {
+    	            JOptionPane.showMessageDialog(this,
+    	                "Your husband went hunting and found nothing. You could have done better, not only in hunting but also in marriage.",
+    	                "Result",
+    	                JOptionPane.INFORMATION_MESSAGE);
+    	            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL); 
+    	            return;
+    	        }
         setLayout(null); // For absolute positioning
         initialize();
         gameRunning = true;

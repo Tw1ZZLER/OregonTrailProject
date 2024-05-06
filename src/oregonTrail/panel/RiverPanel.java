@@ -115,15 +115,6 @@ public class RiverPanel extends JPanel {
         attemptToCrossButton.addActionListener(e -> {
             river.attemptToCross(this);
             oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
-            // Display dialogue box with message
-            JOptionPane.showMessageDialog(this, "There’s plenty of water and grass for the horses. We should catch some fish in the meantime. +3 fish");
-        });
-      
-        attemptToCrossButton.addActionListener(e -> {
-            river.attemptToCross(this);
-            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
-            // Display dialogue box with message
-            JOptionPane.showMessageDialog(this, "There’s plenty of water and grass for the horses. We should catch some fish in the meantime. +3 fish");
         });
       
         caulkWagonButton.addActionListener(e -> {

@@ -9,10 +9,10 @@ package oregonTrail.weather;
 public enum WeatherZone {
 	ZONE_1 (15, 0),
 	ZONE_2 (0, 250),
-	ZONE_3 (-10, 700),
-	ZONE_4 (-15, 1000),
-	ZONE_5 (15, 1200),
-	ZONE_6 (0, 1800);
+	ZONE_3 (-10, 600),
+	ZONE_4 (-15, 800),
+	ZONE_5 (15, 1300),
+	ZONE_6 (0, 1900);
 
 	private int tempModifier;
 	private int mileMarker;

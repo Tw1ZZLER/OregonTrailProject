@@ -1,23 +1,21 @@
 package oregonTrail.panel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.Landmark;
-import java.awt.Color;
 
 /**
  * Panel class representing options available when located at a landmark in the Oregon Trail game.
@@ -44,21 +42,14 @@ public class LandmarkPanel extends JPanel {
      */
     public LandmarkPanel(OregonTrail pOregonTrail, Landmark landmark) {
         this.oregonTrail = pOregonTrail;
-        pOregonTrail.getTravelState();
         this.landmarkName = landmark.getName();
         
         // Scale up image
-    	// Assuming river.getPicture() returns an ImageIcon
         ImageIcon originalIcon = landmark.getPicture();
         Image originalImage = originalIcon.getImage();
-
-        // Scale the image using getScaledInstance
         Image scaledImage = originalImage.getScaledInstance(1000, 500, Image.SCALE_SMOOTH);
-
-        // Convert the scaled Image back to ImageIcon
         this.landmarkImageIcon = new ImageIcon(scaledImage);
         
-
         setLayout(new BorderLayout());
         JLabel welcomeLabel = new JLabel("WELCOME TO " + landmarkName +"!!!");
         welcomeLabel.setOpaque(true);
@@ -142,21 +133,7 @@ public class LandmarkPanel extends JPanel {
         });
         talkToLocals.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	 // Create an instance of Random class
-                Random random = new Random();
-                // Generate a random number between 1 and 20
-                int randomNumber = random.nextInt(20) + 1;
-                if(randomNumber>=2) {
-            	if(Landmark.ASH_HOLLOW.isVisited()) {
-            		JOptionPane.showMessageDialog(null, "(You're met by Uncle Hugh) Look at all those reeds it almost makes me want to set up camp here, its a shame its so wide open though. I wouldnt make it a week!");
-            	}
-            	else {
-            		JOptionPane.showMessageDialog(null, "No one wanted to talk with you (Probably cause you stink)");
-            	}
-                }
-            	else {
-            		JOptionPane.showMessageDialog(null, "No one wanted to talk with you (Probably cause you stink)");
-            	}
+            	oregonTrail.getDialogueState().talkToLandmarkLocals();
             }
         });
     } 

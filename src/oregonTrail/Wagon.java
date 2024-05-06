@@ -21,7 +21,7 @@ public class Wagon {
     private ArrayList<Food> foodContents;
     private int totalWeight;
     private int totalFoodWeight;
-    public static final String[] FOOD_CONSUME_LEVELS = { "Sumo Wrestler", "Regular Joe", "Starving Homeless person" };
+    public static final String[] FOOD_CONSUME_LEVELS = { "Female Bodybuilder", "Regular Jane", "Starving Homeless Woman" };
     public static final int DEFAULT_TRAVEL_SPEED = 12;
     public static final int MAXIMUM_WEIGHT = 2400;
     public static final String[] itemNames = { "Apple Vinegar", "Bedroll", "Bacon", "Blacksmithing Tools", "Beans",
@@ -70,6 +70,10 @@ public class Wagon {
         return totalWeight;
     }
 
+    public ArrayList<Item> getItemContents(){
+    	return this.itemContents;
+    }
+    
     /**
      * Searches through all items in Wagon and adds all food items to foodContents.
      */
@@ -91,19 +95,18 @@ public class Wagon {
      */
     public String foodConsumptionDialog(JPanel panel) {
         String foodConsumptionOption = (String) JOptionPane.showInputDialog(panel, "Select food consumption level:",
-                "Food Consumption", JOptionPane.PLAIN_MESSAGE, null, Wagon.FOOD_CONSUME_LEVELS,
-                Wagon.FOOD_CONSUME_LEVELS[0]);
+                "Food Consumption", JOptionPane.PLAIN_MESSAGE, null, FOOD_CONSUME_LEVELS, FOOD_CONSUME_LEVELS[0]);
 
         // Determine food consumption rate based on user input
         double foodConsumptionRate;
         switch (foodConsumptionOption) {
-            case "Sumo Wrestler":
+            case "Female Bodybuilder":
                 foodConsumptionRate = 1.5;
                 break;
-            case "Regular Joe":
+            case "Regular Jane":
                 foodConsumptionRate = 1.0;
                 break;
-            case "Starving Homeless person":
+            case "Starving Homeless Woman":
                 foodConsumptionRate = 0.5;
                 break;
             default:
@@ -131,7 +134,7 @@ public class Wagon {
      */
     public String travelSpeedDialog(JPanel panel) {
         int travelSpeed = DEFAULT_TRAVEL_SPEED;
-        String speedInput = JOptionPane.showInputDialog(panel, "Enter travel speed (miles per day):");
+        String speedInput = JOptionPane.showInputDialog(panel, "Enter travel speed (miles per day, 12-20):");
         try {
             travelSpeed = Integer.parseInt(speedInput);
             if (travelSpeed < 12 || travelSpeed > 20) {
@@ -195,4 +198,69 @@ public class Wagon {
         this.money += amount;
     }
 
+    /**
+     * Gets the amount of ammunition in the party's possession.
+     * 
+     * @return ammo The amount of ammunition stored in the wagon's itemContents array
+     */
+    public int getAmmoAmount() {
+    	int ammo = 0;
+    	
+    	for(Item i : itemContents) {
+    		if(i.name.equals("Ammunition")) {
+    			ammo++;
+    		}
+    	}    	
+    	return ammo;
+    }
+    
+    /**
+     * Gets the amount of clothes in the party's possession.
+     * 
+     * @return clothes The number of Items named "Clothing" in itemContents.
+     */
+    public int getClothingAmount() {
+    	int clothes = 0;
+    	
+    	for(Item i : itemContents) {
+    		if(i.name.equals("Clothing")) {
+    			clothes++;
+    		}
+    	}
+		return clothes;
+    }
+    
+    /**
+     * Gets the amount of oxen at the party's disposal.
+     * 
+     * @return oxen The amount of items named "Oxen" in itemContents
+     */
+    public int getOxenAmount() {
+    	int oxen = 0;
+    	
+    	for(Item i : itemContents) {
+    		if(i.name.equals("Oxen")) {
+    			oxen++;
+    		}
+    	}
+    	return oxen;
+    }
+    
+    /**
+     * Gets the amount of spare parts that the party has
+     * 
+     * @return parts The number of items named "SpareParts" in itemContents
+     */
+    public int getPartsAmount() {
+    	int parts = 0;
+    	
+    	for(Item i : itemContents) {
+    		if(i.name.equals("SpareParts")) {
+    			parts++;
+    		}
+    	}
+    	return parts;
+    }
+    
+    
 }

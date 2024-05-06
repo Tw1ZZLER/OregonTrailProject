@@ -32,9 +32,10 @@ import oregonTrail.weather.Weather;
  */
 public class OregonTrail implements Serializable {
 
-    private JFrame frame;
-    private Travel travelState;
-    private Weather weatherState;
+    public JFrame frame;
+    private Travel travel;
+    private Weather weather;
+    private Dialogue dialogue;
     private Map<Landmark, JPanel> landmarkToPanelMap = new HashMap<>();
     public final Wagon WAGON;
     public final StartupPanel STARTUP_PANEL;
@@ -66,10 +67,13 @@ public class OregonTrail implements Serializable {
     }
 
     /**
-     * Create the application.
+     * MAIN GAME CONSTRUCTOR
+     * Creates all panels, game states, and initalizes the first panel
+     * @author Corbin Hibler
+     * @date 2024-03-22
      */
     public OregonTrail() {
-        // Create wagon and preload items
+        // Create wagon and preloaded items
         WAGON = new Wagon();
         WAGON.addItem(new Item("Apple Vinegar"));
         WAGON.addItem(new Item("Bacon"));
@@ -78,11 +82,13 @@ public class OregonTrail implements Serializable {
         WAGON.setTotalFoodWeight(2000);
         WAGON.addItem(new Item("Cast Iron Stove"));
 
+        // Instantiate all game objects and panels
         SHOP_PANEL = new ShopPanel(this);
         STARTUP_PANEL = new StartupPanel();
         TRAVEL_PANEL = new TravelPanel(this);
-        travelState = new Travel(this);
-        weatherState = new Weather(this);
+        travel = new Travel(this);
+        weather = new Weather(this);
+        dialogue = new Dialogue(this);
         TRAIL_MENU_PANEL = new TrailMenuPanel(this);
         SUPPLIES_PANEL = new LoadedWagonPanel(this);
         TRADE_PANEL = new TradePanel(this);
@@ -178,19 +184,26 @@ public class OregonTrail implements Serializable {
 
     /**
      * Getter method for instantiation of Travel class.
-     *
-     * @return the travelState
+	 * @return Travel the instantiated Travel object for the game
      */
     public Travel getTravelState() {
-        return this.travelState;
+        return travel;
     }
     
 	/**
 	 * Getter method for instantiation of Weather class.
-	 * @return the weatherState
+	 * @return Weather the instantiated Weather object for the game
 	 */
 	public Weather getWeatherState() {
-		return weatherState;
+		return weather;
+	}
+    
+	/**
+	 * Getter method for instantiation of Dialogue class.
+	 * @return Dialogue the instantiated Dialogue object for the game
+	 */
+	public Dialogue getDialogueState() {
+		return dialogue;
 	}
 
     /**
@@ -216,8 +229,14 @@ public class OregonTrail implements Serializable {
         }
     }
     
+    /**
+     * Method to open maps given the Landmark name
+     * @param landmarkName Descriptive string of landmark name
+     * @author Ray Otto
+     * @date 2024-05-05
+     */
     public void openMap(String landmarkName) {
-        String imagePath = "";
+        String imagePath;
 
         // Determine the image path based on the landmark name
         switch (landmarkName) {
@@ -246,6 +265,8 @@ public class OregonTrail implements Serializable {
 
     /**
      * Initialize the contents of the frame.
+     * @author Corbin Hibler
+     * @date 2024-03-29
      */
     private void initialize() {
         frame = new JFrame();
@@ -262,18 +283,13 @@ public class OregonTrail implements Serializable {
         // Show logo and team name
         frame.getContentPane().add(STARTUP_PANEL, BorderLayout.CENTER);
 
+        // After startup screen finishes, display the main menu
         Timer startupTimer = new Timer(StartupPanel.STARTUP_TIME, new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-
-                //opens main menu
                 openPanel(MAIN_MENU);
-                // After startup screen is finished, display first panel
-
             }
         });
         startupTimer.setRepeats(false);
         startupTimer.start();
     }
-
-
 }
