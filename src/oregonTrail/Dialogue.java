@@ -72,14 +72,14 @@ public class Dialogue {
         
         switch(option) {
         case 0:
-			message = "(You're met by Uncle Hugh) Look at all those reeds, it almost "
-					+ "makes me want to set up camp here, it's a shame its so wide open"
-					+ " though. I wouldn't make it a week!";
+			message = "(You're met by Uncle Hugh, of Ruth Shackleford's party) Look at all "
+					+ "those reeds, it almost makes me want to set up camp here, it's a "
+					+ "shame its so wide open though. I wouldn't make it a week!";
 			break;
         case 1:
 			message = "Well I'm sure glad we managed to stock up on water and supplies but this"
 					+ " walk across the desert will surely test our wits. I wish we’d still have some leftover mustard"
-					+ " greens from last night they sure were good.-Mrs. Kirkland";
+					+ " greens from last night, they sure were good. - Mrs. Kirkland";
 			break;
         case 2:
 			message = "These horses are the most stubborn and unruly animals I ever met, I can't"
@@ -130,8 +130,8 @@ public class Dialogue {
 		
         if (!shotgunEventOccurred && option == 0) {
 			// Show special event dialogue box
-			message = "As you were making breakfast, Dick Delay accidentally "
-					+ "steps on his shotgun shooting Mr. Ridgel, the shop owner."
+			message = "As you were making breakfast, Dick Delay, a member of Ruth Shackleford's party,"
+					+ "accidentally steps on his shotgun shooting Mr. Ridgel, the shop owner."
 					+ " You decide it's probably best to leave town.";
 			// Continue the game
 			oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
@@ -143,19 +143,30 @@ public class Dialogue {
 				message = "(You're met by a short young girl with blonde hair, "
 						+ "you think her name might be Alice from locals chatting) "
 						+ "Did you see all those indians last night? I swear there "
-						+ "must have been hundreds of em";
+						+ "must have been hundreds of 'em!";
 				break;
 			case 2:
-				message = "";
+				message = "My family and I are on the move towards the great Southern"
+						+ " California. We have 6 families and over 10 wagons in our "
+						+ "party, coming from Union City, Missouri. We departed "
+						+ "about 12 days ago. - Ruth Shackleford";
 				break;
 			case 3:
-				message = "";
+				message = "Many families here attempt to caulk their wagons "
+						+ "across this river, only to end up losing a wagon "
+						+ "and many items. We will wait until the tide lowers "
+						+ "before attempting a cross. - Ruth Shackleford.";
 				break;
 			case 4:
-				message = "";
+				message = "My husband Frank, a carpenter, has built one of "
+						+ "our dead party members a lovely coffin. We will bury "
+						+ "her tomorrow morning. I believe her name was Nellie Kerfoot."
+						+ " It is hard for me to remember or spell her surname. - Ruth Shackleford";
 				break;
 			case 5:
-				message = "";
+				message = "This trail is nothing easy. My daughter, Mary, just passed "
+						+ "the other day. We buried her on the banks of the Bear River. "
+						+ "She looked very natural and at peace. I hope she rests easy. - Ruth Shackleford";
 				break;
 			case 6:
 				message = "";
