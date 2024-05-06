@@ -1,13 +1,13 @@
 package oregonTrail.panel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import javax.swing.ImageIcon;
@@ -20,7 +20,6 @@ import javax.swing.SwingConstants;
 import oregonTrail.Food;
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.River;
-import java.awt.Color;
 
 /**
  * Panel class representing options available when located at a river in the Oregon Trail game.

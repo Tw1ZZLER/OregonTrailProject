@@ -95,19 +95,34 @@ public class Dialogue {
 					+ " nameless Soldier";
 			break;
 		case 5:
-			message = "";
+			message = "A traveler named Ruth Shackleford approaches you:"
+					+ "“Good afternoon! I know it can get hectic out there, but it’s important to always pay attention to what is going on. "
+					+"The weather especially has an effect on how your travels are going to turn out. "
+					+"If it’s too hot, make sure to take frequent rest stops, and if it’s too cold, make sure you’ve got enough clothes to wear more layers. "
+					+"Otherwise, folks might get sick.”";
 			break;
 		case 6:
-			message = "";
+			message = "You come across a woman, her name is Ruth. Ruth says:"
+					+ " “Make sure to take time to rest if anyone you travel with falls ill. "
+					+"One of our friends, Mr. Kirkland, became very sick, but since we stopped to recover, he is still with us. "
+					+"Illnesses can become a problem for your party very quickly unless you take care of it. "
+					+"We had a real issue with smallpox earlier in our journey because we wouldn’t stop, don’t make that same mistake!”\r\n";
 			break;
 		case 7:
-			message = "";
+			message = "A woman named Ruth Shackleford greets you,\r\n"
+					+ "“While you’re out on the Trail, if you spot some wild cattle or other similarly big animal, hunting can be a great, cheap way to bring in a lot of food."
+					+" We stopped and brought down a buffalo the other day, and now we almost have enough beef to last us through the next leg of the trip!”\r\n";
 			break;
 		case 8:
-			message = "";
+			message = "A traveler, Ruth Shackleford, gives you a word of advice:\r\n"
+					+ "“If you can manage it, I would suggest trying to get on a ferry or pay for someone more experienced to help you make your way across a river. "
+					+"Our group always tries to avoid crossing without any assistance, just to keep safe.”";
 			break;
 		case 9:
-			message = "";
+			message = "As you help your party make preparations for crossing a river, a Native American man approaches you."
+					+ "“Be wary when crossing the rivers, they can sweep you away if you are not careful. "
+					+"A good rule is that if the water is higher than your waist, you should wait for it to go down. "
+					+"If you must cross, right away, though, you could try floating your wagon…”";
 			break;
         default:
 			message = "No one wanted to talk with you (Probably cause you stink)";
@@ -169,16 +184,27 @@ public class Dialogue {
 						+ "She looked very natural and at peace. I hope she rests easy. - Ruth Shackleford";
 				break;
 			case 6:
-				message = "";
+				message = "A wizened old man from a nearby wagon party approaches you."
+						+ "“Always make sure you’ve got enough clothes to go around! "
+						+"It can be expensive, but when the weather turns foul, you’ll be glad to have ‘em! Stay warm, stay healthy!”\r\n";
 				break;
 			case 7:
-				message = "";
+				message = "A nearby traveler plucks softly on a guitar as he addresses you."
+						+ "“Howdy there! I may seem jolly, but I’m quite stuck here. "
+						+ "Just goes to show, wagon parts can break on you at any moment. "
+						+ "Keep spare parts on hand at all times, lest you suffer a similar fate!”";
 				break;
 			case 8:
-				message = "";
+				message = "A woman with a steely gaze spots you walking past and offers a piece of advice."
+						+ "“‘Morning. My name is Ruth Shackleford, and those folks over there are my traveling party. "
+						+ "Looking at your group, it seems there’s a lot in common. Make sure that you take time to "
+						+ "rest and recover every once in a while. Some folks might protest, acting all tough, "
+						+ "but sometimes you’ve got to put your foot down to make sure everyone’s making it to your destination.”";
 				break;
 			case 9:
-				message = "";
+				message = "You overhear Mr. Shackleford and Mr. Kirkland (of Ruth Shackleford’s Party) having a conversation."
+						+ "“I know we’ve come a long way, but Mr. Kirkland, our success on this journey is going to "
+						+ "be a close thing. Our supplies are running low, and we have spent a great deal of money on food and passage at rivers.”";
 				break;
 			default:
 				message = "No one wanted to talk with you (Probably cause you stink)";

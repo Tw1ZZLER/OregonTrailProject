@@ -24,7 +24,7 @@ import oregonTrail.landmark.Landmark;
  * It also provides buttons for continuing the travel or sizing up the situation.
  * @author Corbin Hibler
  * @date 2024-04-08
- * @fileName TravelPanel.java
+ * @filename TravelPanel.java
  */
 public class TravelPanel extends JPanel {
 
@@ -52,9 +52,9 @@ public class TravelPanel extends JPanel {
     private int currentImageIndex;
     private Timer animationTimer;
     private static final String[] IMAGE_PATHS = {
-        "src\\images\\wagon.png",
-        "src\\images\\wagonframe2.png",
-        "src\\images\\wagonframe3.png"
+        "src/images/wagon.png",
+        "src/images/wagonframe2.png",
+        "src/images/wagonframe3.png"
     };
     
     /**
@@ -75,7 +75,7 @@ public class TravelPanel extends JPanel {
 
     /**
      * Sets text of health label
-     * @param string Descriptive string of health conditionprivate Health health;
+     * @param string Descriptive string of health condition
      */
     public void setHealthText(String string) {
         lblHealth.setText(string);
@@ -121,7 +121,7 @@ public class TravelPanel extends JPanel {
 
     /**
      * Create the panel.
-     * @param OregonTrail oregonTrail object required for the game
+     * @param oregonTrail oregonTrail object required for the game
      */
     public TravelPanel(OregonTrail oregonTrail) {
         health = new Health(); // Initialize the Health instance
@@ -133,22 +133,14 @@ public class TravelPanel extends JPanel {
         btnContinue.setPreferredSize(new Dimension(77, 50));
         btnContinue.setForeground(Color.WHITE);
         btnContinue.setBackground(Color.BLACK);
-        btnContinue.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                oregonTrail.getTravelState().travelToggle();
-            }
-        });
+        btnContinue.addActionListener(e -> oregonTrail.getTravelState().travelToggle());
         
         btnSizeUpThe = new JButton("Size Up the Situation");
         btnSizeUpThe.setFont(new Font("Impact", Font.PLAIN, 36));
         btnSizeUpThe.setForeground(Color.WHITE);
         btnSizeUpThe.setMinimumSize(new Dimension(159, 45));
         btnSizeUpThe.setPreferredSize(new Dimension(159, 50));
-        btnSizeUpThe.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                oregonTrail.openPanel(oregonTrail.TRAIL_MENU_PANEL);
-            }
-        });
+        btnSizeUpThe.addActionListener(e -> oregonTrail.openPanel(oregonTrail.TRAIL_MENU_PANEL));
         
         lblImage = new JLabel();
         lblImage.setHorizontalAlignment(SwingConstants.CENTER);
@@ -160,12 +152,9 @@ public class TravelPanel extends JPanel {
         for (int i = 0; i < IMAGE_PATHS.length; i++) {
             wagonImages[i] = new ImageIcon(IMAGE_PATHS[i]);
         }
-        animationTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currentImageIndex = (currentImageIndex + 1) % wagonImages.length;
-                lblImage.setIcon(wagonImages[currentImageIndex]);
-            }
+        animationTimer = new Timer(1000, e -> {
+            currentImageIndex = (currentImageIndex + 1) % wagonImages.length;
+            lblImage.setIcon(wagonImages[currentImageIndex]);
         });
         animationTimer.start(); // Start the timer
         
