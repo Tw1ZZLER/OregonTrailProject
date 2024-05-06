@@ -4,6 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import oregonTrail.Food;
 import oregonTrail.OregonTrail;
 import oregonTrail.landmark.River;
 import java.awt.Color;
@@ -30,16 +37,19 @@ public class RiverPanel extends JPanel {
     private OregonTrail oregonTrail;
     private String riverName;
     private ImageIcon riverImageIcon;
+    private Calendar date; // Added date field
     
     /**
-     * Constructs a new RiverPanel with the specified OregonTrail instance and river image icon.
+     * Constructs a new RiverPanel with the specified OregonTrail instance, river object, and date.
      * 
      * @param pOregonTrail The OregonTrail instance associated with the game.
      * @param river The river object used for this panel.
+     * @param date The calendar date.
      */
-    public RiverPanel(OregonTrail pOregonTrail, River river) {
+    public RiverPanel(OregonTrail pOregonTrail, River river, Calendar date) {
         this.oregonTrail = pOregonTrail;
         this.riverName = river.getName();
+        this.date = date; // Initialize date
         
         // Scale up image
         ImageIcon originalIcon = river.getPicture();
@@ -126,10 +136,35 @@ public class RiverPanel extends JPanel {
             // Move the player back 12 miles
             oregonTrail.getTravelState().moveBack(12);
             // Update the display with the new distance traveled
-            oregonTrail.getTravelState().getMilesTraveled();
-            // Update the next landmark based on the new position
-            oregonTrail.getTravelState().updateNextLandmark();
-            oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
+            int milesTraveled = oregonTrail.getTravelState().getMilesTraveled();
+            System.out.println("Miles Traveled: " + milesTraveled);
+     
+            String restDaysString = JOptionPane.showInputDialog(this, "Enter the amount of days you'd like to wait:");
+            if (restDaysString != null && !restDaysString.isEmpty()) {
+                int restDays = Integer.parseInt(restDaysString);
+                // Call incrementDate method
+                incrementDate(restDays);
+                for (int i = 0; i < restDays; i++) {
+                    Food.consumeFood(oregonTrail);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid input. Please enter a valid number of days.");
+            }
+       
+
         });
-    } 
+    }
+
+    /**
+     * Increments the day by the specified amount and updates the date text.
+     * @param days The number of days to increment by
+     */
+    public void incrementDate(int days) {
+        // Use Calendar.DAY_OF_MONTH instead of GregorianCalendar.DAY_OF_MONTH
+        date.add(Calendar.DAY_OF_MONTH, days);
+        DateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.US);
+        String formattedDate = dateFormat.format(date.getTime());
+        oregonTrail.TRAVEL_PANEL.setDateText(formattedDate); // Assuming TRAVEL_PANEL is accessible here
+        oregonTrail.TRAIL_MENU_PANEL.setDateText(formattedDate); // Assuming TRAIL_MENU_PANEL is accessible here
+    }
 }

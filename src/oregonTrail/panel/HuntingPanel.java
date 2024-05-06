@@ -1,18 +1,15 @@
 package oregonTrail.panel;
 
-import java.awt.AWTEvent;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
-
 import oregonTrail.OregonTrail;
-
-import javax.swing.JOptionPane;
 import java.util.Random;
 
 /**
@@ -55,8 +52,9 @@ public class HuntingPanel extends JPanel {
      * @author Ray Otto
      * @date 2024-03-25
      */
-    public HuntingPanel() {
-    	
+    public HuntingPanel(OregonTrail oregonTrail) {
+        this.oregonTrail = oregonTrail; // Initialize oregonTrail
+
         //prompts user
         JOptionPane.showMessageDialog(this,
                 "Warning: You are about to play the hunting minigame.",
@@ -158,8 +156,10 @@ public class HuntingPanel extends JPanel {
             countdownTimer.setInitialDelay(0);
             countdownTimer.start();
         }
-    }
 
+        // Request focus for the panel to receive keyboard events
+        this.requestFocusInWindow();
+    }
     /**
      * Creates all necessary labels for the game
      * Also contains all KeyListener logic for fighting
@@ -167,7 +167,7 @@ public class HuntingPanel extends JPanel {
      * @date 2024-03-29
      */
     private void initialize() {
-    	
+
         standingIcon = new ImageIcon("src/images/standing1.png");
         blockingIcon = new ImageIcon("src/images/blocking1.png");
         rightPunchIcon = new ImageIcon("src/images/rightPunch1.png");
@@ -215,44 +215,38 @@ public class HuntingPanel extends JPanel {
         add(playerHealthValueLabel);
 
         addKeyListener(new KeyAdapter() {
+
             @Override
             public void keyPressed(KeyEvent e) {
-            	 AWTEvent event = null;
-				if (event.getID() == KeyEvent.KEY_PRESSED) {
-                     if (((KeyEvent) event).getKeyCode() == KeyEvent.VK_SPACE) {
-                        sprite.setIcon(blockingIcon);
-                        blocking = true;
-                     }
-            	 }
-                        if (event.getID() == KeyEvent.KEY_PRESSED) {
-                            if (((KeyEvent) event).getKeyCode() == KeyEvent.VK_A) {
-                            if (!punchCooldown) {
-                            sprite.setIcon(leftPunchIcon);
-                            if (enemyHealth > 0 && !blocking) {
-                                enemyHealth -= 1;
-                                updateEnemyLabel();
-                            }
-                            startPunchTimer();
-                            punchCooldown = true;
+                int keyCode = e.getKeyCode();
+                if (keyCode == KeyEvent.VK_SPACE) {
+                    sprite.setIcon(blockingIcon);
+                    blocking = true;
+                    System.out.println("Space pressed");
+                } else if (keyCode == KeyEvent.VK_A) {
+                    if (!punchCooldown) {
+                        sprite.setIcon(leftPunchIcon);
+                        if (enemyHealth > 0 && !blocking) {
+                            enemyHealth -= 1;
+                            updateEnemyLabel();
+                            System.out.println("A pressed");
                         }
-                            }
+                        startPunchTimer();
+                        punchCooldown = true;
+                    }
+                } else if (keyCode == KeyEvent.VK_D) {
+                    if (!punchCooldown) {
+                        sprite.setIcon(rightPunchIcon);
+                        if (enemyHealth > 0 && !blocking) {
+                            enemyHealth -= 1;
+                            updateEnemyLabel();
+                            System.out.println("D pressed");
                         }
-                            if (event.getID() == KeyEvent.KEY_PRESSED) {
-                                if (((KeyEvent) event).getKeyCode() == KeyEvent.VK_D) {
-                        if (!punchCooldown) {
-                            sprite.setIcon(rightPunchIcon);
-                            if (enemyHealth > 0 && !blocking) {
-                                enemyHealth -= 1;
-                                updateEnemyLabel();
-                            }
-                            startPunchTimer();
-                            punchCooldown = true;
-                        }
-                                }
-                            }
-            
+                        startPunchTimer();
+                        punchCooldown = true;
+                    }
+                }
             }
-            
 
             @Override
             public void keyReleased(KeyEvent e) {
@@ -327,7 +321,7 @@ public class HuntingPanel extends JPanel {
                         gameRunning = false;
                         sprite.setVisible(false);
                         JOptionPane.showMessageDialog(getParent(), "You've been defeated! The enemy " + enemyType + " ran away.");
-                        System. exit(0);
+                        System.exit(0);
                     }
                 });
                 attackTimer.setRepeats(false);
