@@ -112,7 +112,7 @@ public class OregonTrail implements Serializable {
         // Create new hunting panel if called.
         // Otherwise, use final (constant) panel
         if (panelOpen == this.huntingPanel) {
-            this.huntingPanel = new HuntingPanel();
+            this.huntingPanel = new HuntingPanel(this);
             frame.getContentPane().add(this.huntingPanel);
         } else {
             frame.getContentPane().add(panelOpen);
@@ -219,7 +219,7 @@ public class OregonTrail implements Serializable {
 
             // Check what type of landmark and what panel is needed
             if (landmark instanceof River) {
-                landmarkPanel = new RiverPanel(this, (River) landmark);
+                landmarkPanel = new RiverPanel(this, (River) landmark, null);
             } else if (landmark instanceof Fort) {
                 landmarkPanel = new FortPanel(this, (Fort) landmark);
             } else {
