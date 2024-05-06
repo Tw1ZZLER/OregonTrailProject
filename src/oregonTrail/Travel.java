@@ -24,7 +24,7 @@ import oregonTrail.weather.WeatherZone;
  * Handles all logic related to traveling. Contains Swing timer for traveling
  * and updates TravelPanel accordingly.
  * 
- * @author Corbin Hibler
+ * @author Corbin Hibler, Ethan Vaughn
  * @date 2024-04-30
  * @filename Travel.java
  */

@@ -5,6 +5,15 @@ import javax.swing.JOptionPane;
 import java.lang.Math;
 import oregonTrail.weather.WeatherZone;
 
+/**
+ * Contains the methods and constructor for determining whether or not a weather health-modifying event will occur.
+ * Uses the rollEvent abstract class to base its own rollEvent off of.
+ * 
+ * @author Ethan Vaughn
+ * @date 2024-05-06
+ * @filename HealthEvent.java
+ * @version 1.0
+ */
 public class HealthEvent extends RandomEvent {
 	
 	public HealthEvent(OregonTrail oregonTrail) {

@@ -2,6 +2,14 @@ package oregonTrail.randomEvent;
 
 import oregonTrail.OregonTrail;
 
+/**
+ * Contains abstract method rollEvent to set up other random event classes
+ * 
+ * @author Ethan Vaughn
+ * @date 2024-05-06
+ * @filename RandomEvent.java
+ * @version 1.0
+ */
 public abstract class RandomEvent {
 
 	protected boolean happened = false;

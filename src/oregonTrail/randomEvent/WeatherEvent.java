@@ -8,6 +8,15 @@ import oregonTrail.weather.WeatherZone;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Contains the methods and constructor for determining whether or not a weather random event will occur.
+ * Uses the rollEvent abstract class to base its own rollEvent off of.
+ * 
+ * @author Ethan Vaughn
+ * @date 2024-05-06
+ * @filename WeatherEvent.java
+ * @version 1.0
+ */
 public class WeatherEvent extends RandomEvent {
 	
 	public WeatherEvent(OregonTrail oregonTrail) {

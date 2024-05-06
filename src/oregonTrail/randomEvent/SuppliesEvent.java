@@ -7,6 +7,15 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Contains the methods and constructor for determining whether or not a weather suppply-effecting event will occur.
+ * Uses the rollEvent abstract class to base its own rollEvent off of.
+ * 
+ * @author Ethan Vaughn
+ * @date 2024-05-06
+ * @filename SuppliesEvent.java
+ * @version 1.0
+ */
 public class SuppliesEvent extends RandomEvent {
 
 	public SuppliesEvent(OregonTrail oregonTrail) {
