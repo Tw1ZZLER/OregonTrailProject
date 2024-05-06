@@ -73,10 +73,28 @@ public class Dialogue {
         int randomNumber = rand.nextInt(20) + 1;
         
         if(randomNumber>=2) {
-	    	if(Landmark.ASH_HOLLOW.isVisited()) {
+	    	if(!Landmark.ASH_HOLLOW.isVisited()) {
 	    		message = "(You're met by Uncle Hugh) Look at all those reeds, it almost "
 	    				+ "makes me want to set up camp here, its a shame its so wide open"
 	    				+ " though. I wouldn't make it a week!";
+	    	}
+	    	if(!Landmark.CHIMNEY_ROCK.isVisited()) {
+	    		message = "Well I'm sure glad we managed to stock up on water and supplies but this"
+	    				+ "walk across the desert will surely test our wits. I wish we’d still have some leftover mustard"
+	    				+ "greens from last night they sure were good.-Mrs. Kirkland";
+	    	}
+	    	if(!Landmark.THE_DALLES.isVisited()) {
+	    		message = "These horses are the most stubborn and unruly animals I ever met, I can't"
+	    				+ "get the darn harness on em and we’re already late!. -Frank";
+	    	}
+	    	if(!Landmark.BLUE_MOUNTAINS.isVisited()) {
+	    		message ="I can’t believe those damn herders drove away two of my best damn horses"
+	    				+ "and then still made you pay 2 dollars for your troubles absolutely ridiculous -Mr. Kirkland";
+	    	}
+	    	if(!Landmark.SODA_SPRINGS.isVisited()) {
+	    		message ="They stole my revolver!! Who in the hell stole it!! I swear I’ll kill that\r\n"
+	    				+ "rat!\"-John Smith, “Oh yeah with what gun (Laughter ensues from the crowd of soldiers)?!”- A\r\n"
+	    				+ "nameless Solider pg 173\r\n";
 	    	}
 	    	else {
 	    		message = "No one wanted to talk with you (Probably cause you stink)";
@@ -111,12 +129,12 @@ public class Dialogue {
                 shotgunEventOccurred = true; // Set to true to indicate the special event has occurred
             } else {
                 // Normal dialogue
-                if (Landmark.FORT_LARAMIE.isVisited()) {
+                if (!Landmark.FORT_LARAMIE.isVisited()) {
                     message = "(You're met by a short young girl with blonde hair, "
                     		+ "you think her name might be Alice from locals chatting) "
                     		+ "Did you see all those indians last night? I swear there "
                     		+ "must have been hundreds of em";
-                } else if (Landmark.OREGON_CITY.isVisited()) {
+                } else if (!Landmark.OREGON_CITY.isVisited()) {
                     message = "(You're met by God?) So you finally made it, congratulations,"
                     		+ " we lost nearly all of our family and it looks like you almost "
                     		+ "shared the same fate. Now are you gonna play again?";
