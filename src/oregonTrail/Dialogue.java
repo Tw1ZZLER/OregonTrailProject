@@ -80,21 +80,21 @@ public class Dialogue {
 	    	}
 	    	else if(!Landmark.CHIMNEY_ROCK.isVisited()) {
 	    		message = "Well I'm sure glad we managed to stock up on water and supplies but this"
-	    				+ "walk across the desert will surely test our wits. I wish we’d still have some leftover mustard"
-	    				+ "greens from last night they sure were good.-Mrs. Kirkland";
+	    				+ " walk across the desert will surely test our wits. I wish we’d still have some leftover mustard"
+	    				+ " greens from last night they sure were good.-Mrs. Kirkland";
 	    	}
 	    	else if(!Landmark.THE_DALLES.isVisited()) {
 	    		message = "These horses are the most stubborn and unruly animals I ever met, I can't"
-	    				+ "get the darn harness on em and we’re already late!. -Frank";
+	    				+ " get the darn harness on em and we’re already late!. -Frank";
 	    	}
 	    	else if(!Landmark.BLUE_MOUNTAINS.isVisited()) {
 	    		message ="I can’t believe those damn herders drove away two of my best damn horses"
-	    				+ "and then still made you pay 2 dollars for your troubles absolutely ridiculous -Mr. Kirkland";
+	    				+ " and then still made you pay 2 dollars for your troubles absolutely ridiculous -Mr. Kirkland";
 	    	}
 	    	else if(!Landmark.SODA_SPRINGS.isVisited()) {
 	    		message ="They stole my revolver!! Who in the hell stole it!! I swear I’ll kill that"
-	    				+ "rat!\"-John Smith, “Oh yeah with what gun (Laughter ensues from the crowd of soldiers)?!”-"
-	    				+ "nameless Solider";
+	    				+ " rat!\"-John Smith, “Oh yeah with what gun (Laughter ensues from the crowd of soldiers)?!”-"
+	    				+ " nameless Solider";
 	    	}
 	    	else {
 	    		message = "No one wanted to talk with you (Probably cause you stink)";
