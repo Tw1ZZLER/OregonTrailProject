@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * @author Ethan Vaughn
  * @version 1.0
  * @date 2024-04-15
+ * @filename Shop.java
  */
 public class Shop {
 

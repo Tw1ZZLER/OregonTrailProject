@@ -12,7 +12,8 @@ import javax.swing.JPanel;
  * Static constants: FOOD_CONSUME_LEVELS, DEFAULT_TRAVEL_SPEED
  * 
  * @author Lukas Dunbar, Corbin Hibler Ray Otto and Ethan Vaughn
- * @version 1.0
+ * @date 2024-05-06
+ * @filename Wagon.java
  */
 public class Wagon {
     private double foodConsumptionRate;
