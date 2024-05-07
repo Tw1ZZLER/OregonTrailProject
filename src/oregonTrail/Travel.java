@@ -34,6 +34,7 @@ public class Travel {
 	private int milesNextLandmark;
 	private Landmark nextLandmark;
 	private static Random rand = new Random();
+	private Health health;
 
 	private Calendar date = new GregorianCalendar(1848, 7, 11); // Set to August 11, 1848
 	private Timer timer = new Timer(50, new ActionListener() {
@@ -46,6 +47,7 @@ public class Travel {
 		this.oregonTrail = oregonTrail;
 		this.nextLandmark = Landmark.KANSAS_RIVER; // default to first landmark!
 		this.milesNextLandmark = Landmark.KANSAS_RIVER.getDistanceFromPrevious();
+		this.health = new Health();
 	}
 	
 	/**
@@ -245,6 +247,15 @@ public class Travel {
     	return date.get(Calendar.MONTH);
     }
 
+    /**
+     * Returns the health object associated with this travel cycle
+     * 
+     * @return health The current health object
+     */
+    public Health getThisHealth() {
+    	return this.health;
+    }
+    
     /**
      * Moves the player back a specified number of miles.
      * 
