@@ -19,6 +19,14 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * Panel that opens after the StartupPanel, when the game first opens.
+ * Contains loading and continuing game buttons, as well as a button
+ * to create a new game.
+ * @author Ray Otto, Corbin Hibler
+ * @date 2024-05-06
+ * @filename MainMenuPanel.java
+ */
 public class MainMenuPanel extends JPanel {
 	public TravelPanel TRAVEL_PANEL;
     private static final long serialVersionUID = 1L;
@@ -54,7 +62,7 @@ public class MainMenuPanel extends JPanel {
         	public void mouseClicked(MouseEvent e) {
 				oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
 			}
-        });
+             });
         add(btnNewButton_1, "cell 2 1,alignx trailing");
         
         JButton btnNewButton_2 = new JButton("Load Game");
@@ -93,6 +101,11 @@ public class MainMenuPanel extends JPanel {
         }
     }
 
+    /**
+     * Overrides paintComponent method of JPanel in order
+     * to create a pretty looking background image
+     * @param g the Graphics object to protect
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
