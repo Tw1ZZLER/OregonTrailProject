@@ -4,6 +4,7 @@ import java.awt.KeyEventDispatcher;
 import java.awt.event.KeyEvent;
 
 import oregonTrail.panel.HuntingPanel;
+
 /**
  * KeyEventDispatcher for the hunting minigame
  * Allows you to execute the controls of the hunting minigame
@@ -15,25 +16,26 @@ public class HuntingKeyEventDispatcher implements KeyEventDispatcher {
     private HuntingPanel huntingPanel;
 
     /**
-     * Constructs a new HuntingKeyEventDispatcher with a reference to the OregonTrail instance.
+     * Constructs a new HuntingKeyEventDispatcher with a reference to the HuntingPanel instance.
      *
-     * @param oregonTrail The OregonTrail instance.
+     * @param huntingPanel The HuntingPanel instance.
      */
     public HuntingKeyEventDispatcher(HuntingPanel huntingPanel) {
         this.huntingPanel = huntingPanel;
     }
+
     /**
-     * Dispatches the key event to check for the A,D,and SPACE key being pressed.
+     * Dispatches the key event to check for the A, D, and S keys being pressed.
      *
      * @param event The KeyEvent to be dispatched.
-     * @return true if any of these key were pressed, false otherwise.
+     * @return true if any of these keys were pressed, false otherwise.
      */
     @Override
     public boolean dispatchKeyEvent(KeyEvent e) {
         if (e.getID() == KeyEvent.KEY_PRESSED) {
             int keyCode = e.getKeyCode();
             switch (keyCode) {
-                case KeyEvent.VK_SPACE:
+                case KeyEvent.VK_S:
                     huntingPanel.block();
                     break;
                 case KeyEvent.VK_A:
@@ -49,3 +51,4 @@ public class HuntingKeyEventDispatcher implements KeyEventDispatcher {
         return false;
     }
 }
+

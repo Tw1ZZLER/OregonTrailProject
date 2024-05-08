@@ -1,19 +1,22 @@
 package oregonTrail.panel;
 
 import java.awt.Image;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+
+import oregonTrail.HuntingKeyEventDispatcher;
 import oregonTrail.OregonTrail;
-import java.util.Random;
 
 public class HuntingPanel extends JPanel {
-
     private JLabel sprite;
     private JLabel enemyLabel;
     private JLabel winnerLabel;
@@ -39,6 +42,12 @@ public class HuntingPanel extends JPanel {
     private boolean punchCooldown;
     private boolean blocking;
     private OregonTrail oregonTrail;
+    
+    private ImageIcon scaleImageIcon1(ImageIcon icon, int scale) {
+        Image img = icon.getImage();
+        Image newImg = img.getScaledInstance(img.getWidth(null) * scale, img.getHeight(null) * scale, Image.SCALE_SMOOTH);
+        return new ImageIcon(newImg);
+    }
 
     public HuntingPanel(OregonTrail oregonTrail) {
         this.oregonTrail = oregonTrail;
@@ -148,7 +157,6 @@ public class HuntingPanel extends JPanel {
     }
 
     private void initialize() {
-
         standingIcon = new ImageIcon("src/images/standing1.png");
         blockingIcon = new ImageIcon("src/images/blocking1.png");
         rightPunchIcon = new ImageIcon("src/images/rightPunch1.png");
@@ -159,13 +167,13 @@ public class HuntingPanel extends JPanel {
         deerImage = new ImageIcon("src/images/deer.png");
         laurieMooImage = new ImageIcon("src/images/LaurieMoo.png");
 
-        standingIcon = scaleImageIcon(standingIcon, 10);
-        blockingIcon = scaleImageIcon(blockingIcon, 10);
-        rightPunchIcon = scaleImageIcon(rightPunchIcon, 10);
-        leftPunchIcon = scaleImageIcon(leftPunchIcon, 10);
-        bisonImage = scaleImageIcon(bisonImage, 1);
-        squirrelImage = scaleImageIcon(squirrelImage, 1);
-        coyoteImage = scaleImageIcon(coyoteImage, 1);
+        standingIcon = scaleImageIcon1(standingIcon, 10);
+        blockingIcon = scaleImageIcon1(blockingIcon, 10);
+        rightPunchIcon = scaleImageIcon1(rightPunchIcon, 10);
+        leftPunchIcon = scaleImageIcon1(leftPunchIcon, 10);
+        bisonImage = scaleImageIcon1(bisonImage, 1);
+        squirrelImage = scaleImageIcon1(squirrelImage, 1);
+        coyoteImage = scaleImageIcon1(coyoteImage, 1);
 
         sprite = new JLabel(standingIcon);
         sprite.setBounds(823, 334, standingIcon.getIconWidth(), standingIcon.getIconHeight());
@@ -196,40 +204,21 @@ public class HuntingPanel extends JPanel {
         add(playerHealthValueLabel);
 
         addKeyListener(new KeyAdapter() {
-
             @Override
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
-                if (keyCode == KeyEvent.VK_SPACE) {
-                    sprite.setIcon(blockingIcon);
-                    blocking = true;
+                if (keyCode == KeyEvent.VK_S) {
+                    block();
                 } else if (keyCode == KeyEvent.VK_A) {
-                    if (!punchCooldown) {
-                        sprite.setIcon(leftPunchIcon);
-                        if (enemyHealth > 0 && !blocking) {
-                            enemyHealth -= 1;
-                            updateEnemyLabel();
-                        }
-                        startPunchTimer();
-                        punchCooldown = true;
-                    }
+                    leftPunch();
                 } else if (keyCode == KeyEvent.VK_D) {
-                    if (!punchCooldown) {
-                        sprite.setIcon(rightPunchIcon);
-                        if (enemyHealth > 0 && !blocking) {
-                            enemyHealth -= 1;
-                            updateEnemyLabel();
-                        }
-                        startPunchTimer();
-                        punchCooldown = true;
-                    }
+                    rightPunch();
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                sprite.setIcon(standingIcon);
-                blocking = false;
+                unblock();
             }
         });
 
@@ -299,12 +288,43 @@ public class HuntingPanel extends JPanel {
         });
 
         enemyAttackTimer.setInitialDelay(2000);
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new HuntingKeyEventDispatcher(this));
     }
 
-    private ImageIcon scaleImageIcon(ImageIcon icon, int scale) {
-        Image img = icon.getImage();
-        Image scaledImg = img.getScaledInstance(icon.getIconWidth() * scale, icon.getIconHeight() * scale, Image.SCALE_DEFAULT);
-        return new ImageIcon(scaledImg);
+    // Methods for handling key events
+    public void block() {
+        sprite.setIcon(blockingIcon);
+        blocking = true;
+    }
+
+    public void unblock() {
+        sprite.setIcon(standingIcon);
+        blocking = false;
+    }
+
+    public void leftPunch() {
+        if (!punchCooldown) {
+            sprite.setIcon(leftPunchIcon);
+            if (enemyHealth > 0 && !blocking) {
+                enemyHealth -= 1;
+                updateEnemyLabel();
+            }
+            startPunchTimer();
+            punchCooldown = true;
+        }
+    }
+
+    public void rightPunch() {
+        if (!punchCooldown) {
+            sprite.setIcon(rightPunchIcon);
+            if (enemyHealth > 0 && !blocking) {
+                enemyHealth -= 1;
+                updateEnemyLabel();
+            }
+            startPunchTimer();
+            punchCooldown = true;
+        }
     }
 
     private void updateEnemyLabel() {
@@ -323,5 +343,20 @@ public class HuntingPanel extends JPanel {
 
     private void rotateSprite(ImageIcon enemyImage) {
         enemySprite.setIcon(enemyImage);
+    }
+
+    private ImageIcon scaleImageIcon(ImageIcon icon, int scale) {
+        Image img = icon.getImage();
+        Image newImg = img.getScaledInstance(img.getWidth(null) / scale, img.getHeight(null) / scale, Image.SCALE_SMOOTH);
+        return new ImageIcon(newImg);
+    }
+
+    // Main method for testing the panel
+    public static void main(String[] args) {
+        OregonTrail oregonTrail = new OregonTrail();
+        oregonTrail.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        HuntingPanel huntingPanel = new HuntingPanel(oregonTrail);
+        oregonTrail.frame.getContentPane().add(huntingPanel);
+        oregonTrail.frame.setVisible(true);
     }
 }
