@@ -12,12 +12,6 @@ import javax.swing.Timer;
 import oregonTrail.OregonTrail;
 import java.util.Random;
 
-/**
- * Java Swing panel for hunting mini-game
- * @author Ray Otto
- * @date 2024-04-04
- * @filename HuntingPanel.java
- */
 public class HuntingPanel extends JPanel {
 
     private JLabel sprite;
@@ -46,16 +40,9 @@ public class HuntingPanel extends JPanel {
     private boolean blocking;
     private OregonTrail oregonTrail;
 
-    /**
-     * Randomly chooses an enemy type to hunt (fight)
-     * Creates game timer for game to loop over
-     * @author Ray Otto
-     * @date 2024-03-25
-     */
     public HuntingPanel(OregonTrail oregonTrail) {
-        this.oregonTrail = oregonTrail; // Initialize oregonTrail
-        
-      //prompts user
+        this.oregonTrail = oregonTrail;
+
         JOptionPane.showMessageDialog(this,
                 "Warning: You are about to play the hunting minigame.",
                 "Inane warning",
@@ -76,54 +63,59 @@ public class HuntingPanel extends JPanel {
                     "Your husband went hunting and found nothing. You could have done better, not only in hunting but also in marriage.",
                     "Result",
                     JOptionPane.INFORMATION_MESSAGE);
+            gameRunning = false;
             oregonTrail.openPanel(oregonTrail.TRAVEL_PANEL);
+            return;
         }
 
-        setLayout(null); // For absolute positioning
+        initializeGame();
+    }
+
+    private void initializeGame() {
+        setLayout(null);
         initialize();
         gameRunning = true;
         punchCooldown = false;
         blocking = false;
-        countdown = 60; // Initialize countdown to 60 seconds
+        countdown = 60;
         playerHealth = 5;
         Random rand = new Random();
         int random = rand.nextInt(5) + 1;
 
         switch (random) {
             case 1:
-                enemyHealth = 1; // Squirrel
+                enemyHealth = 1;
                 enemyType = "Squirrel";
                 enemyLabel.setText(enemyType + " Health: " + enemyHealth);
                 rotateSprite(squirrelImage);
-                enemyAttackTimer.setDelay(2000); // Squirrel attacks every 2 seconds
+                enemyAttackTimer.setDelay(2000);
                 break;
             case 2:
-                enemyHealth = 8; // Deer
+                enemyHealth = 8;
                 enemyType = "Deer";
                 enemyLabel.setText(enemyType + " Health: " + enemyHealth);
                 rotateSprite(deerImage);
-                enemyAttackTimer.setDelay(5000); // Deer attacks every 5 seconds
+                enemyAttackTimer.setDelay(5000);
                 break;
             case 3:
-                enemyHealth = 12; // Coyote
+                enemyHealth = 12;
                 enemyType = "Coyote";
                 enemyLabel.setText(enemyType + " Health: " + enemyHealth);
                 rotateSprite(coyoteImage);
-                // Set the delay for enemy attacks here if needed
                 break;
             case 4:
-                enemyHealth = 20; // Bison
+                enemyHealth = 20;
                 enemyType = "Bison";
                 enemyLabel.setText(enemyType + " Health: " + enemyHealth);
                 rotateSprite(bisonImage);
-                enemyAttackTimer.setDelay(10000); // Bison attacks every 10 seconds
+                enemyAttackTimer.setDelay(10000);
                 break;
             case 5:
-                enemyHealth = 1; // LaurieMoo
+                enemyHealth = 1;
                 enemyType = "LaurieMoo";
                 enemyLabel.setText(enemyType + " Health: " + enemyHealth);
                 rotateSprite(laurieMooImage);
-                enemyAttackTimer.setDelay(20000); // LaurieMoo attacks every 20 seconds
+                enemyAttackTimer.setDelay(20000);
                 break;
             default:
                 break;
@@ -131,20 +123,15 @@ public class HuntingPanel extends JPanel {
 
         if (gameRunning) {
             enemyAttackTimer.start();
-            // Start a countdown timer for 60 seconds
             Timer countdownTimer = new Timer(1000, e -> {
-                // Decrement the countdown
                 if (gameRunning) {
                     if (playerHealth > 0) {
-                        // Decrease countdown if player is alive
                         winnerLabel.setText("Time Left: " + (--countdown) + " seconds");
                     } else {
-                        // Game over if player health is zero
                         gameRunning = false;
                         sprite.setVisible(false);
                         JOptionPane.showMessageDialog(this, "You've been defeated! The enemy " + enemyType + " ran away.");
                     }
-                    // If countdown reaches 0, end the game
                     if (countdown == 0) {
                         gameRunning = false;
                         sprite.setVisible(false);
@@ -157,15 +144,9 @@ public class HuntingPanel extends JPanel {
             countdownTimer.start();
         }
 
-        // Request focus for the panel to receive keyboard events
         this.requestFocusInWindow();
     }
-    /**
-     * Creates all necessary labels for the game
-     * Also contains all KeyListener logic for fighting
-     * @author Ray Otto
-     * @date 2024-03-29
-     */
+
     private void initialize() {
 
         standingIcon = new ImageIcon("src/images/standing1.png");
@@ -192,7 +173,7 @@ public class HuntingPanel extends JPanel {
 
         enemySprite = new JLabel();
         enemySprite.setHorizontalAlignment(SwingConstants.CENTER);
-        enemySprite.setBounds(823, 193, 320, 300); // Adjusted bounds
+        enemySprite.setBounds(823, 193, 320, 300);
         enemySprite.setIcon(laurieMooImage);
         add(enemySprite);
 
@@ -222,14 +203,12 @@ public class HuntingPanel extends JPanel {
                 if (keyCode == KeyEvent.VK_SPACE) {
                     sprite.setIcon(blockingIcon);
                     blocking = true;
-                    System.out.println("Space pressed");
                 } else if (keyCode == KeyEvent.VK_A) {
                     if (!punchCooldown) {
                         sprite.setIcon(leftPunchIcon);
                         if (enemyHealth > 0 && !blocking) {
                             enemyHealth -= 1;
                             updateEnemyLabel();
-                            System.out.println("A pressed");
                         }
                         startPunchTimer();
                         punchCooldown = true;
@@ -240,7 +219,6 @@ public class HuntingPanel extends JPanel {
                         if (enemyHealth > 0 && !blocking) {
                             enemyHealth -= 1;
                             updateEnemyLabel();
-                            System.out.println("D pressed");
                         }
                         startPunchTimer();
                         punchCooldown = true;
@@ -266,48 +244,37 @@ public class HuntingPanel extends JPanel {
                 return;
             }
 
-            // Raise enemy sprite for signaling the attack
             enemySprite.setLocation(enemySprite.getX(), enemySprite.getY() - 20);
 
             Timer raiseTimer = new Timer(500, evt -> {
-                // Hold for half a second
-                // Move enemy sprite back to original position after holding
                 enemySprite.setLocation(enemySprite.getX(), enemySprite.getY() + 20);
 
-                // Move enemy sprite down for attacking animation
                 enemySprite.setLocation(enemySprite.getX(), enemySprite.getY() + 20);
 
-                // Move enemy sprite back to original position after attacking animation
                 Timer attackTimer = new Timer(200, attackEvt -> {
                     enemySprite.setLocation(enemySprite.getX(), enemySprite.getY() - 20);
 
-                    // Enemy attacking logic
                     switch (enemyType) {
                         case "Squirrel":
-                            // Squirrel attacks every 2 seconds but deals zero damage
                             break;
                         case "Deer":
-                            // Deer attacks every 5 seconds and deals 2 damage
                             if (!blocking) {
                                 playerHealth -= 2;
                                 playerHealthValueLabel.setText(Integer.toString(playerHealth));
                             }
                         case "Coyote":
-                            // Coyote attacks every 5 seconds and deals 2 damage
                             if (!blocking) {
                                 playerHealth -= 1;
                                 playerHealthValueLabel.setText(Integer.toString(playerHealth));
                             }
                             break;
                         case "Bison":
-                            // Bison attacks every 10 seconds and deals 4 damage
                             if (!blocking) {
                                 playerHealth -= 4;
                                 playerHealthValueLabel.setText(Integer.toString(playerHealth));
                             }
                             break;
                         case "LaurieMoo":
-                            // LaurieMoo attacks every 20 seconds and deals 999 damage
                             if (!blocking) {
                                 playerHealth -= 1;
                                 playerHealthValueLabel.setText(Integer.toString(playerHealth));
@@ -331,7 +298,7 @@ public class HuntingPanel extends JPanel {
             raiseTimer.start();
         });
 
-        enemyAttackTimer.setInitialDelay(2000); // Delay before enemy starts attacking
+        enemyAttackTimer.setInitialDelay(2000);
     }
 
     private ImageIcon scaleImageIcon(ImageIcon icon, int scale) {
@@ -358,4 +325,3 @@ public class HuntingPanel extends JPanel {
         enemySprite.setIcon(enemyImage);
     }
 }
-
