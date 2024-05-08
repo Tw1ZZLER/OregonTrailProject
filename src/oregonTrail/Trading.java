@@ -10,7 +10,7 @@ import java.util.Set;
  * ensuring that each generated trade offer is unique.
  * @author Lukas Dunbar Corbin Hibler
  * @date 2024-04-12
- * @version 1.0
+ * @filename Trading.java
  */
 public class Trading {
     private final static Item[] itemChoices = {

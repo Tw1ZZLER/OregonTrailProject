@@ -31,7 +31,7 @@ public class PartBreakEvent extends RandomEvent {
 		int breakChance = (int)(Math.random()*100)+1;
 
 		
-		if(roll <= 25) {
+		if(roll <= 10) {
 			//possible wheel break			
 			if(breakChance <= 35) {
 				if(oregonTrail.WAGON.getPartsAmount() > 0) {
@@ -51,7 +51,7 @@ public class PartBreakEvent extends RandomEvent {
 			this.happened = true;
 		}
 		
-		else if (roll <= 50) {
+		else if (roll <= 20) {
 			//possible axle break 
 			if(breakChance <= 35) {
 				if(oregonTrail.WAGON.getPartsAmount() > 0) {
@@ -71,7 +71,7 @@ public class PartBreakEvent extends RandomEvent {
 			this.happened = true;
 		}
 		
-		else if (roll <= 75) {
+		else if (roll <= 30) {
 			//possible tongue break
 			if(breakChance <= 35) {
 				if(oregonTrail.WAGON.getPartsAmount() > 0) {

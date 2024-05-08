@@ -14,6 +14,14 @@ import javax.swing.SwingConstants;
 import net.miginfocom.swing.MigLayout;
 import oregonTrail.OregonTrail;
 
+/**
+ * JDialog that appears when you press the 'ESC' key in-game.
+ * Stops all events that are currently happening.
+ * Allows you to save and exit the game safely.
+ * @author Corbin Hibler
+ * @date 2024-05-06
+ * @filename PauseDialog.java
+ */
 public class PauseDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;

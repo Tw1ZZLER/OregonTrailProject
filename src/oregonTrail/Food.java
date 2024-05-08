@@ -5,7 +5,8 @@ package oregonTrail;
  * Subclass of Item
  *
  * @author Lukas Dunbar, Corbin Hibler, Ray Otto, and Ethan Vaughn
- * @version 1.0
+ * @date 2024-05-06
+ * @filename Food.java
  */
 public class Food extends Item {
     /**
