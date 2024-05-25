@@ -119,4 +119,13 @@ public class Health {
     public String getGeneralHealthAsString() {
         return Integer.toString(generalHealth);
     }
+    
+    /**
+     * Increments the party's health value, representing damage or illness.
+     * 
+     * @param change The amount by which the party's health is being altered.
+     */
+    public void damageHealth(int change) {
+    	this.generalHealth += change;
+    }
 }

@@ -31,7 +31,7 @@ public class SuppliesEvent extends RandomEvent {
 		int month = oregonTrail.getTravelState().getMonth();
 		ArrayList<Item> items = oregonTrail.WAGON.getItemContents();
 		
-		if(roll <= 20) {
+		if(roll <= 10) {
 			//wild fruit event
 			if(month >= 4 && month <= 9) {
 				Item food = new Item("Food");
@@ -43,7 +43,7 @@ public class SuppliesEvent extends RandomEvent {
 			}
 		}
 		
-		else if(roll <= 40) {
+		else if(roll <= 20) {
 			//abandoned wagon event
 			int oxenAdd = (int)(Math.random()*3);
 			Item oxen = new Item("Oxen");
@@ -76,7 +76,7 @@ public class SuppliesEvent extends RandomEvent {
 			
 		}
 		
-		else if(roll <= 60) {
+		else if(roll <= 30) {
 			//wagon fire event
 			int oxenAdd = (int)(Math.random()*3);
 			Item oxen = new Item("Oxen");
@@ -112,7 +112,7 @@ public class SuppliesEvent extends RandomEvent {
 		}
 		}
 		
-		else if(roll <= 80) {
+		else if(roll <= 40) {
 			//thief event
 			int foodStolen = (int)(Math.random()*(50));
 			Item food = new Item("Food");

@@ -35,7 +35,7 @@ public class WeatherEvent extends RandomEvent {
 		String weather = oregonTrail.getWeatherState().getWeatherString();
 		WeatherZone zone = oregonTrail.getWeatherState().getWeatherZone();
 		
-		if(roll <= 25) {
+		if(roll <= 15) {
 			//possible thunderstorm / blizzard (depends on the month, blizzards in winter)
 			if(month > 3 && month != 12) {
 				if(oregonTrail.getWeatherState().calcPrecipitationChance() >= .25 && weather.equals("Cold") || weather.equals("Very Cold")) {
@@ -57,21 +57,23 @@ public class WeatherEvent extends RandomEvent {
 		}
 		}
 		
-		else if(roll <= 50) {
+		else if(roll <= 30) {
 			//possible drought events
 			if(oregonTrail.getWeatherState().calcPrecipitationChance() < .15) {
 				JOptionPane.showMessageDialog(null, "Bad Water! Some of your family feels ill...");
 				//!make health worse by 20!
+				oregonTrail.getTravelState().getThisHealth().damageHealth(20);
 				this.happened = true;
 			}
 			else if(oregonTrail.getWeatherState().calcPrecipitationChance() <= .2) {
 				JOptionPane.showMessageDialog(null, "Very Little Water!");
 				//!make health worse by 10!
+				oregonTrail.getTravelState().getThisHealth().damageHealth(10);
 				this.happened = true;
 			}
 		}
 		
-		else if(roll <= 60) {
+		else if(roll <= 50) {
 			//possible Heavy fog
 			if(!(weather.equals("Very Hot")) && zone.equals(WeatherZone.ZONE_5) || zone.equals(WeatherZone.ZONE_6)) {
 				//50% chance of a day being lost
@@ -85,7 +87,7 @@ public class WeatherEvent extends RandomEvent {
 			}			
 		}
 		
-		else if(roll <= 70) {
+		else if(roll <= 60) {
 			//possible hail storm
 			if(weather.equals("Cold") || weather.equals("Very Cold")) {
 				oregonTrail.getTravelState().incrementDate(1);

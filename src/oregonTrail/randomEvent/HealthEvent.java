@@ -30,19 +30,21 @@ public class HealthEvent extends RandomEvent {
 		WeatherZone zone = oregonTrail.getWeatherState().getWeatherZone();
 		
 		if(roll == 1) {
-			//snakebite, a party member dies
-			JOptionPane.showMessageDialog(null, "(party member) died of a snake bite!");
+			//snakebite, severe health damage
+			JOptionPane.showMessageDialog(null, "A member of your party was bitten by a snake!");
+			oregonTrail.getTravelState().getThisHealth().damageHealth(40);
 			this.happened = true;
 		}
 		
-		else if(roll <= 26) {
+		else if(roll <= 11) {
 			//party member injury
 			int chance = (int)(Math.random()*100)+1;
 			if(zone.equals(WeatherZone.ZONE_5) || zone.equals(WeatherZone.ZONE_6)) {
 				//chances are higher in mountainous terrain
 				if(chance<=35) {
 					//party member gets injured
-					JOptionPane.showMessageDialog(null, "(party member) has been injured!");
+					JOptionPane.showMessageDialog(null, "A member of your party has been injured!");
+					oregonTrail.getTravelState().getThisHealth().damageHealth(8);
 					this.happened = true;
 				}
 			}
@@ -50,7 +52,8 @@ public class HealthEvent extends RandomEvent {
 				//injury chances outside of mountainous terrain
 				if(chance<=20) {
 					//party member gets injured
-					JOptionPane.showMessageDialog(null, "(party member) has been injured!");
+					JOptionPane.showMessageDialog(null, "A member of your party has been injured!");
+					oregonTrail.getTravelState().getThisHealth().damageHealth(5);
 					this.happened = true;
 				}
 			}
@@ -83,8 +86,9 @@ public class HealthEvent extends RandomEvent {
 			}
 			
 			if(chance <= (sickChance+(healthMod*60))) {
-				JOptionPane.showMessageDialog(null, "(party member) has contracted "+disease+"!");
-				//!take health down by 40!
+				JOptionPane.showMessageDialog(null, "A member of your party has contracted "+disease+"!");
+				//!take health down by 20!
+				oregonTrail.getTravelState().getThisHealth().damageHealth(20);
 				this.happened = true;
 			}	
 		}		
