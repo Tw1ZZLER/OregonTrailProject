@@ -2,6 +2,7 @@ package oregonTrail.randomEvent;
 
 import oregonTrail.OregonTrail;
 import javax.swing.JOptionPane;
+import java.io.Serializable;
 import java.lang.Math;
 import oregonTrail.weather.WeatherZone;
 
